@@ -7,6 +7,8 @@ The following **required** functionality is completed:
 - [ ] Checklist button animates when clicked and removes cell from main view
 - [ ] Send notification message to people
 - [ ] Add people to group
+- [ ] Able to take pictures, upload pictures (Camera for mobile oriented feature)
+- [ ] User profile
 
 The following **optional** features are implemented:
 - [ ] Due date on tasks, automatic notification to everyone/to person assigned
@@ -14,6 +16,12 @@ The following **optional** features are implemented:
 - [ ] Categorization of tasks
 - [ ] Priority on tasks
 - [ ] Chat function
+
+
+##Parse Table and Columns
+- Id
+- Username
+- Password
 
 ## Video Walkthrough
 
