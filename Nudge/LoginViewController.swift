@@ -40,6 +40,13 @@ class LoginViewController: UIViewController {
 
     @IBAction func onLogin(_ sender: Any) {
         
+        PFUser.logInWithUsername(inBackground: usernameTextField.text!, password: pwTextField.text!) { (user: PFUser?, error: Error?) in
+            if user != nil {
+                print("User logged in")
+                
+                self.performSegue(withIdentifier: "loginSegue", sender: nil)
+            }
+        }
     }
     
     /* Create a new user */

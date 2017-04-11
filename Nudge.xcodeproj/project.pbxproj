@@ -12,6 +12,7 @@
 		657DFE0C1E9C8D4800345A39 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 657DFE0B1E9C8D4800345A39 /* Assets.xcassets */; };
 		657DFE0F1E9C8D4800345A39 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 657DFE0D1E9C8D4800345A39 /* LaunchScreen.storyboard */; };
 		657DFE171E9C906900345A39 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657DFE161E9C906900345A39 /* LoginViewController.swift */; };
+		657DFE1D1E9C976500345A39 /* TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657DFE1C1E9C976500345A39 /* TaskViewController.swift */; };
 		CD42B421E0354E9B62AAA664 /* Pods_Nudge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C410732037BE1303D5250C84 /* Pods_Nudge.framework */; };
 /* End PBXBuildFile section */
 
@@ -24,6 +25,7 @@
 		657DFE0E1E9C8D4800345A39 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		657DFE101E9C8D4800345A39 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		657DFE161E9C906900345A39 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		657DFE1C1E9C976500345A39 /* TaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskViewController.swift; sourceTree = "<group>"; };
 		B819ABCF14D4FF79AA0B0C01 /* Pods-Nudge.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nudge.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Nudge/Pods-Nudge.debug.xcconfig"; sourceTree = "<group>"; };
 		C410732037BE1303D5250C84 /* Pods_Nudge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Nudge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -91,6 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				657DFE161E9C906900345A39 /* LoginViewController.swift */,
+				657DFE1C1E9C976500345A39 /* TaskViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -237,6 +240,7 @@
 			files = (
 				657DFE171E9C906900345A39 /* LoginViewController.swift in Sources */,
 				657DFE051E9C8D4800345A39 /* AppDelegate.swift in Sources */,
+				657DFE1D1E9C976500345A39 /* TaskViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
