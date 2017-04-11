@@ -1,14 +1,14 @@
-#Project - Nudge
+#Project 
 ** Nudge ** is a reminder app that can make tasks and remind other people in the task by sending a "nudge" notification.
 
 ## User Stories
 The following **required** functionality is completed:
-- [ ] Main view has checklist style to put tasks in each cell 
-- [ ] Checklist button animates when clicked and removes cell from main view
+- [ ] Log In/ Sign Up Page 
+- [ ] Main view has checklist style to put tasks in each cell (After you log in)
+- [ ] Add people to tasks
 - [ ] Send notification message to people
-- [ ] Add people to group
-- [ ] Able to take pictures, upload pictures (Camera for mobile oriented feature)
 - [ ] User profile
+- [ ] Able to take pictures, upload pictures (Camera for mobile oriented feature)
 
 The following **optional** features are implemented:
 - [ ] Due date on tasks, automatic notification to everyone/to person assigned
@@ -16,6 +16,7 @@ The following **optional** features are implemented:
 - [ ] Categorization of tasks
 - [ ] Priority on tasks
 - [ ] Chat function
+- [ ] Animations
 
 
 ##Parse Table and Columns
