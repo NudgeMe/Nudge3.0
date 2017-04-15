@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		28CE99621EA2B25700A5DE7D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28CE99611EA2B25700A5DE7D /* ProfileViewController.swift */; };
 		657DFE051E9C8D4800345A39 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657DFE041E9C8D4800345A39 /* AppDelegate.swift */; };
 		657DFE0A1E9C8D4800345A39 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 657DFE081E9C8D4800345A39 /* Main.storyboard */; };
 		657DFE0C1E9C8D4800345A39 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 657DFE0B1E9C8D4800345A39 /* Assets.xcassets */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		28CE99611EA2B25700A5DE7D /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		3CF1CE1BF16EA784B087570C /* Pods-Nudge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nudge.release.xcconfig"; path = "Pods/Target Support Files/Pods-Nudge/Pods-Nudge.release.xcconfig"; sourceTree = "<group>"; };
 		657DFE011E9C8D4800345A39 /* Nudge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nudge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		657DFE041E9C8D4800345A39 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 			children = (
 				657DFE161E9C906900345A39 /* LoginViewController.swift */,
 				657DFE1C1E9C976500345A39 /* TaskViewController.swift */,
+				28CE99611EA2B25700A5DE7D /* ProfileViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -240,6 +243,7 @@
 			files = (
 				657DFE171E9C906900345A39 /* LoginViewController.swift in Sources */,
 				657DFE051E9C8D4800345A39 /* AppDelegate.swift in Sources */,
+				28CE99621EA2B25700A5DE7D /* ProfileViewController.swift in Sources */,
 				657DFE1D1E9C976500345A39 /* TaskViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
