@@ -18,6 +18,7 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
 
         // Do any additional setup after loading the view.
     }
@@ -48,24 +49,14 @@ class LoginViewController: UIViewController {
             }
         }
     }
-    
-    /* Create a new user */
-    @IBAction func onSignUp(_ sender: Any) {
-        
-        let newUser = PFUser()
-        
-        newUser.username = usernameTextField.text
-        newUser.password = pwTextField.text
-        
-        newUser.signUpInBackground { (success: Bool, error: Error?) in
-            if success {
-                print("Created a user")
-                //self.performSegue(withIdentifier: "loginSegue", sender: nil)
-            } else {
-                print(error?.localizedDescription)
-            }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if PFUser.current() != nil {
+            self.performSegue(withIdentifier: "loginSegue", sender: nil)
         }
+        
     }
+
     
     
 }
