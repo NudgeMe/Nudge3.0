@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		287165371EA3F9C3001221BA /* GroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287165361EA3F9C3001221BA /* GroupCell.swift */; };
-		287165391EA3FA14001221BA /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287165381EA3FA14001221BA /* TaskCell.swift */; };
 		28CE99621EA2B25700A5DE7D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28CE99611EA2B25700A5DE7D /* ProfileViewController.swift */; };
 		657DFE051E9C8D4800345A39 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657DFE041E9C8D4800345A39 /* AppDelegate.swift */; };
 		657DFE0A1E9C8D4800345A39 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 657DFE081E9C8D4800345A39 /* Main.storyboard */; };
@@ -22,8 +20,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		287165361EA3F9C3001221BA /* GroupCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupCell.swift; sourceTree = "<group>"; };
-		287165381EA3FA14001221BA /* TaskCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
 		28CE99611EA2B25700A5DE7D /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		3CF1CE1BF16EA784B087570C /* Pods-Nudge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nudge.release.xcconfig"; path = "Pods/Target Support Files/Pods-Nudge/Pods-Nudge.release.xcconfig"; sourceTree = "<group>"; };
 		657DFE011E9C8D4800345A39 /* Nudge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nudge.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -79,7 +75,6 @@
 				657DFE191E9C908A00345A39 /* Models */,
 				657DFE041E9C8D4800345A39 /* AppDelegate.swift */,
 				657DFE081E9C8D4800345A39 /* Main.storyboard */,
-				287165381EA3FA14001221BA /* TaskCell.swift */,
 				657DFE0B1E9C8D4800345A39 /* Assets.xcassets */,
 				657DFE0D1E9C8D4800345A39 /* LaunchScreen.storyboard */,
 				657DFE101E9C8D4800345A39 /* Info.plist */,
@@ -97,7 +92,6 @@
 		657DFE1A1E9C90A100345A39 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				287165361EA3F9C3001221BA /* GroupCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -261,16 +255,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-<<<<<<< HEAD
-				287165371EA3F9C3001221BA /* GroupCell.swift in Sources */,
-=======
 				E4B828BD1EA3FCE600DEBF37 /* SignUpViewController.swift in Sources */,
->>>>>>> b9179cf4fc7cb492499a48c0d8bda65e8cc344ad
 				657DFE171E9C906900345A39 /* LoginViewController.swift in Sources */,
 				657DFE051E9C8D4800345A39 /* AppDelegate.swift in Sources */,
 				E4B828BB1EA3F76600DEBF37 /* TaskViewCell.swift in Sources */,
 				28CE99621EA2B25700A5DE7D /* ProfileViewController.swift in Sources */,
-				287165391EA3FA14001221BA /* TaskCell.swift in Sources */,
 				657DFE1D1E9C976500345A39 /* TaskViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -10,10 +10,6 @@ import UIKit
 
 class ProfileViewController: UIViewController {
 
-    @IBOutlet weak var avatarImageView: UIImageView!
-    @IBOutlet weak var realNameLabel: UILabel!
-    @IBOutlet weak var usernameLabel: UILabel!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -25,13 +21,7 @@ class ProfileViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func onAddFriend(_ sender: Any) {
-    }
 
-    
-    @IBAction func onCreateGroup(_ sender: Any) {
-    }
-    
     /*
     // MARK: - Navigation
 
