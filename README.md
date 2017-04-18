@@ -3,11 +3,11 @@
 
 ## User Stories
 The following **required** functionality is completed:
-- [ ] Log In/ Sign Up Page 
+- [x] Log In/ Sign Up Page 
 - [ ] Main view has checklist style to put tasks in each cell (After you log in)
 - [ ] Add people to tasks
 - [ ] Send notification message to people
-- [ ] User profile
+- [x] User profile
 - [ ] Able to take pictures, upload pictures (Camera for mobile oriented feature)
 
 The following **optional** features are implemented:
@@ -25,7 +25,9 @@ The following **optional** features are implemented:
 - Password
 
 ## Video Walkthrough
+http://imgur.com/Yx2tBxV
 
+<img src='http://i.imgur.com/Yx2tBxV.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 GIF created with [LiceCap] (https://www.cockos.com/licecap/).
 
 ## Demo
