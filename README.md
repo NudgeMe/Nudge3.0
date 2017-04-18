@@ -3,11 +3,11 @@
 
 ## User Stories
 The following **required** functionality is completed:
-- [ ] Log In/ Sign Up Page 
-- [ ] Main view has checklist style to put tasks in each cell (After you log in)
+- [x] Log In/ Sign Up Page 
+- [x] Main view has checklist style to put tasks in each cell (After you log in)
 - [ ] Add people to tasks
 - [ ] Send notification message to people
-- [ ] User profile
+- [x] User profile
 - [ ] Able to take pictures, upload pictures (Camera for mobile oriented feature)
 
 The following **optional** features are implemented:
