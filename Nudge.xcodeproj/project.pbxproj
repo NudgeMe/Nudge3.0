@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		282477591EA58F6B00644555 /* GroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282477581EA58F6B00644555 /* GroupCell.swift */; };
 		28CE99621EA2B25700A5DE7D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28CE99611EA2B25700A5DE7D /* ProfileViewController.swift */; };
 		657DFE051E9C8D4800345A39 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657DFE041E9C8D4800345A39 /* AppDelegate.swift */; };
 		657DFE0A1E9C8D4800345A39 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 657DFE081E9C8D4800345A39 /* Main.storyboard */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		282477581EA58F6B00644555 /* GroupCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupCell.swift; sourceTree = "<group>"; };
 		28CE99611EA2B25700A5DE7D /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		3CF1CE1BF16EA784B087570C /* Pods-Nudge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nudge.release.xcconfig"; path = "Pods/Target Support Files/Pods-Nudge/Pods-Nudge.release.xcconfig"; sourceTree = "<group>"; };
 		657DFE011E9C8D4800345A39 /* Nudge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nudge.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -69,7 +71,6 @@
 		657DFE031E9C8D4800345A39 /* Nudge */ = {
 			isa = PBXGroup;
 			children = (
-				E4B828B91EA3F72600DEBF37 /* Cell */,
 				657DFE1B1E9C90AC00345A39 /* Controllers */,
 				657DFE1A1E9C90A100345A39 /* Views */,
 				657DFE191E9C908A00345A39 /* Models */,
@@ -92,6 +93,8 @@
 		657DFE1A1E9C90A100345A39 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E4B828BA1EA3F76600DEBF37 /* TaskViewCell.swift */,
+				282477581EA58F6B00644555 /* GroupCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -122,14 +125,6 @@
 				3CF1CE1BF16EA784B087570C /* Pods-Nudge.release.xcconfig */,
 			);
 			name = Pods;
-			sourceTree = "<group>";
-		};
-		E4B828B91EA3F72600DEBF37 /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				E4B828BA1EA3F76600DEBF37 /* TaskViewCell.swift */,
-			);
-			name = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -255,6 +250,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				282477591EA58F6B00644555 /* GroupCell.swift in Sources */,
 				E4B828BD1EA3FCE600DEBF37 /* SignUpViewController.swift in Sources */,
 				657DFE171E9C906900345A39 /* LoginViewController.swift in Sources */,
 				657DFE051E9C8D4800345A39 /* AppDelegate.swift in Sources */,

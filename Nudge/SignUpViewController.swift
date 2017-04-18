@@ -36,6 +36,15 @@ class SignUpViewController: UIViewController {
         newUser.signUpInBackground { (success: Bool, error: Error?) in
             if success {
                 print("Created a user")
+                
+                /*save user info
+                var user = PFObject(className: "User")
+                user["username"] = self.userNameTextField.text
+                user["realname"] = self.fullNameTextField.text
+                //user.add(self.usernameTextField.text!, forKey: "username")
+                
+                user.saveInBackground()*/
+                
                 self.dismiss(animated: true, completion: nil)
             } else {
                 print(error?.localizedDescription)

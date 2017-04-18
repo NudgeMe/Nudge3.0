@@ -7,13 +7,25 @@
 //
 
 import UIKit
+import Parse
 
 class ProfileViewController: UIViewController {
-
+    
+    
+    @IBOutlet weak var usernameLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+
         // Do any additional setup after loading the view.
+    }
+    
+    //TODO
+    func fetchUserInfo(){
+        let query = PFQuery(className: "User")
+        query.whereKey("username", equalTo:"user")
+        
     }
 
     override func didReceiveMemoryWarning() {

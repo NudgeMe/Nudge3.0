@@ -25,6 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 configuration.server = "http://nudgeme.herokuapp.com/parse"
             })
         )
+
 //        if PFUser.current() != nil {
 //            let storyboard = UIStoryboard(name: "Main", bundle: nil)
 //            let vc = storyboard.instantiateViewController(withIdentifier: "main")
