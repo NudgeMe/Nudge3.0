@@ -33,7 +33,6 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let cell = tableView.dequeueReusableCell(withIdentifier: "TaskViewCell", for: indexPath) as! TaskViewCell
         
         return cell;
-    
     }
 
     

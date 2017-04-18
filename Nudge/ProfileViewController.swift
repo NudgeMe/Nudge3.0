@@ -9,15 +9,15 @@
 import UIKit
 import Parse
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     
+    @IBOutlet weak var pictureImageView: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         usernameLabel.text = PFUser.current()?.username
-
 
         // Do any additional setup after loading the view.
     }
@@ -37,6 +37,27 @@ class ProfileViewController: UIViewController {
     @IBAction func onLogout(_ sender: Any) {
         PFUser.logOutInBackground()
         print("successfully logged out")
+    }
+
+    //Function to add a photo to profile picture
+    @IBAction func onProfilePicture(_ sender: Any) {
+        print("Clicked button")
+        let vc = UIImagePickerController()
+        vc.delegate = self
+        vc.allowsEditing = true
+        vc.sourceType = UIImagePickerControllerSourceType.photoLibrary
+        self.present(vc, animated: true, completion: nil)
+
+    }
+    //Set profile picture as the selected image
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        let originalImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        
+        //Set image
+        pictureImageView.image = originalImage
+        
+        //Dismiss imagePIckerController to go back to original view controller
+        dismiss(animated: true, completion: nil)
     }
 
     /*
