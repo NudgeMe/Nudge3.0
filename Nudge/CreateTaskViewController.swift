@@ -1,32 +1,24 @@
 //
-//  ProfileViewController.swift
+//  CreateTaskViewController.swift
 //  Nudge
 //
-//  Created by Lin Zhou on 4/15/17.
+//  Created by Lin Zhou on 4/17/17.
 //  Copyright © 2017 Dephanie Ho. All rights reserved.
 //
 
 import UIKit
-import Parse
 
-class ProfileViewController: UIViewController {
+class CreateTaskViewController: UIViewController {
     
-    
-    @IBOutlet weak var usernameLabel: UILabel!
+    var newTask: Task?
+
+    @IBOutlet weak var descriptionTextField: UITextField!
+    @IBOutlet weak var titleTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        usernameLabel.text = PFUser.current()?.username
-
 
         // Do any additional setup after loading the view.
-    }
-    
-    //TODO
-    func fetchUserInfo(){
-        let query = PFQuery(className: "User")
-        query.whereKey("username", equalTo:"user")
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -34,9 +26,9 @@ class ProfileViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func onLogout(_ sender: Any) {
-        PFUser.logOutInBackground()
-        print("successfully logged out")
+    @IBAction func onCreate(_ sender: Any) {
+        newTask?.title = titleTextField.text
+        newTask?.taskDescription = descriptionTextField.text
     }
 
     /*

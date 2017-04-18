@@ -26,20 +26,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             })
         )
 
-//        if PFUser.current() != nil {
-//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//            let vc = storyboard.instantiateViewController(withIdentifier: "main")
-//            window?.rootViewController = vc
-//        
-//        }
-//        else {
-//            print("No current user")
-//            
-//        }
+        if PFUser.current() != nil {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "main")
+            window?.rootViewController = vc
         
-        
-        
-        
+        }
+        else {
+            print("No current user")
+            
+        }
         
         return true
     }
