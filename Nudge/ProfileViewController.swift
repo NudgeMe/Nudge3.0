@@ -40,14 +40,14 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
 
     //Function to add a photo to profile picture
-    @IBAction func onProfilePicture(_ sender: Any) {
+    @IBAction func onProfilePicture(_ sender: UIButton) {
         print("Clicked button")
         let vc = UIImagePickerController()
         vc.delegate = self
         vc.allowsEditing = true
         vc.sourceType = UIImagePickerControllerSourceType.photoLibrary
         self.present(vc, animated: true, completion: nil)
-
+        sender.isHidden = true
     }
     //Set profile picture as the selected image
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
