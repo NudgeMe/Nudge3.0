@@ -3,12 +3,14 @@
 
 ## User Stories
 The following **required** functionality is completed:
-- [x] Log In/ Sign Up Page 
-- [ ] Main view has checklist style to put tasks in each cell (After you log in)
-- [ ] Add people to tasks
-- [ ] Send notification message to people
-- [x] User profile
-- [ ] Able to take pictures, upload pictures (Camera for mobile oriented feature)
+- [x] Log in/sign up into the app and persist an account if not logged out
+- [x] User sees a profile page using the profile button
+- [X] Upload a profile picture using camera or from the album
+- [ ] User sees a checklist style main view with tasks in each cell (after logging in)
+- [ ] Add friends
+- [ ] Create a group 
+- [ ] Create a task and assign it to a group
+- [ ] Send notification message to people in a group
 
 The following **optional** features are implemented:
 - [ ] Due date on tasks, automatic notification to everyone/to person assigned
@@ -17,6 +19,7 @@ The following **optional** features are implemented:
 - [ ] Priority on tasks
 - [ ] Chat function
 - [ ] Animations
+- [ ] Calendar
 
 
 ##Parse Table and Columns
