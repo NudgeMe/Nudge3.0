@@ -18,7 +18,7 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var addressTextField: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
 
@@ -30,21 +30,17 @@ class SignUpViewController: UIViewController {
     @IBAction func onSignUp(_ sender: Any) {
         let newUser = PFUser()
         
+        
+        //TODO test for errors
+        
         newUser.username = userNameTextField.text
         newUser.password = passwordTextField.text
-        
+        newUser["isInGroup"] = false
+        newUser["Phone"] = phoneTextField.text
+        newUser["Address"] = addressTextField.text
         newUser.signUpInBackground { (success: Bool, error: Error?) in
             if success {
                 print("Created a user")
-                
-                /*save user info
-                var user = PFObject(className: "User")
-                user["username"] = self.userNameTextField.text
-                user["realname"] = self.fullNameTextField.text
-                //user.add(self.usernameTextField.text!, forKey: "username")
-                
-                user.saveInBackground()*/
-                
                 self.dismiss(animated: true, completion: nil)
             } else {
                 print(error?.localizedDescription)

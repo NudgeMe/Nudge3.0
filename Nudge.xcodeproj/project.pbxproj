@@ -20,6 +20,8 @@
 		CD42B421E0354E9B62AAA664 /* Pods_Nudge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C410732037BE1303D5250C84 /* Pods_Nudge.framework */; };
 		E4B828BB1EA3F76600DEBF37 /* TaskViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B828BA1EA3F76600DEBF37 /* TaskViewCell.swift */; };
 		E4B828BD1EA3FCE600DEBF37 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B828BC1EA3FCE600DEBF37 /* SignUpViewController.swift */; };
+		E4C3CE2F1EABBB5300B99254 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C3CE2E1EABBB5300B99254 /* Group.swift */; };
+		E4C3CE331EABC85900B99254 /* NewGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C3CE321EABC85900B99254 /* NewGroupViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +42,8 @@
 		C410732037BE1303D5250C84 /* Pods_Nudge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Nudge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4B828BA1EA3F76600DEBF37 /* TaskViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskViewCell.swift; sourceTree = "<group>"; };
 		E4B828BC1EA3FCE600DEBF37 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		E4C3CE2E1EABBB5300B99254 /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		E4C3CE321EABC85900B99254 /* NewGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewGroupViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +62,7 @@
 			isa = PBXGroup;
 			children = (
 				2824775A1EA5C01600644555 /* Task.swift */,
+				E4C3CE2E1EABBB5300B99254 /* Group.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -115,11 +120,12 @@
 		657DFE1B1E9C90AC00345A39 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E4B828BC1EA3FCE600DEBF37 /* SignUpViewController.swift */,
 				657DFE161E9C906900345A39 /* LoginViewController.swift */,
+				2824775D1EA5C2AB00644555 /* CreateTaskViewController.swift */,
 				657DFE1C1E9C976500345A39 /* TaskViewController.swift */,
 				28CE99611EA2B25700A5DE7D /* ProfileViewController.swift */,
-				E4B828BC1EA3FCE600DEBF37 /* SignUpViewController.swift */,
-				2824775D1EA5C2AB00644555 /* CreateTaskViewController.swift */,
+				E4C3CE321EABC85900B99254 /* NewGroupViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -267,8 +273,10 @@
 				2824775B1EA5C01600644555 /* Task.swift in Sources */,
 				282477591EA58F6B00644555 /* GroupCell.swift in Sources */,
 				E4B828BD1EA3FCE600DEBF37 /* SignUpViewController.swift in Sources */,
+				E4C3CE2F1EABBB5300B99254 /* Group.swift in Sources */,
 				657DFE171E9C906900345A39 /* LoginViewController.swift in Sources */,
 				657DFE051E9C8D4800345A39 /* AppDelegate.swift in Sources */,
+				E4C3CE331EABC85900B99254 /* NewGroupViewController.swift in Sources */,
 				2824775E1EA5C2AB00644555 /* CreateTaskViewController.swift in Sources */,
 				E4B828BB1EA3F76600DEBF37 /* TaskViewCell.swift in Sources */,
 				28CE99621EA2B25700A5DE7D /* ProfileViewController.swift in Sources */,

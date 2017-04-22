@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
     
     @IBOutlet weak var pictureImageView: UIImageView!
@@ -35,8 +35,13 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     @IBAction func onLogout(_ sender: Any) {
-        PFUser.logOutInBackground()
-        print("successfully logged out")
+        
+        
+        //TODO confirm b4 logout
+        PFUser.logOutInBackground { (error: Error?) in
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "UserDidLogOut"), object: nil)
+            
+        }
     }
 
     //Function to add a photo to profile picture
@@ -59,7 +64,23 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         //Dismiss imagePIckerController to go back to original view controller
         dismiss(animated: true, completion: nil)
     }
+    
+    @IBAction func onCreateGroup(_ sender: Any) {
+        let user = PFUser.current()!
+        let isInGroup = user["isInGroup"] as! Bool
+        if isInGroup{
+            let alert = UIAlertController(title: "Oops", message: "Already in a group", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            
+        }
+        else {
+            self.performSegue(withIdentifier: "newGroupSegue", sender: nil)
+        }
+    }
 
+    
+    
     /*
     // MARK: - Navigation
 
