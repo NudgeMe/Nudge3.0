@@ -12,6 +12,7 @@ import Parse
 class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
+    var taskCount = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +30,26 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     
-        return 1
+        //Load tasks here
+        let currentUserGroup = NudgeHelper.getCurrentUserGroup()
+        
+        //Check if user has a taskGroup
+        if(currentUserGroup != nil)
+        {
+            let currentUserTasks = currentUserGroup?.tasks
+            
+            //Check if tasks exist in the taskGroup, else return an empty cell
+            if(currentUserTasks != nil)
+            {
+                //Filters through the task array on those that are active
+                let currentUserActiveTasks = currentUserTasks?.filter {
+                    task in task.isActive
+                }
+                return (currentUserActiveTasks?.count)!
+            }
+        }
+
+        return 0
         //TO DO: Figure out how to display empty task cells when there are no tasks or how to
         //display the exact number of task cells created
     }
@@ -51,6 +71,7 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 //Filters through the task array on those that are active
                 let currentUserActiveTasks = currentUserTasks?.filter {
                     task in task.isActive
+                    //taskCount += 1
                 }
                 
                 if((currentUserActiveTasks?.count)! > 0)

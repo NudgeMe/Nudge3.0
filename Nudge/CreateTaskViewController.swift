@@ -44,6 +44,8 @@ class CreateTaskViewController: UIViewController {
             NudgeHelper.trySaveTask(task: newTask)
             NudgeHelper.addTaskToCurrentUserGroup(task: newTask)
         }
+        
+        self.performSegue(withIdentifier: "toMain", sender: nil)
     }
 
     /*
