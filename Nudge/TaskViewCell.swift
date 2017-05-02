@@ -11,11 +11,22 @@ import UIKit
 class TaskViewCell: UITableViewCell {
     @IBOutlet weak var tasknameLabel: UILabel!
     @IBOutlet weak var taskdescriptionLabel: UILabel!
+    @IBOutlet weak var deadlineLabel: UILabel!
 
     var task: Task!{
         didSet{
             tasknameLabel.text = task.title
             taskdescriptionLabel.text = task.detail
+            
+            //print("TASKKKKK")
+            
+            /* show deadline
+            let taskDue = task.dueDate
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd/MM/yyyy"
+            let dateString = dateFormatter.string(from: taskDue)
+            
+            deadlineLabel.text = dateString*/
         }
     }
     

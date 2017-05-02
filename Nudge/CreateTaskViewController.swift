@@ -13,6 +13,7 @@ class CreateTaskViewController: UIViewController {
     
     var newTask: Task?
 
+    @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var descriptionTextField: UITextField!
     @IBOutlet weak var titleTextField: UITextField!
     
@@ -39,6 +40,7 @@ class CreateTaskViewController: UIViewController {
             newTask.title = titleTextField.text
             newTask.detail = descriptionTextField.text
             newTask.isActive = true
+            newTask.dueDate = datePicker.date
             
             //Save task into Parse and add to taskGroup
             NudgeHelper.trySaveTask(task: newTask)

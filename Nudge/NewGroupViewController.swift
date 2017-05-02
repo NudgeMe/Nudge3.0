@@ -12,7 +12,6 @@ import Parse
 class NewGroupViewController: UIViewController {
 
     @IBOutlet weak var groupNameTextField: UITextField!
-    @IBOutlet weak var addMemberTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +28,8 @@ class NewGroupViewController: UIViewController {
     @IBAction func onCreate(_ sender: Any) {
         let taskGroup = TaskGroup()
         
+        //TOADD alert if already in a group
+        
         if(!NudgeHelper.doesGroupNameExist(groupName: groupNameTextField.text!)){
             //Create and assign group if name is not taken
             taskGroup.name = groupNameTextField.text!
@@ -39,18 +40,23 @@ class NewGroupViewController: UIViewController {
             //TODO: Prompt to enter another name
             print("Group name already exists")
         }
+        self.dismiss(animated: true, completion: nil)
+        self.viewWillAppear(true)
     }
 
     /* Add member to the taskGroup */
     @IBAction func onAddMember(_ sender: Any) {
-        let memberUsername = addMemberTextField.text
-        let member = NudgeHelper.getPFObjectByUsername(username: memberUsername!)
+        let memberUsername = ""//addMemberTextField.text
+        let member = NudgeHelper.getPFObjectByUsername(username: memberUsername)
         
         if(member != nil && (member?.count)! > 0)
         {
             //Member exists
-            NudgeHelper.setUserGroupByUserName(username: memberUsername!, taskGroup: NudgeHelper.getCurrentUserGroup()!)
+            NudgeHelper.setUserGroupByUserName(username: memberUsername, taskGroup: NudgeHelper.getCurrentUserGroup()!)
         }
+    }
+    @IBAction func onCancel(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
     
     /*

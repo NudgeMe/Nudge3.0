@@ -231,6 +231,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="deadlineLabel" destination="jeh-cF-gsm" id="RrC-ZX-fsf"/>
                                             <outlet property="taskdescriptionLabel" destination="tFe-El-VFY" id="fsX-wH-hvP"/>
                                             <outlet property="tasknameLabel" destination="huQ-Kh-fsn" id="KHj-Ly-tmY"/>
                                         </connections>
@@ -304,6 +305,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Group Assigned" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0It-rj-rIb">
+                                <rect key="frame" x="22" y="176" width="123" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Description (Optional)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cVI-Ni-E60">
                                 <rect key="frame" x="22" y="460" width="168" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -333,23 +341,17 @@
                                 <state key="normal" title="Save"/>
                             </button>
                             <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="PDM-T9-P5B">
-                                <rect key="frame" x="-16" y="228" width="375" height="166"/>
+                                <rect key="frame" x="0.0" y="231" width="375" height="166"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <date key="date" timeIntervalSinceReferenceDate="515388263.60856199">
                                     <!--2017-05-02 03:24:23 +0000-->
                                 </date>
                             </datePicker>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Group Assigned" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0It-rj-rIb">
-                                <rect key="frame" x="22" y="176" width="123" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="datePicker" destination="PDM-T9-P5B" id="h1f-Iz-TSR"/>
                         <outlet property="descriptionTextField" destination="pzQ-mt-4gc" id="TOo-hl-lIi"/>
                         <outlet property="titleTextField" destination="RjX-SS-75d" id="qff-cI-khu"/>
                         <segue destination="CGT-cc-UNa" kind="show" identifier="toMain" id="mmV-AF-NLW"/>
@@ -380,14 +382,6 @@
                                 <rect key="frame" x="122" y="124" width="131" height="124"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jt1-hU-WHa">
-                                <rect key="frame" x="122" y="124" width="131" height="124"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Profile Picture"/>
-                                <connections>
-                                    <action selector="onProfilePicture:" destination="Xa6-D5-eOM" eventType="touchUpInside" id="tcM-mg-bGM"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Real Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1bc-7P-S2N">
                                 <rect key="frame" x="133" y="264" width="108" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -407,7 +401,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="create group"/>
                                 <connections>
-                                    <action selector="onProfileCreateGroup:" destination="Xa6-D5-eOM" eventType="touchUpInside" id="eGe-V6-Yge"/>
+                                    <action selector="onCreateGroup:" destination="Xa6-D5-eOM" eventType="touchUpInside" id="ORx-x5-aAT"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8xw-5c-tKt">
@@ -450,18 +444,25 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="groupnameLabel" destination="sRa-KD-fEI" id="Kqi-g6-U5v"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jt1-hU-WHa">
+                                <rect key="frame" x="122" y="72" width="131" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Change Picture"/>
+                                <connections>
+                                    <action selector="onProfilePicture:" destination="Xa6-D5-eOM" eventType="touchUpInside" id="tcM-mg-bGM"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="groupLabel" destination="sRa-KD-fEI" id="mE7-AK-WVf"/>
                         <outlet property="pictureImageView" destination="f21-pF-Dy5" id="9kx-aG-Alo"/>
-                        <outlet property="usernameLabel" destination="8xw-5c-tKt" id="dsp-jF-y6L"/>
+                        <outlet property="realName" destination="1bc-7P-S2N" id="Zp6-4m-pRf"/>
+                        <outlet property="usernameLabel" destination="8xw-5c-tKt" id="1v3-37-Hc5"/>
                         <segue destination="1qm-SI-PKc" kind="show" identifier="newGroupSegue" id="lXW-D5-ND0"/>
                     </connections>
                 </viewController>
@@ -507,9 +508,6 @@
                                 <rect key="frame" x="18" y="174" width="89" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Add member"/>
-                                <connections>
-                                    <action selector="onAddMember:" destination="8Tc-hX-fVl" eventType="touchUpInside" id="bk0-7R-qZw"/>
-                                </connections>
                             </button>
                             <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RTM-YZ-TgK">
                                 <rect key="frame" x="0.0" y="212" width="375" height="216"/>
@@ -519,6 +517,9 @@
                                 <rect key="frame" x="234" y="495" width="48" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <action selector="onCancel:" destination="8Tc-hX-fVl" eventType="touchUpInside" id="2cj-2t-D7j"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

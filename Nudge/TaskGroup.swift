@@ -22,4 +22,6 @@ class TaskGroup: PFObject, PFSubclassing {
     @NSManaged var tasks: [Task]?
     //Name of the group
     @NSManaged var name: String?
+    
+    var inGroup: Bool?
 }
