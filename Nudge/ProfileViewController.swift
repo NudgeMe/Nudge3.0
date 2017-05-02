@@ -20,15 +20,23 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         usernameLabel.text = PFUser.current()?.username
 
         // Do any additional setup after loading the view.
+        /*let currentUser = PFUser.current()
+        print(currentUser?.objectId)
+        
+        //let currentUserGroupId = currentUser?["groupId"] as! String
+        //print(currentUserGroupId)
+        let userQuery = PFQuery(className: "TaskGroup")
+
+        do {
+            let groupObject = try userQuery.getObjectWithId(currentUserGroupId)
+            let taskGroup = groupObject as! TaskGroup
+            print("loaded current user group id: " + taskGroup.objectId!)
+        }
+        catch let error {
+            print(error)
+        }*/
     }
     
-    //TODO
-    func fetchUserInfo(){
-        let query = PFQuery(className: "User")
-        query.whereKey("username", equalTo:"user")
-        
-    }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -64,21 +72,11 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         //Dismiss imagePIckerController to go back to original view controller
         dismiss(animated: true, completion: nil)
     }
-    
-    @IBAction func onCreateGroup(_ sender: Any) {
-        let user = PFUser.current()!
-        let isInGroup = user["isInGroup"] as! Bool
-        if isInGroup{
-            let alert = UIAlertController(title: "Oops", message: "Already in a group", preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-            
-        }
-        else {
-            self.performSegue(withIdentifier: "newGroupSegue", sender: nil)
-        }
-    }
 
+    @IBAction func onProfileCreateGroup(_ sender: Any) {
+        self.performSegue(withIdentifier: "newGroupSegue", sender: nil)
+
+    }
     
     
     /*

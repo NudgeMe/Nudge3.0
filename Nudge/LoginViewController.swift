@@ -54,7 +54,6 @@ class LoginViewController: UIViewController {
         if PFUser.current() != nil {
             self.performSegue(withIdentifier: "loginSegue", sender: nil)
         }
-        
     }
 
     

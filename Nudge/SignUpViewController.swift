@@ -8,14 +8,14 @@
 
 import UIKit
 import Parse
+
 class SignUpViewController: UIViewController {
     @IBOutlet weak var fullNameTextField: UITextField!
-    
     @IBOutlet weak var userNameTextField: UITextField!
-
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var phoneTextField: UITextField!
     @IBOutlet weak var addressTextField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

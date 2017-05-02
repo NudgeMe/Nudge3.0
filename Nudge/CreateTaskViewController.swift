@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class CreateTaskViewController: UIViewController {
     
@@ -27,8 +28,22 @@ class CreateTaskViewController: UIViewController {
     }
     
     @IBAction func onCreate(_ sender: Any) {
-        newTask?.title = titleTextField.text
-        newTask?.taskDescription = descriptionTextField.text
+        let currentTaskGroup = NudgeHelper.getCurrentUserGroup()
+        
+        //If the taskGroup exists, then add task to taskGroup
+        if(currentTaskGroup != nil)
+        {
+            //Create task
+            let newTask = Task()
+            
+            newTask.title = titleTextField.text
+            newTask.detail = descriptionTextField.text
+            newTask.isActive = true
+            
+            //Save task into Parse and add to taskGroup
+            NudgeHelper.trySaveTask(task: newTask)
+            NudgeHelper.addTaskToCurrentUserGroup(task: newTask)
+        }
     }
 
     /*

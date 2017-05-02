@@ -10,7 +10,15 @@ import UIKit
 
 class TaskViewCell: UITableViewCell {
     @IBOutlet weak var tasknameLabel: UILabel!
+    @IBOutlet weak var taskdescriptionLabel: UILabel!
 
+    var task: Task!{
+        didSet{
+            tasknameLabel.text = task.title
+            taskdescriptionLabel.text = task.detail
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
