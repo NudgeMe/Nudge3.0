@@ -18,15 +18,16 @@ class TaskViewCell: UITableViewCell {
             tasknameLabel.text = task.title
             taskdescriptionLabel.text = task.detail
             
-            //print("TASKKKKK")
             
-            /* show deadline
+            
+            // show deadline
+            //print(task.dueDate)
             let taskDue = task.dueDate
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "dd/MM/yyyy"
+            dateFormatter.dateFormat = "MM/dd/yyyy"
             let dateString = dateFormatter.string(from: taskDue)
             
-            deadlineLabel.text = dateString*/
+            deadlineLabel.text = dateString
         }
     }
     
