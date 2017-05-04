@@ -13,8 +13,12 @@ class NewGroupViewController: UIViewController {
 
     @IBOutlet weak var groupNameTextField: UITextField!
     
+    @IBOutlet weak var pickerView: UIPickerView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
 
         // Do any additional setup after loading the view.
     }
