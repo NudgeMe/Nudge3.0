@@ -9,17 +9,24 @@
 import UIKit
 import Parse
 
-class NewGroupViewController: UIViewController {
+class NewGroupViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
     @IBOutlet weak var groupNameTextField: UITextField!
     
     @IBOutlet weak var pickerView: UIPickerView!
+
+    //var pickerData = ["Dephanie Ho", "Lin Zhou", "Thuan Nguyen"]
+    var pickerData = [String]()
     
+  
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //fetchUserNames()
+        pickerView.delegate = self
+        pickerView.dataSource = self
         
-
+    
         // Do any additional setup after loading the view.
     }
 
@@ -62,6 +69,59 @@ class NewGroupViewController: UIViewController {
     @IBAction func onCancel(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
+    
+    //TOMODIFY: this function need to be called first
+    func fetchUserNames(){
+        let query = PFQuery(className: "_User")
+        
+        query.findObjectsInBackground (block: { (users: [PFObject]?, error: Error?) in
+            if let users = users{
+                print("finding users here\(users.count)")
+               
+                for user in users{
+                    let name = user.object(forKey: "fullname") as? String
+                    //print("name is \(name)")
+                    
+                    if name != nil{
+                        print("name is \(name!)")
+
+                    self.pickerData.append(name!)
+                    print( "\(self.pickerData.count)")
+                //self.pickerData.append(user["fullname"] as! String)
+                }
+                    else{
+                        self.pickerData.append("")
+                    }
+                }
+}
+            else{
+                print ("ERROR \(error?.localizedDescription)")
+            }
+        })
+    }
+    
+    
+    //Data sources
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        //fetchUserNames()
+        print("picker data count is \(pickerData.count)")
+        return pickerData.count
+    }
+    
+    //delegates
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        
+        return pickerData[row] as! String
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        //myLabel.text = pickerData[row]
+    }
+    
     
     /*
     // MARK: - Navigation

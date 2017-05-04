@@ -49,12 +49,12 @@ class LoginViewController: UIViewController {
             }
         }
     }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        if PFUser.current() != nil {
-            self.performSegue(withIdentifier: "loginSegue", sender: nil)
-        }
-    }
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        if PFUser.current() != nil {
+//            self.performSegue(withIdentifier: "loginSegue", sender: nil)
+//        }
+//    }
 
     
     
