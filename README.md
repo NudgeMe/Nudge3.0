@@ -36,7 +36,12 @@ TaskGroup:
 
 ## Video Walkthrough
 http://imgur.com/Yx2tBxV
+
 http://i.imgur.com/dKbytrm.gif
+
+
+<img src='http://i.imgur.com/dKbytrm.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
 
 <img src='http://i.imgur.com/Yx2tBxV.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 GIF created with [LiceCap] (https://www.cockos.com/licecap/).
