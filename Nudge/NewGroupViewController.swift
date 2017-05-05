@@ -15,7 +15,6 @@ class NewGroupViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     @IBOutlet weak var pickerView: UIPickerView!
 
-    //var pickerData = ["Dephanie Ho", "Lin Zhou", "Thuan Nguyen"]
     var pickerData = [String]()
     
     override func viewDidLoad() {

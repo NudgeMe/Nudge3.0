@@ -9,8 +9,6 @@
 import UIKit
 import Parse
 
-
-
 class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
     
