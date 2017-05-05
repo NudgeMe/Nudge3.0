@@ -47,6 +47,40 @@ struct NudgeHelper {
         
         return taskGroup
     }
+
+    static func getCurrentUserGroupAsync(completionHandler: @escaping (_ result: TaskGroup?, _ error: Error?) -> ())
+    {
+        let currentUser = getCurrentUser()
+        
+        //If user is not in a group, return nothing
+        if(currentUser?["groupId"] != nil)
+        {
+            
+            //Else get groupId and return the taskGroup associated with the groupId
+            let currentUserGroupId = currentUser?["groupId"] as! String
+            var taskGroup = TaskGroup()
+            
+            let userQuery = PFQuery(className: "TaskGroup")
+            
+            do {
+                userQuery.includeKey("tasks")
+                try userQuery.getObjectInBackground(withId: currentUserGroupId) {
+                    (groupObject: PFObject?, error: Error?) -> Void in
+                    if (error != nil) {
+                        taskGroup = groupObject as! TaskGroup
+                        print("loaded current user group name: " + taskGroup.name!)
+                        completionHandler(taskGroup, error)
+                    }
+                    else {
+                        completionHandler(nil, error)
+                    }
+                }
+            }
+            catch let error {
+                completionHandler(nil, error)
+            }
+        }
+    }
     
     /* Return PFUser by name */
     static func getPFObjectByUsername(username: String) -> [PFObject]?
