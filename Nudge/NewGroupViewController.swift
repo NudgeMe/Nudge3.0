@@ -18,15 +18,17 @@ class NewGroupViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     //var pickerData = ["Dephanie Ho", "Lin Zhou", "Thuan Nguyen"]
     var pickerData = [String]()
     
-  
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        //fetchUserNames()
-        pickerView.delegate = self
-        pickerView.dataSource = self
         
-    
+        //Connect data
+        self.pickerView.delegate = self
+        self.pickerView.dataSource = self
+        
+        //Input data into the pickerData
+        fetchUserNames()
+        
+        self.pickerView.reloadAllComponents()
         // Do any additional setup after loading the view.
     }
 
@@ -35,11 +37,32 @@ class NewGroupViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         // Dispose of any resources that can be recreated.
     }
     
+    /* PickerView */
+    //The number of columns of data
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    //The number of rows of data
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        //fetchUserNames()
+        //print("picker data count is \(pickerData.count)")
+        return self.pickerData.count
+    }
+    
+    //The data to return for the row and component(column) that's being passed in
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return self.pickerData[row]
+    }
+    
+    //func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        //myLabel.text = pickerData[row]
+    //}
+    
     /* Create a taskGroup */
     @IBAction func onCreate(_ sender: Any) {
         let taskGroup = TaskGroup()
         
-        //TOADD alert if already in a group
+        //TODO: alert if already in a group
         
         if(!NudgeHelper.doesGroupNameExist(groupName: groupNameTextField.text!)){
             //Create and assign group if name is not taken
@@ -66,62 +89,38 @@ class NewGroupViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
             NudgeHelper.setUserGroupByUserName(username: memberUsername, taskGroup: NudgeHelper.getCurrentUserGroup()!)
         }
     }
+    
     @IBAction func onCancel(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
     
-    //TOMODIFY: this function need to be called first
     func fetchUserNames(){
         let query = PFQuery(className: "_User")
         
         query.findObjectsInBackground (block: { (users: [PFObject]?, error: Error?) in
             if let users = users{
-                print("finding users here\(users.count)")
+                print("Entered fetchUserNames")
                
                 for user in users{
-                    let name = user.object(forKey: "fullname") as? String
-                    //print("name is \(name)")
+                    let name = user.object(forKey: "fullname") as! String
+                    print("name is \(name)")
                     
-                    if name != nil{
-                        print("name is \(name!)")
-
-                    self.pickerData.append(name!)
-                    print( "\(self.pickerData.count)")
-                //self.pickerData.append(user["fullname"] as! String)
-                }
+                    if name != ""{
+                    self.pickerData.append(name)
+                    self.pickerView.reloadAllComponents()
+                    //print("Picker data count: \(self.pickerData.count)")
+                    
+                    }
                     else{
                         self.pickerData.append("")
                     }
                 }
-}
+            }
             else{
                 print ("ERROR \(error?.localizedDescription)")
             }
         })
     }
-    
-    
-    //Data sources
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        //fetchUserNames()
-        print("picker data count is \(pickerData.count)")
-        return pickerData.count
-    }
-    
-    //delegates
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        
-        return pickerData[row] as! String
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        //myLabel.text = pickerData[row]
-    }
-    
     
     /*
     // MARK: - Navigation
