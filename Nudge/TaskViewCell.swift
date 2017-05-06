@@ -18,8 +18,6 @@ class TaskViewCell: UITableViewCell {
             tasknameLabel.text = task.title
             taskdescriptionLabel.text = task.detail
             
-            
-            
             // show deadline
             //print(task.dueDate)
             let taskDue = task.dueDate

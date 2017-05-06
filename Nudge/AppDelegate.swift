@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         // register all PFObject subclasses
+        Invitation.registerSubclass()
         Task.registerSubclass()
         TaskGroup.registerSubclass()
         

@@ -8,7 +8,6 @@
 
 import UIKit
 import Parse
-import AFNetworking
 
 class LoginViewController: UIViewController {
 

@@ -48,6 +48,32 @@ struct NudgeHelper {
         return taskGroup
     }
 
+    /* Check if current user has any invitations */
+    static func getCurrentUserInvitation() -> Invitation?
+    {
+        let currentUser = getCurrentUser()
+        
+        let userQuery = PFQuery(className: "Invitation")
+        
+        do {
+            userQuery.whereKey("receipientId", equalTo: currentUser?.objectId!)
+            //Filter invitations to those that are created, neither accepted or declined
+            userQuery.whereKey("status", equalTo: InvitationStatus.created.rawValue)
+            
+            let results = try userQuery.findObjects()
+            
+            if(results.count > 0)
+            {
+                return results[0] as? Invitation
+            }
+        }
+        catch let error {
+            print(error.localizedDescription)
+        }
+        
+        return nil
+    }
+    
     static func getCurrentUserGroupAsync(completionHandler: @escaping (_ result: TaskGroup?, _ error: Error?) -> ())
     {
         let currentUser = getCurrentUser()
@@ -100,10 +126,10 @@ struct NudgeHelper {
     }
     
     /* set a PFUser to a group */
-    static func setUserGroupByUserName(username: String, taskGroup: TaskGroup)
-    {
+    static func setUserGroup(username: String, taskGroup: TaskGroup)
+    {/*
         // TODO: do push then request approval from the other user to add group
-        /*
+        
         let pfObject = getPFObjectByUsername(username: username)
         let pfUserObject = pfObject?[0]
         
@@ -140,6 +166,20 @@ struct NudgeHelper {
         
         do {
             currentUser?["groupId"] = taskGroup.objectId
+            try currentUser?.save()
+        }
+        catch let error {
+            print(error.localizedDescription)
+        }
+    }
+    
+    /* Set group made as the current user's group and save to Parse */
+    static func setCurrentUserGroupById(taskGroupId: String)
+    {
+        let currentUser = getCurrentUser()
+        
+        do {
+            currentUser?["groupId"] = taskGroupId
             try currentUser?.save()
         }
         catch let error {
@@ -190,6 +230,17 @@ struct NudgeHelper {
     {
         do {
             try task.save()
+        }
+        catch let error {
+            print(error.localizedDescription)
+        }
+    }
+    
+    /* Save invitation into Parse */
+    static func trySaveInvitation(invitation: Invitation)
+    {
+        do {
+            try invitation.save()
         }
         catch let error {
             print(error.localizedDescription)

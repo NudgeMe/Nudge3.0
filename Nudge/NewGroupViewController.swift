@@ -16,6 +16,8 @@ class NewGroupViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     @IBOutlet weak var pickerView: UIPickerView!
 
     var pickerData = [String]()
+    var memberData = [String]()
+    var selectedMember: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,9 +55,11 @@ class NewGroupViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         return self.pickerData[row]
     }
     
-    //func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        //myLabel.text = pickerData[row]
-    //}
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        print("Selected \(self.pickerData[row])")
+        
+        self.selectedMember = self.memberData[row]
+    }
     
     /* Create a taskGroup */
     @IBAction func onCreate(_ sender: Any) {
@@ -77,15 +81,25 @@ class NewGroupViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         self.viewWillAppear(true)
     }
 
-    /* Add member to the taskGroup */
-    @IBAction func onAddMember(_ sender: Any) {
-        let memberUsername = ""//addMemberTextField.text
-        let member = NudgeHelper.getPFObjectByUsername(username: memberUsername)
+    /* Send invitation to member */
+    @IBAction func onAddMembers(_ sender: Any) {
         
-        if(member != nil && (member?.count)! > 0)
+        if(self.selectedMember != nil)
         {
             //Member exists
-            NudgeHelper.setUserGroupByUserName(username: memberUsername, taskGroup: NudgeHelper.getCurrentUserGroup()!)
+            // check if member is already in the group
+            // if member is not in group, check if there is already invitation created for that member
+            
+            // create invitation
+            let invitation = Invitation()
+            
+            invitation.senderId = NudgeHelper.getCurrentUser()?.objectId
+            invitation.receipientId = self.selectedMember
+            invitation.status = InvitationStatus.created.rawValue
+            invitation.message = "whatever"
+            invitation.groupId = NudgeHelper.getCurrentUserGroup()?.objectId
+            invitation.dateCreated = DateFormatter.localizedString(from: Date(), dateStyle: .short, timeStyle: .short)
+            NudgeHelper.trySaveInvitation(invitation: invitation)
         }
     }
     
@@ -104,7 +118,9 @@ class NewGroupViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
                     let name = user.object(forKey: "fullname") as! String
                     print("name is \(name)")
                     
-                    if name != ""{
+                    if name != ""
+                    {
+                    self.memberData.append(user.objectId!)
                     self.pickerData.append(name)
                     self.pickerView.reloadAllComponents()
                     //print("Picker data count: \(self.pickerData.count)")

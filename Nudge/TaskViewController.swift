@@ -22,11 +22,47 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
         self.tableView.reloadData()
         // Do any additional setup after loading the view.
+        
+        if(currentUserGroup == nil)
+        {
+            //If user does not belong in a group, check for invitation
+            loadInvitation()
+        }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    /* Check for invitation */
+    func loadInvitation() {
+        let invitation = NudgeHelper.getCurrentUserInvitation()
+        
+        if(invitation != nil)
+        {
+            print(invitation?.groupId)
+            
+            //do popup
+            // if accept
+            // acceptInvitation()
+            // else declineInvitation()
+
+            NudgeHelper.trySaveInvitation(invitation: invitation!)
+        }
+    }
+    
+    func acceptInvitation(invitation: Invitation) {
+        //Set groupId to receipient
+        NudgeHelper.setCurrentUserGroupById(taskGroupId: invitation.groupId!)
+        
+        //Set invitation status to accepted
+        invitation.status = InvitationStatus.accepted.rawValue
+    }
+
+    func declineInvitation(invitation: Invitation) {
+        //Set invitation status to declined
+        invitation.status = InvitationStatus.declined.rawValue
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

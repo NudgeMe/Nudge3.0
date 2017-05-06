@@ -11,6 +11,9 @@
 		2824775E1EA5C2AB00644555 /* CreateTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2824775D1EA5C2AB00644555 /* CreateTaskViewController.swift */; };
 		28CE99621EA2B25700A5DE7D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28CE99611EA2B25700A5DE7D /* ProfileViewController.swift */; };
 		28E31FCD1EB83A9B008218D5 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E31FCC1EB83A9B008218D5 /* Image.swift */; };
+		65655D731EBE438A00F9BDE4 /* Invitation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65655D721EBE438A00F9BDE4 /* Invitation.swift */; };
+		65655D751EBE43F300F9BDE4 /* InvitationStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65655D741EBE43F300F9BDE4 /* InvitationStatus.swift */; };
+		65655D771EBE592000F9BDE4 /* NudgeNotifcation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65655D761EBE592000F9BDE4 /* NudgeNotifcation.swift */; };
 		657DFE051E9C8D4800345A39 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657DFE041E9C8D4800345A39 /* AppDelegate.swift */; };
 		657DFE0A1E9C8D4800345A39 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 657DFE081E9C8D4800345A39 /* Main.storyboard */; };
 		657DFE0C1E9C8D4800345A39 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 657DFE0B1E9C8D4800345A39 /* Assets.xcassets */; };
@@ -32,6 +35,9 @@
 		28CE99611EA2B25700A5DE7D /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		28E31FCC1EB83A9B008218D5 /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		3CF1CE1BF16EA784B087570C /* Pods-Nudge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nudge.release.xcconfig"; path = "Pods/Target Support Files/Pods-Nudge/Pods-Nudge.release.xcconfig"; sourceTree = "<group>"; };
+		65655D721EBE438A00F9BDE4 /* Invitation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Invitation.swift; sourceTree = "<group>"; };
+		65655D741EBE43F300F9BDE4 /* InvitationStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvitationStatus.swift; sourceTree = "<group>"; };
+		65655D761EBE592000F9BDE4 /* NudgeNotifcation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NudgeNotifcation.swift; sourceTree = "<group>"; };
 		657DFE011E9C8D4800345A39 /* Nudge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nudge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		657DFE041E9C8D4800345A39 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		657DFE091E9C8D4800345A39 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -68,6 +74,9 @@
 			children = (
 				657DFE401EABDD7300345A39 /* TaskGroup.swift */,
 				657DFE691EB6636700345A39 /* Task.swift */,
+				65655D721EBE438A00F9BDE4 /* Invitation.swift */,
+				65655D761EBE592000F9BDE4 /* NudgeNotifcation.swift */,
+				65655D741EBE43F300F9BDE4 /* InvitationStatus.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -288,6 +297,7 @@
 			files = (
 				282477591EA58F6B00644555 /* GroupCell.swift in Sources */,
 				657DFE411EABDD7300345A39 /* TaskGroup.swift in Sources */,
+				65655D771EBE592000F9BDE4 /* NudgeNotifcation.swift in Sources */,
 				E4B828BD1EA3FCE600DEBF37 /* SignUpViewController.swift in Sources */,
 				657DFE6D1EB664BF00345A39 /* NudgeHelper.swift in Sources */,
 				657DFE6A1EB6636700345A39 /* Task.swift in Sources */,
@@ -296,8 +306,10 @@
 				657DFE051E9C8D4800345A39 /* AppDelegate.swift in Sources */,
 				E4C3CE331EABC85900B99254 /* NewGroupViewController.swift in Sources */,
 				2824775E1EA5C2AB00644555 /* CreateTaskViewController.swift in Sources */,
+				65655D731EBE438A00F9BDE4 /* Invitation.swift in Sources */,
 				E4B828BB1EA3F76600DEBF37 /* TaskViewCell.swift in Sources */,
 				28CE99621EA2B25700A5DE7D /* ProfileViewController.swift in Sources */,
+				65655D751EBE43F300F9BDE4 /* InvitationStatus.swift in Sources */,
 				657DFE1D1E9C976500345A39 /* TaskViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
