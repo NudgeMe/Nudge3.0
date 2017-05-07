@@ -74,6 +74,31 @@ struct NudgeHelper {
         return nil
     }
     
+    /* Check if current user has any nudges */
+    static func getCurrentUserNudge() -> NudgeNotifcation?
+    {
+        let currentUser = getCurrentUser()
+        
+        let userQuery = PFQuery(className: "NudgeNotification")
+        
+        do{
+            userQuery.whereKey("receipientId", equalTo: currentUser?.objectId!)
+            //Filter nudges to those that have been unopened
+            userQuery.whereKey("status", equalTo: false)
+            
+            let results = try userQuery.findObjects()
+            
+            if(results.count > 0)
+            {
+                return results[0] as! NudgeNotifcation
+            }
+        }
+        catch let error{
+            print(error.localizedDescription)
+        }
+        return nil
+    }
+    
     static func getCurrentUserGroupAsync(completionHandler: @escaping (_ result: TaskGroup?, _ error: Error?) -> ())
     {
         let currentUser = getCurrentUser()
@@ -241,6 +266,17 @@ struct NudgeHelper {
     {
         do {
             try invitation.save()
+        }
+        catch let error {
+            print(error.localizedDescription)
+        }
+    }
+    
+    /* Save nudge into Parse */
+    static func trySaveNudge(nudge: NudgeNotifcation)
+    {
+        do{
+            try nudge.save()
         }
         catch let error {
             print(error.localizedDescription)

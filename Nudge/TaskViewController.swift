@@ -28,11 +28,28 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
             //If user does not belong in a group, check for invitation
             loadInvitation()
         }
+        else{
+            //If user does belong in a group, check for nudges
+            loadNudge()
+        }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    /* Check for nudges */
+    func loadNudge() {
+        let nudge = NudgeHelper.getCurrentUserNudge()
+        
+        if(nudge != nil)
+        {
+            print(nudge?.groupId)
+            
+            //do popup with message
+            //openedNudge()
+        }
     }
     
     /* Check for invitation */
@@ -52,6 +69,7 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
     
+    /* Accept invitation */
     func acceptInvitation(invitation: Invitation) {
         //Set groupId to receipient
         NudgeHelper.setCurrentUserGroupById(taskGroupId: invitation.groupId!)
@@ -60,10 +78,19 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
         invitation.status = InvitationStatus.accepted.rawValue
     }
 
+    /* Decline invitation */
     func declineInvitation(invitation: Invitation) {
         //Set invitation status to declined
         invitation.status = InvitationStatus.declined.rawValue
     }
+    
+    /* Opened Nudge */
+    func openedNudge(nudge: NudgeNotifcation){
+        //Set nudge status to true
+        nudge.status = true
+    }
+    
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     
@@ -101,7 +128,6 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 //Filters through the task array on those that are active
                 let currentUserActiveTasks = currentUserTasks?.filter {
                     task in task.isActive
-                    //taskCount += 1
                 }
                 
                 if((currentUserActiveTasks?.count)! > 0)

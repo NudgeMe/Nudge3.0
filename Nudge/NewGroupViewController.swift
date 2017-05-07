@@ -84,19 +84,19 @@ class NewGroupViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     /* Send invitation to member */
     @IBAction func onAddMembers(_ sender: Any) {
         
-        if(self.selectedMember != nil)
+        if(self.selectedMember != "")
         {
             //Member exists
             // check if member is already in the group
             // if member is not in group, check if there is already invitation created for that member
             
-            // create invitation
+            //Create invitation
             let invitation = Invitation()
             
             invitation.senderId = NudgeHelper.getCurrentUser()?.objectId
             invitation.receipientId = self.selectedMember
             invitation.status = InvitationStatus.created.rawValue
-            invitation.message = "whatever"
+            invitation.message = "_senderName wants to invite you to _groupName"
             invitation.groupId = NudgeHelper.getCurrentUserGroup()?.objectId
             invitation.dateCreated = DateFormatter.localizedString(from: Date(), dateStyle: .short, timeStyle: .short)
             NudgeHelper.trySaveInvitation(invitation: invitation)
@@ -107,6 +107,7 @@ class NewGroupViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         self.dismiss(animated: true, completion: nil)
     }
     
+    /* Choose member to add using pickerView */
     func fetchUserNames(){
         let query = PFQuery(className: "_User")
         

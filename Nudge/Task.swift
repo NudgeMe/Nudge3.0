@@ -22,6 +22,6 @@ class Task: PFObject, PFSubclassing {
     @NSManaged var detail: String?
     //If task is active or "deleted" from the task array
     @NSManaged var isActive: Bool
-    
+    //Due date of the task
     @NSManaged var dueDate: Date
 }

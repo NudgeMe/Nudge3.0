@@ -16,10 +16,16 @@ class Invitation: PFObject, PFSubclassing {
     }
     
     /* Member variables */
+    //User Id of the sender
     @NSManaged var senderId: String?
+    //User Id of the receipient
     @NSManaged var receipientId: String?
+    //Invitation message
     @NSManaged var message: String?
+    //Group Id to invite receipient to
     @NSManaged var groupId: String?
+    //Status of the invitation - created, accepted, declined
     @NSManaged var status: Int
+    //Date the invitation was created
     @NSManaged var dateCreated: String?
 }
