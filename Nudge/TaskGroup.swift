@@ -20,6 +20,7 @@ class TaskGroup: PFObject, PFSubclassing {
     /* Member variables */
     //Array of tasks
     @NSManaged var tasks: [Task]?
+    
     //Name of the group
     @NSManaged var name: String?
     

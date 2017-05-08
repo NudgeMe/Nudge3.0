@@ -18,6 +18,16 @@ struct NudgeHelper {
         return PFUser.current()
     }
     
+    /* Get PFUser name */
+    static func getUsername() -> String
+    {
+        let currentUser = getCurrentUser()
+        
+        let currentUsername = currentUser?["username"] as! String
+        
+        return currentUsername
+    }
+    
     /* Get current PFUser's group */
     static func getCurrentUserGroup() -> TaskGroup?
     {
@@ -210,6 +220,16 @@ struct NudgeHelper {
         catch let error {
             print(error.localizedDescription)
         }
+    }
+    
+    /* Get group name */
+    static func getGroupName() -> String
+    {
+        let currentUserGroup = getCurrentUserGroup()
+        
+        let groupName = currentUserGroup?["name"]
+        
+        return groupName as! String
     }
     
     /* Check to see that there are no duplicate group names */

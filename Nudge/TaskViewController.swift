@@ -60,11 +60,14 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
         {
             print(invitation?.groupId)
             
+            let alert = UIAlertController(title: "Invitation", message: invitation?.message!, preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Accept", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
             //do popup
             // if accept
             // acceptInvitation()
             // else declineInvitation()
-
+            acceptInvitation(invitation: invitation!)
             NudgeHelper.trySaveInvitation(invitation: invitation!)
         }
     }

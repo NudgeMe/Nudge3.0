@@ -94,9 +94,11 @@ class NewGroupViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
             let invitation = Invitation()
             
             invitation.senderId = NudgeHelper.getCurrentUser()?.objectId
+            invitation.senderName = NudgeHelper.getUsername()
             invitation.receipientId = self.selectedMember
             invitation.status = InvitationStatus.created.rawValue
-            invitation.message = "_senderName wants to invite you to _groupName"
+            invitation.groupName = NudgeHelper.getGroupName()
+            invitation.message = "\(invitation.senderName!) wants to invite you to \(invitation.groupName!)"
             invitation.groupId = NudgeHelper.getCurrentUserGroup()?.objectId
             invitation.dateCreated = DateFormatter.localizedString(from: Date(), dateStyle: .short, timeStyle: .short)
             NudgeHelper.trySaveInvitation(invitation: invitation)

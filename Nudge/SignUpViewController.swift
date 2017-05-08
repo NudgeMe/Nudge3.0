@@ -9,17 +9,16 @@
 import UIKit
 import Parse
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var fullNameTextField: UITextField!
-    
     @IBOutlet weak var userNameTextField: UITextField!
-    
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var phoneTextField: UITextField!
     @IBOutlet weak var addressTextField: UITextField!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // Do any additional setup after loading the view.
     }
     
@@ -29,11 +28,8 @@ class SignUpViewController: UIViewController {
     }
     
     @IBAction func onSignUp(_ sender: Any) {
+        
         let newUser = PFUser()
-        
-        
-        //TODO test for errors
-        
         newUser.username = userNameTextField.text
         newUser.password = passwordTextField.text
         newUser["fullname"] = fullNameTextField.text
@@ -54,7 +50,6 @@ class SignUpViewController: UIViewController {
     
     @IBAction func onCancel(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
-        
     }
     
     

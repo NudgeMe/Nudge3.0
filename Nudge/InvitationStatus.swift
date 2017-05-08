@@ -9,6 +9,7 @@
 import UIKit
 import Parse
 
+/* Enum to describe status of the invitation */
 enum InvitationStatus: Int {
     case created = 0
     case accepted = 1

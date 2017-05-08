@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate{
 
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var pwTextField: UITextField!
@@ -18,7 +18,10 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
+        let textFields = [usernameTextField, pwTextField]
+        for textField in textFields{
+            textField?.delegate = self
+        }
         // Do any additional setup after loading the view.
     }
 
@@ -27,7 +30,29 @@ class LoginViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    /* UITextFieldDelegate methods */
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        //Clear textField placeholder
+        textField.text = nil
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        
+        //Put back placeholders if nothing was typed
+        if(textField.text == "")
+        {
+            if(textField == usernameTextField)
+            {
+                textField.text = "Username"
+            }
+            else{
+                textField.text = "Password"
+            }
+            textField.textColor = UIColor.black
+        }
+    }
+    
+    
     /*
     // MARK: - Navigation
 
