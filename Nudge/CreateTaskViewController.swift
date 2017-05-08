@@ -39,8 +39,15 @@ class CreateTaskViewController: UIViewController {
             
             newTask.title = titleTextField.text
             newTask.detail = descriptionTextField.text
-            newTask.isActive = true
+            
             newTask.dueDate = datePicker.date
+            if(datePicker.date < Date.init()){
+                //past dueDate
+            newTask.isActive = false
+            }
+            else{
+                newTask.isActive = true
+            }
             print(datePicker.date)
             print(newTask.dueDate)
             

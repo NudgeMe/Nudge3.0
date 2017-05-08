@@ -13,10 +13,24 @@ class LoginViewController: UIViewController {
 
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var pwTextField: UITextField!
-    
+    let gradientLayer = CAGradientLayer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        gradientLayer.frame = self.view.bounds
+        let color1 = UIColor.yellow.cgColor as CGColor
+        let color2 = UIColor(red: 0.6882, green: 0.9904, blue: 0.4078, alpha: 0.4)
+        let color3 = UIColor.clear.cgColor as CGColor
+        //let color4 = UIColor.white.cgColor as CGColor
+        let color4 = UIColor(white: 0.0, alpha: 0.3).cgColor as CGColor
+        gradientLayer.colors = [color1, color2, color3, color4]
+        gradientLayer.locations = [0.1, 0.4, 0.7, 1.0]
+        gradientLayer.startPoint = CGPoint(x: 1, y: -1)
+        gradientLayer.endPoint = CGPoint(x: 0, y: 1)
+        self.view.layer.addSublayer(gradientLayer)
+        self.view.backgroundColor = UIColor(red: 0.7882, green: 0.9904, blue: 0.6078, alpha: 1.0)
+        
         
 
         // Do any additional setup after loading the view.
