@@ -157,9 +157,6 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     else if indexPath.row%4 == 3{
                         cell.backgroundColor = colors[3]
                     }
-                    
-                    
-                    
                     //cell.backgroundColor = colors[indexPath.row]
                     return cell
                 }
@@ -168,6 +165,17 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return UITableViewCell()
     }
 
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == UITableViewCellEditingStyle.delete) {
+            // handle delete (by removing the data from your array and updating the tableview)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TaskViewCell", for: indexPath) as! TaskViewCell
+            //cell.task.isActive = false;
+        }
+    }
     
     /*
     // MARK: - Navigation

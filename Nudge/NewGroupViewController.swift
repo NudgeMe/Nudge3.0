@@ -9,8 +9,21 @@
 import UIKit
 import Parse
 
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
+    }
+}
+
 class NewGroupViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
+    
     @IBOutlet weak var groupNameTextField: UITextField!
     
     @IBOutlet weak var pickerView: UIPickerView!
@@ -21,6 +34,7 @@ class NewGroupViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround()
         
         //Connect data
         self.pickerView.delegate = self
@@ -32,7 +46,7 @@ class NewGroupViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         self.pickerView.reloadAllComponents()
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -139,7 +153,6 @@ class NewGroupViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
             }
         })
     }
-    
     /*
     // MARK: - Navigation
 
