@@ -17,7 +17,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.hideKeyboardWhenTappedAround()
+
 
         let textFields = [usernameTextField, pwTextField]
         for textField in textFields{

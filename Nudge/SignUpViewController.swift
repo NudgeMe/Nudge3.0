@@ -9,6 +9,7 @@
 import UIKit
 import Parse
 
+
 class SignUpViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var fullNameTextField: UITextField!
     @IBOutlet weak var userNameTextField: UITextField!
@@ -19,6 +20,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround()
+
         // Do any additional setup after loading the view.
     }
     
@@ -51,7 +54,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     @IBAction func onCancel(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
-    
     
     /*
      // MARK: - Navigation
