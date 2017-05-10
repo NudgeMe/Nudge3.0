@@ -9,11 +9,17 @@
 import UIKit
 import Parse
 
-class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
+    
+    var pickerData = [String]()
+    var memberData = [String]()
+    var selectedMember: String = ""
+
     var taskCount = 0
     var currentUserGroup: TaskGroup? = nil
+    
 //    let color1 = UIColor(red: 0.4882, green: 0.9704, blue: 0.5078, alpha: 0.6)
 //    let color2 = UIColor(red: 0.4882, green: 0.9504, blue: 0.5078, alpha: 0.6)
 //    let color3 = UIColor(red: 0.4882, green: 0.9304, blue: 0.5078, alpha: 0.6)
@@ -184,29 +190,57 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return true
     }
     
-    /* Method can delete cell */
-    /*func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if (editingStyle == UITableViewCellEditingStyle.delete) {
-            // handle delete (by removing the data from your array and updating the tableview)
-            let currentUserTasks = currentUserGroup?.tasks
-            if(currentUserTasks != nil)
-            {
-                //Filters through the task array on those that are active
-                let currentUserActiveTasks = currentUserTasks?.filter {
-                    ///////////TODO active only if not past due
-                    task in (task.isActive && task.dueDate < Date.init())
-                }
-                confirmDelete(task: (currentUserActiveTasks?[indexPath.row])!, forRowAt: indexPath)
-            }
-        }
-    }*/
+    /* Create a Nudge to send */
+    func onNudge()
+    {
+        //Create nudge
+        let nudge = NudgeNotifcation()
+        
+        nudge.senderId = NudgeHelper.getCurrentUser()?.objectId
+        nudge.receipientId = ""
+        nudge.status = true
+        nudge.groupName = NudgeHelper.getGroupName()
+        nudge.groupId = NudgeHelper.getCurrentUserGroup()?.objectId
+        NudgeHelper.trySaveNudge(nudge: nudge)
+    }
     
-    /* Swipe to get Delete and nudge button */
+    /* Swipe to get Delete and Nudge button */
     func tableView(_ tableView: UITableView, editActionsForRowAt: IndexPath) -> [UITableViewRowAction]? {
+        
+        /* Nudge Button */
         let nudge = UITableViewRowAction(style: .normal, title: "Nudge") { action, index in
+            let alertView = UIAlertController(
+                title: "Select member to nudge",
+                message: "\n\n\n\n\n\n\n\n\n",
+                preferredStyle: .alert)
+            
+            let pickerView = UIPickerView(frame:
+                CGRect(x: 0, y: 50, width: 260, height: 162))
+            pickerView.dataSource = self
+            pickerView.delegate = self
+            pickerView.backgroundColor = UIColor.lightGray.withAlphaComponent(0.2)
+            
+            self.pickerData = NudgeHelper.getPFUsersByGroupId(pickerData: self.pickerData)
+            pickerView.reloadAllComponents()
+            
+            alertView.view.addSubview(pickerView)
+            
+            let action = UIAlertAction(title: "NUDGE", style: UIAlertActionStyle.default, handler: { action in
+                //NUDGE BASED ON PICKERSELECTED MEMBER
+                //self.onNudge()
+            })
+            
+            alertView.addAction(action)
+            
+            self.present(alertView, animated: true, completion: { _ in
+                pickerView.frame.size.width = alertView.view.frame.size.width
+                alertView.view.superview?.isUserInteractionEnabled = true
+                alertView.view.superview?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.alertControllerBackgroundTapped)))
+            })
         }
         nudge.backgroundColor = .orange
         
+        /* Delete Button */
         let delete = UITableViewRowAction(style: .normal, title: "Delete") { action, index in
             let currentUserTasks = self.currentUserGroup?.tasks
             if(currentUserTasks != nil)
@@ -224,6 +258,11 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return [delete, nudge]
     }
 
+    /* Dismiss alert when tapped around */
+    func alertControllerBackgroundTapped()
+    {
+        self.dismiss(animated: true, completion: nil)
+    }
     
     /* Confirm delete task alert */
     func confirmDelete(task: Task, forRowAt indexPath: IndexPath) {
@@ -242,6 +281,26 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.present(alert, animated: true, completion: nil)
     }
     
+    /* PickerView */
+    //The number of columns of data
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    //The number of rows of data
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return self.pickerData.count
+    }
+    
+    //The data to return for the row and component(column) that's being passed in
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return self.pickerData[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        self.selectedMember = self.pickerData[row]
+    }
+
+    
     /*
     // MARK: - Navigation
 
@@ -251,5 +310,4 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
         // Pass the selected object to the new view controller.
     }
     */
-
 }

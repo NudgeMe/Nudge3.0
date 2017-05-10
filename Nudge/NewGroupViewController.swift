@@ -113,19 +113,15 @@ class NewGroupViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         
         query.findObjectsInBackground (block: { (users: [PFObject]?, error: Error?) in
             if let users = users{
-                print("Entered fetchUserNames")
-               
+                
                 for user in users{
                     let name = user.object(forKey: "fullname") as! String
-                    print("name is \(name)")
                     
-                    if name != ""
+                    if(name != "")
                     {
-                    self.memberData.append(user.objectId!)
-                    self.pickerData.append(name)
-                    self.pickerView.reloadAllComponents()
-                    //print("Picker data count: \(self.pickerData.count)")
-                    
+                        self.memberData.append(user.objectId!)
+                        self.pickerData.append(name)
+                        self.pickerView.reloadAllComponents()
                     }
                     else{
                         self.pickerData.append("")

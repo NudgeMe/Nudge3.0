@@ -24,7 +24,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let user = PFUser.current() {
+        if let user = NudgeHelper.getCurrentUser() {
             usernameLabel.text = user.username
             realName.text = user["fullname"] as? String
             fetchPic()
@@ -45,8 +45,8 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
                 groupLabel.text = "No Group"
             }
             else{
-                print("in a group")
-                print("HELLO \(NudgeHelper.getCurrentUserGroup()!.name)" )
+                //print("in a group")
+                //print("HELLO \(NudgeHelper.getCurrentUserGroup()!.name)" )
                 groupLabel.text = NudgeHelper.getCurrentUserGroup()!.name
 
             }
@@ -112,28 +112,28 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     func postImage(){
-        print("posting image")
+        //print("posting image")
         
         Image.postUSerImage(image: image)
-        print("chosen image")
+        //print("chosen image")
         self.pictureImageView.image = self.image
         //self.fetchPic()
     }
     
     func fetchPic(){
-        print("fetching profile picture")
+        //print("fetching profile picture")
         let query = PFQuery(className: "_User")
         //pictureImageView.image = image
         query.whereKey("username", equalTo: PFUser.current()?.username!)
         
         query.findObjectsInBackground (block: { (users: [PFObject]?, error: Error?) in
             if let users = users{
-                print("finding users")
+                //print("finding users")
                 self.users = users
                 
                 let user = self.users[0]
                 if let name = user["username"] as? String{
-                    print("finding pics\(name)")
+                    //print("finding pics\(name)")
                 }
                 if let profileImage = user["image"] as? PFFile{
                     profileImage.getDataInBackground({ (imageData:Data?, error:Error?) in

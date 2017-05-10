@@ -18,15 +18,16 @@ class NudgeNotifcation: PFObject, PFSubclassing {
     /* Member variables */
     //User Id of the sender
     @NSManaged var senderId: String?
+    
     //User Id of the receipient
     @NSManaged var receipientId: String?
-    //Message of the Nudge Notification
-    @NSManaged var message: String?
+    
     //Group that the nudge is for
     @NSManaged var groupId: String?
+    
+    //Group name of the group Id
+    @NSManaged var groupName: String!
+    
     //Status of the nudge - opened, unopened
     @NSManaged var status: Bool
-    //Date the nudge was created
-    @NSManaged var dateCreated: String?
-
 }
