@@ -48,7 +48,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                 print(error?.localizedDescription)
             }
         }
-        
     }
     
     @IBAction func onCancel(_ sender: Any) {

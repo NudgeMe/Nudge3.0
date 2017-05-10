@@ -38,7 +38,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
         self.view.layer.addSublayer(gradientLayer)
         self.view.backgroundColor = UIColor(red: 0.7882, green: 0.9904, blue: 0.6078, alpha: 1.0)
         
-        
 
         // Do any additional setup after loading the view.
     }
@@ -70,17 +69,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
         }
     }
     
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
     @IBAction func onLogin(_ sender: Any) {
         
         PFUser.logInWithUsername(inBackground: usernameTextField.text!, password: pwTextField.text!) { (user: PFUser?, error: Error?) in
@@ -91,13 +79,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
             }
         }
     }
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        if PFUser.current() != nil {
-//            self.performSegue(withIdentifier: "loginSegue", sender: nil)
-//        }
-//    }
-
     
-    
+    /*
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
 }

@@ -49,10 +49,15 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         if(nudge != nil)
         {
-            print(nudge?.groupId)
+            //print(nudge?.groupId)
             
-            //do popup with message
-            //openedNudge()
+            let alert = UIAlertController(title: "Nudge", message: "DO IT", preferredStyle: UIAlertControllerStyle.alert)
+            
+            alert.addAction(UIAlertAction(title: "Accept", style: UIAlertActionStyle.default, handler: { action in
+                self.openedNudge(nudge: nudge!)
+            }))
+            
+            self.present(alert, animated: true, completion: nil)
         }
     }
     
@@ -62,17 +67,19 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         if(invitation != nil)
         {
-            print(invitation?.groupId)
+            //print(invitation?.groupId)
             
             let alert = UIAlertController(title: "Invitation", message: invitation?.message!, preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "Accept", style: UIAlertActionStyle.default, handler: nil))
+            
+            alert.addAction(UIAlertAction(title: "Decline", style: UIAlertActionStyle.cancel, handler: { action in
+                self.declineInvitation(invitation: invitation!)
+            }))
+            alert.addAction(UIAlertAction(title: "Accept", style: UIAlertActionStyle.default, handler: { action in
+                self.acceptInvitation(invitation: invitation!)
+                
+            }))
+
             self.present(alert, animated: true, completion: nil)
-            //do popup
-            // if accept
-            // acceptInvitation()
-            // else declineInvitation()
-            acceptInvitation(invitation: invitation!)
-            NudgeHelper.trySaveInvitation(invitation: invitation!)
         }
     }
     
@@ -83,12 +90,15 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         //Set invitation status to accepted
         invitation.status = InvitationStatus.accepted.rawValue
+        NudgeHelper.trySaveInvitation(invitation: invitation)
+
     }
 
     /* Decline invitation */
     func declineInvitation(invitation: Invitation) {
         //Set invitation status to declined
         invitation.status = InvitationStatus.declined.rawValue
+        NudgeHelper.trySaveInvitation(invitation: invitation)
     }
     
     /* Opened Nudge */
@@ -97,7 +107,12 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
         nudge.status = true
     }
     
-    
+    /* Delete a task by setting it to inactive */
+    func deleteTask(task: Task)
+    {
+        task.isActive = false
+        NudgeHelper.trySaveTask(task: task)
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     
@@ -172,9 +187,34 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == UITableViewCellEditingStyle.delete) {
             // handle delete (by removing the data from your array and updating the tableview)
-            let cell = tableView.dequeueReusableCell(withIdentifier: "TaskViewCell", for: indexPath) as! TaskViewCell
-            //cell.task.isActive = false;
+            let currentUserTasks = currentUserGroup?.tasks
+            if(currentUserTasks != nil)
+            {
+                //Filters through the task array on those that are active
+                let currentUserActiveTasks = currentUserTasks?.filter {
+                    ///////////TODO active only if not past due
+                    task in (task.isActive && task.dueDate < Date.init())
+                }
+                confirmDelete(task: (currentUserActiveTasks?[indexPath.row])!, forRowAt: indexPath)
+            }
         }
+    }
+    
+    /* Confirm delete task alert */
+    func confirmDelete(task: Task, forRowAt indexPath: IndexPath) {
+        let alert = UIAlertController(title: "Delete Task", message: "Are you sure you want to permanently delete Task: \(task.title!)?", preferredStyle: .actionSheet)
+        
+        let DeleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: { action in
+            self.deleteTask(task: task)
+            self.tableView.reloadData()
+
+        })
+        let CancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        alert.addAction(DeleteAction)
+        alert.addAction(CancelAction)
+        
+        self.present(alert, animated: true, completion: nil)
     }
     
     /*

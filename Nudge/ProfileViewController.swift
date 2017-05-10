@@ -21,11 +21,9 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     var image = UIImage()
     var users = [PFObject]()
-    //var users = [PFUser]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //usernameLabel.text = PFUser.current()?.username
         if let user = PFUser.current() {
             usernameLabel.text = user.username
             realName.text = user["fullname"] as? String
@@ -42,7 +40,6 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
                     }
                 }
             }
-            
 
             if NudgeHelper.getCurrentUserGroup() == nil{
                 groupLabel.text = "No Group"
@@ -59,7 +56,6 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         // Do any additional setup after loading the view.
     }
     
-    //TODO
     func fetchUserInfo(){
         let query = PFQuery(className: "Image")
         query.whereKey("username", equalTo:"user")
@@ -73,11 +69,20 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     @IBAction func onLogout(_ sender: Any) {
         
+        let alert = UIAlertController(title: "Log out", message: "Are you sure you want to log out?", preferredStyle: UIAlertControllerStyle.alert)
         
-        //TODO confirm b4 logout
-        PFUser.logOutInBackground { (error: Error?) in
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "UserDidLogOut"), object: nil)
-        }
+        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.default, handler: { action in
+            PFUser.logOutInBackground { (error: Error?) in
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "UserDidLogOut"), object: nil)
+            }
+        }))
+        alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.cancel, handler: { action in
+            return
+        }))
+
+        
+        self.present(alert, animated: true, completion: nil)
+        
     }
     
     //Function to add a photo to profile picture
@@ -151,17 +156,14 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         if isInGroup == true {
             let alert = UIAlertController(title: "Oops", message: "Already in a group", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
+           
             self.present(alert, animated: true, completion: nil)
         }
         else {
             self.performSegue(withIdentifier: "newGroupSegue", sender: nil)
         }
     }
-    
-    /*override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        viewDidLoad()
-    }*/
     
     /*
      // MARK: - Navigation

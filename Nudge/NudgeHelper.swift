@@ -28,6 +28,16 @@ struct NudgeHelper {
         return currentUsername
     }
     
+    /* Get PFUser fullname */
+    static func getFullname() -> String
+    {
+        let currentUser = getCurrentUser()
+        
+        let fullName = currentUser?["fullname"] as! String
+        
+        return fullName
+    }
+    
     /* Get current PFUser's group */
     static func getCurrentUserGroup() -> TaskGroup?
     {

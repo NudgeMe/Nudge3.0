@@ -22,6 +22,9 @@ class Invitation: PFObject, PFSubclassing {
     //User name of the sender
     @NSManaged var senderName: String!
     
+    //Full name of the sender
+    @NSManaged var senderFullName: String!
+    
     //User Id of the receipient
     @NSManaged var receipientId: String?
     
