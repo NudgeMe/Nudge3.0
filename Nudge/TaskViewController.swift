@@ -184,7 +184,8 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return true
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    /* Method can delete cell */
+    /*func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == UITableViewCellEditingStyle.delete) {
             // handle delete (by removing the data from your array and updating the tableview)
             let currentUserTasks = currentUserGroup?.tasks
@@ -198,7 +199,31 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 confirmDelete(task: (currentUserActiveTasks?[indexPath.row])!, forRowAt: indexPath)
             }
         }
+    }*/
+    
+    /* Swipe to get Delete and nudge button */
+    func tableView(_ tableView: UITableView, editActionsForRowAt: IndexPath) -> [UITableViewRowAction]? {
+        let nudge = UITableViewRowAction(style: .normal, title: "Nudge") { action, index in
+        }
+        nudge.backgroundColor = .orange
+        
+        let delete = UITableViewRowAction(style: .normal, title: "Delete") { action, index in
+            let currentUserTasks = self.currentUserGroup?.tasks
+            if(currentUserTasks != nil)
+            {
+                //Filters through the task array on those that are active
+                let currentUserActiveTasks = currentUserTasks?.filter {
+                    ///////////TODO active only if not past due
+                    task in (task.isActive && task.dueDate < Date.init())
+                }
+                self.confirmDelete(task: (currentUserActiveTasks?[editActionsForRowAt.row])!, forRowAt: editActionsForRowAt)
+            }
+        }
+        delete.backgroundColor = .red
+        
+        return [delete, nudge]
     }
+
     
     /* Confirm delete task alert */
     func confirmDelete(task: Task, forRowAt indexPath: IndexPath) {
