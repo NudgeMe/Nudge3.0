@@ -32,14 +32,16 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
         self.tableView.reloadData()
         // Do any additional setup after loading the view.
-        
+        print("View did load")
         if(currentUserGroup == nil)
         {
+            print("Why load invitiation")
             //If user does not belong in a group, check for invitation
             loadInvitation()
         }
         else{
             //If user does belong in a group, check for nudges
+            print("Should load nudge")
             loadNudge()
         }
     }
@@ -52,7 +54,7 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
     /* Check for nudges */
     func loadNudge() {
         let nudge = NudgeHelper.getCurrentUserNudge()
-        
+        print("IN LOAD NUDGE")
         if(nudge != nil)
         {
             //print(nudge?.groupId)
@@ -191,13 +193,13 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     /* Create a Nudge to send */
-    func onNudge()
+    func onNudge(recepientId: String)
     {
         //Create nudge
         let nudge = NudgeNotifcation()
         
         nudge.senderId = NudgeHelper.getCurrentUser()?.objectId
-        nudge.receipientId = ""
+        nudge.receipientId = self.selectedMember
         nudge.status = true
         nudge.groupName = NudgeHelper.getGroupName()
         nudge.groupId = NudgeHelper.getCurrentUserGroup()?.objectId
@@ -220,14 +222,13 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
             pickerView.delegate = self
             pickerView.backgroundColor = UIColor.lightGray.withAlphaComponent(0.2)
             
-            self.pickerData = NudgeHelper.getPFUsersByGroupId(pickerData: self.pickerData)
-            pickerView.reloadAllComponents()
+            self.fetchGroupMembers(pickerView: pickerView)
             
             alertView.view.addSubview(pickerView)
             
             let action = UIAlertAction(title: "NUDGE", style: UIAlertActionStyle.default, handler: { action in
-                //NUDGE BASED ON PICKERSELECTED MEMBER
-                //self.onNudge()
+                //Send nudge to selected member
+                self.onNudge(recepientId: self.selectedMember)
             })
             
             alertView.addAction(action)
@@ -300,6 +301,26 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.selectedMember = self.pickerData[row]
     }
 
+    func fetchGroupMembers(pickerView: UIPickerView)
+    {
+        let query = PFQuery(className: "_User")
+        query.whereKey("groupId", equalTo: NudgeHelper.getCurrentUser()?["groupId"])
+        
+        query.findObjectsInBackground (block: { (users: [PFObject]?, error: Error?) in
+            if let users = users{
+                
+                for user in users{
+                    let name = user.object(forKey: "fullname") as! String
+                    self.pickerData.append(name)
+                    self.memberData.append(user.objectId!)
+                    pickerView.reloadAllComponents()
+                }
+            }
+            else{
+                print(error?.localizedDescription)
+            }
+        })
+    }
     
     /*
     // MARK: - Navigation

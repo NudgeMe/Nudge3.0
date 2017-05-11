@@ -67,7 +67,7 @@ struct NudgeHelper {
         
         return taskGroup
     }
-    
+    /*
     /* Get group members */
     static func getPFUsersByGroupId(pickerData: [String]) -> [String]
     {
@@ -80,7 +80,9 @@ struct NudgeHelper {
                 
                 for user in users{
                     let name = user.object(forKey: "fullname") as! String
-                    pickerData.append(name)
+                    self.pickerData.append(name)
+                    self.memberData.append(user.objectId!)
+                    self.pickerView.reloadAllComponents()
                 }
             }
             else{
@@ -88,7 +90,7 @@ struct NudgeHelper {
             }
         })
         return pickerData
-    }
+    }*/
 
     /* Check if current user has any invitations */
     static func getCurrentUserInvitation() -> Invitation?
