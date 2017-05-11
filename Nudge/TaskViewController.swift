@@ -177,6 +177,24 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
     
+    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]? {
+        let more = UITableViewRowAction(style: .normal, title: "More") { action, index in
+            
+        }
+        more.backgroundColor = UIColor.lightGray
+        
+        let favorite = UITableViewRowAction(style: .normal, title: "Favorite") { action, index in
+                    }
+        favorite.backgroundColor = UIColor.orange
+        
+        let share = UITableViewRowAction(style: .normal, title: "Share") { action, index in
+            
+        }
+        share.backgroundColor = UIColor.blue
+        
+        return [share, favorite, more]
+    }
+    
     /*
     // MARK: - Navigation
 
