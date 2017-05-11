@@ -28,6 +28,16 @@ struct NudgeHelper {
         return currentUsername
     }
     
+    /* Get PFUser fullname */
+    static func getFullname() -> String
+    {
+        let currentUser = getCurrentUser()
+        
+        let fullName = currentUser?["fullname"] as! String
+        
+        return fullName
+    }
+    
     /* Get current PFUser's group */
     static func getCurrentUserGroup() -> TaskGroup?
     {
@@ -56,6 +66,28 @@ struct NudgeHelper {
         }
         
         return taskGroup
+    }
+    
+    /* Get group members */
+    static func getPFUsersByGroupId(pickerData: [String]) -> [String]
+    {
+        var pickerData = pickerData
+        let query = PFQuery(className: "_User")
+        query.whereKey("groupId", equalTo: getCurrentUser()?["groupId"])
+        
+        query.findObjectsInBackground (block: { (users: [PFObject]?, error: Error?) in
+            if let users = users{
+                
+                for user in users{
+                    let name = user.object(forKey: "fullname") as! String
+                    pickerData.append(name)
+                }
+            }
+            else{
+                print(error?.localizedDescription)
+            }
+        })
+        return pickerData
     }
 
     /* Check if current user has any invitations */

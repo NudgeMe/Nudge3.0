@@ -14,6 +14,9 @@
 		65655D731EBE438A00F9BDE4 /* Invitation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65655D721EBE438A00F9BDE4 /* Invitation.swift */; };
 		65655D751EBE43F300F9BDE4 /* InvitationStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65655D741EBE43F300F9BDE4 /* InvitationStatus.swift */; };
 		65655D771EBE592000F9BDE4 /* NudgeNotifcation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65655D761EBE592000F9BDE4 /* NudgeNotifcation.swift */; };
+		65655D791EC285A000F9BDE4 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65655D781EC285A000F9BDE4 /* Extensions.swift */; };
+		65655D7B1EC28A6100F9BDE4 /* TaskGroupUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65655D7A1EC28A6100F9BDE4 /* TaskGroupUser.swift */; };
+		65655D7D1EC28A8000F9BDE4 /* Pair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65655D7C1EC28A8000F9BDE4 /* Pair.swift */; };
 		657DFE051E9C8D4800345A39 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657DFE041E9C8D4800345A39 /* AppDelegate.swift */; };
 		657DFE0A1E9C8D4800345A39 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 657DFE081E9C8D4800345A39 /* Main.storyboard */; };
 		657DFE0C1E9C8D4800345A39 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 657DFE0B1E9C8D4800345A39 /* Assets.xcassets */; };
@@ -38,6 +41,9 @@
 		65655D721EBE438A00F9BDE4 /* Invitation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Invitation.swift; sourceTree = "<group>"; };
 		65655D741EBE43F300F9BDE4 /* InvitationStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvitationStatus.swift; sourceTree = "<group>"; };
 		65655D761EBE592000F9BDE4 /* NudgeNotifcation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NudgeNotifcation.swift; sourceTree = "<group>"; };
+		65655D781EC285A000F9BDE4 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		65655D7A1EC28A6100F9BDE4 /* TaskGroupUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskGroupUser.swift; sourceTree = "<group>"; };
+		65655D7C1EC28A8000F9BDE4 /* Pair.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pair.swift; sourceTree = "<group>"; };
 		657DFE011E9C8D4800345A39 /* Nudge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nudge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		657DFE041E9C8D4800345A39 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		657DFE091E9C8D4800345A39 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -77,6 +83,8 @@
 				65655D721EBE438A00F9BDE4 /* Invitation.swift */,
 				65655D761EBE592000F9BDE4 /* NudgeNotifcation.swift */,
 				65655D741EBE43F300F9BDE4 /* InvitationStatus.swift */,
+				65655D7A1EC28A6100F9BDE4 /* TaskGroupUser.swift */,
+				65655D7C1EC28A8000F9BDE4 /* Pair.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -150,6 +158,7 @@
 		657DFE6B1EB6649D00345A39 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				65655D781EC285A000F9BDE4 /* Extensions.swift */,
 				657DFE6C1EB664BF00345A39 /* NudgeHelper.swift */,
 			);
 			name = Utilities;
@@ -304,11 +313,14 @@
 				657DFE171E9C906900345A39 /* LoginViewController.swift in Sources */,
 				28E31FCD1EB83A9B008218D5 /* Image.swift in Sources */,
 				657DFE051E9C8D4800345A39 /* AppDelegate.swift in Sources */,
+				65655D7B1EC28A6100F9BDE4 /* TaskGroupUser.swift in Sources */,
 				E4C3CE331EABC85900B99254 /* NewGroupViewController.swift in Sources */,
 				2824775E1EA5C2AB00644555 /* CreateTaskViewController.swift in Sources */,
+				65655D7D1EC28A8000F9BDE4 /* Pair.swift in Sources */,
 				65655D731EBE438A00F9BDE4 /* Invitation.swift in Sources */,
 				E4B828BB1EA3F76600DEBF37 /* TaskViewCell.swift in Sources */,
 				28CE99621EA2B25700A5DE7D /* ProfileViewController.swift in Sources */,
+				65655D791EC285A000F9BDE4 /* Extensions.swift in Sources */,
 				65655D751EBE43F300F9BDE4 /* InvitationStatus.swift in Sources */,
 				657DFE1D1E9C976500345A39 /* TaskViewController.swift in Sources */,
 			);

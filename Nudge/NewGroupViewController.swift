@@ -9,21 +9,8 @@
 import UIKit
 import Parse
 
-extension UIViewController {
-    func hideKeyboardWhenTappedAround() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
-    }
-    
-    func dismissKeyboard() {
-        view.endEditing(true)
-    }
-}
-
 class NewGroupViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
-    
     @IBOutlet weak var groupNameTextField: UITextField!
     
     @IBOutlet weak var pickerView: UIPickerView!
@@ -59,8 +46,6 @@ class NewGroupViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     }
     //The number of rows of data
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        //fetchUserNames()
-        //print("picker data count is \(pickerData.count)")
         return self.pickerData.count
     }
     
@@ -69,9 +54,7 @@ class NewGroupViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         return self.pickerData[row]
     }
     
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        print("Selected \(self.pickerData[row])")
-        
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {        
         self.selectedMember = self.memberData[row]
     }
     
@@ -109,10 +92,11 @@ class NewGroupViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
             
             invitation.senderId = NudgeHelper.getCurrentUser()?.objectId
             invitation.senderName = NudgeHelper.getUsername()
+            invitation.senderFullName = NudgeHelper.getFullname()
             invitation.receipientId = self.selectedMember
             invitation.status = InvitationStatus.created.rawValue
             invitation.groupName = NudgeHelper.getGroupName()
-            invitation.message = "\(invitation.senderName!) wants to invite you to \(invitation.groupName!)"
+            invitation.message = "(\(invitation.senderFullName!)) \(invitation.senderName!) wants to invite you to \(invitation.groupName!)"
             invitation.groupId = NudgeHelper.getCurrentUserGroup()?.objectId
             invitation.dateCreated = DateFormatter.localizedString(from: Date(), dateStyle: .short, timeStyle: .short)
             NudgeHelper.trySaveInvitation(invitation: invitation)
@@ -129,19 +113,15 @@ class NewGroupViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         
         query.findObjectsInBackground (block: { (users: [PFObject]?, error: Error?) in
             if let users = users{
-                print("Entered fetchUserNames")
-               
+                
                 for user in users{
                     let name = user.object(forKey: "fullname") as! String
-                    print("name is \(name)")
                     
-                    if name != ""
+                    if(name != "")
                     {
-                    self.memberData.append(user.objectId!)
-                    self.pickerData.append(name)
-                    self.pickerView.reloadAllComponents()
-                    //print("Picker data count: \(self.pickerData.count)")
-                    
+                        self.memberData.append(user.objectId!)
+                        self.pickerData.append(name)
+                        self.pickerView.reloadAllComponents()
                     }
                     else{
                         self.pickerData.append("")
