@@ -265,6 +265,7 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.dismiss(animated: true, completion: nil)
     }
     
+
     /* Confirm delete task alert */
     func confirmDelete(task: Task, forRowAt indexPath: IndexPath) {
         let alert = UIAlertController(title: "Delete Task", message: "Are you sure you want to permanently delete Task: \(task.title!)?", preferredStyle: .actionSheet)
@@ -322,6 +323,7 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
         })
     }
     
+
     /*
     // MARK: - Navigation
 
