@@ -39,11 +39,11 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
             //If user does not belong in a group, check for invitation
             loadInvitation()
         }
-        else{
+        //else{
             //If user does belong in a group, check for nudges
             print("Should load nudge")
             loadNudge()
-        }
+        //}
     }
 
     override func didReceiveMemoryWarning() {
@@ -58,7 +58,7 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
         if(nudge != nil)
         {
             //print(nudge?.groupId)
-            
+            print("IN LOAD NUdGE ALERT")
             let alert = UIAlertController(title: "Nudge", message: "DO IT", preferredStyle: UIAlertControllerStyle.alert)
             
             alert.addAction(UIAlertAction(title: "Accept", style: UIAlertActionStyle.default, handler: { action in
@@ -200,7 +200,7 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         nudge.senderId = NudgeHelper.getCurrentUser()?.objectId
         nudge.receipientId = self.selectedMember
-        nudge.status = true
+        nudge.status = false
         nudge.groupName = NudgeHelper.getGroupName()
         nudge.groupId = NudgeHelper.getCurrentUserGroup()?.objectId
         NudgeHelper.trySaveNudge(nudge: nudge)

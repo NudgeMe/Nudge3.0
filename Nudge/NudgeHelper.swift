@@ -128,8 +128,11 @@ struct NudgeHelper {
         do{
             userQuery.whereKey("receipientId", equalTo: currentUser?.objectId!)
             //Filter nudges to those that have been unopened
-            userQuery.whereKey("status", equalTo: false)
-            
+            //userQuery.whereKey("status", equalTo: false)
+            //let currentUserActiveTasks = currentUserTasks?.filter {
+            //status in task.isActive
+            //}
+
             let results = try userQuery.findObjects()
             
             if(results.count > 0)
