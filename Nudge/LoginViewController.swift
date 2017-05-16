@@ -24,7 +24,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
         for textField in textFields{
             textField?.delegate = self
         }
-
+        createGradientLayer()
+        /*
         gradientLayer.frame = self.view.bounds
         let color1 = UIColor.yellow.cgColor as CGColor
         let color2 = UIColor(red: 0.6882, green: 0.9904, blue: 0.4078, alpha: 0.4)
@@ -32,14 +33,28 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
         //let color4 = UIColor.white.cgColor as CGColor
         let color4 = UIColor(white: 0.0, alpha: 0.3).cgColor as CGColor
         gradientLayer.colors = [color1, color2, color3, color4]
-        gradientLayer.locations = [0.1, 0.4, 0.7, 1.0]
-        gradientLayer.startPoint = CGPoint(x: 1, y: -1)
+        gradientLayer.locations = [0.1, 0.6, 0.8, 1.0]
+        gradientLayer.startPoint = CGPoint(x: 1, y: 0)
         gradientLayer.endPoint = CGPoint(x: 0, y: 1)
-        self.view.layer.addSublayer(gradientLayer)
-        self.view.backgroundColor = UIColor(red: 0.7882, green: 0.9904, blue: 0.6078, alpha: 1.0)
+        self.view.layer.addSublayer(gradientLayer)*/
         
+        self.view.backgroundColor = //UIColor(red: 1, green: 1, blue: 1, alpha: 1.0)
+            UIColor(red: 0.7882, green: 0.9904, blue: 0.6078, alpha: 1.0)
+        //createGradientLayer()
 
         // Do any additional setup after loading the view.
+    }
+    
+    func createGradientLayer() {
+        let gradientLayer = CAGradientLayer()
+        
+        gradientLayer.frame = self.view.bounds
+        
+        //gradientLayer.colors = [UIColor(red: 0.1765, green: 0.898, blue: 0.1, alpha: 1.0), UIColor(red: 0.9882, green: 0.9882, blue: 0.1, alpha: 1.0)]
+        gradientLayer.colors = [UIColor(red: 0.6882, green: 0.9904, blue: 0.4078, alpha: 0.8),UIColor(red: 0.8882, green: 0.8004, blue: 0.3078, alpha: 1.0)]
+                                //UIColor.yellow.cgColor]
+        
+        self.view.layer.addSublayer(gradientLayer)
     }
 
     override func didReceiveMemoryWarning() {
