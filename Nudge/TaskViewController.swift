@@ -35,13 +35,11 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
         print("View did load")
         if(NudgeHelper.getCurrentUserGroup() == nil)
         {
-            print("Why load invitiation")
             //If user does not belong in a group, check for invitation
             loadInvitation()
         }
         else{
             //If user does belong in a group, check for nudges
-            print("Should load nudge")
             loadNudge()
         }
     }
@@ -54,14 +52,11 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
     /* Check for nudges */
     func loadNudge() {
         let nudge = NudgeHelper.getCurrentUserNudge()
-        print("IN LOAD NUDGE")
         if(nudge?.status == false)
         {
-            //print(nudge?.groupId)
-            print("IN LOAD NUdGE ALERT")
-            let alert = UIAlertController(title: "Nudge", message: "DO IT", preferredStyle: UIAlertControllerStyle.alert)
+            let alert = UIAlertController(title: "Nudge", message: "Please do the following task: \(nudge!.taskName!)", preferredStyle: UIAlertControllerStyle.alert)
             
-            alert.addAction(UIAlertAction(title: "Accept", style: UIAlertActionStyle.default, handler: { action in
+            alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: { action in
                 self.openedNudge(nudge: nudge!)
             }))
             
@@ -99,7 +94,6 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
         //Set invitation status to accepted
         invitation.status = InvitationStatus.accepted.rawValue
         NudgeHelper.trySaveInvitation(invitation: invitation)
-
     }
 
     /* Decline invitation */
@@ -113,6 +107,7 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func openedNudge(nudge: NudgeNotifcation){
         //Set nudge status to true
         nudge.status = true
+        NudgeHelper.trySaveNudge(nudge: nudge)
     }
     
     /* Delete a task by setting it to inactive */
@@ -198,7 +193,7 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     /* Create a Nudge to send */
-    func onNudge(recepientId: String)
+    func onNudge(recepientId: String, taskName: String)
     {
         //Create nudge
         let nudge = NudgeNotifcation()
@@ -208,12 +203,25 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
         nudge.status = false
         nudge.groupName = NudgeHelper.getGroupName()
         nudge.groupId = NudgeHelper.getCurrentUserGroup()?.objectId
+        nudge.taskName = taskName
         NudgeHelper.trySaveNudge(nudge: nudge)
     }
     
     /* Swipe to get Delete and Nudge button */
     func tableView(_ tableView: UITableView, editActionsForRowAt: IndexPath) -> [UITableViewRowAction]? {
         
+        let currentUserTasks = currentUserGroup?.tasks
+        
+        //Filters through the task array on those that are active
+        let currentUserActiveTasks = currentUserTasks?.filter {
+            task in task.isActive
+        }
+        //Active tasks exist, display them as onto the cells
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TaskViewCell", for: editActionsForRowAt) as! TaskViewCell
+        let allTasks = currentUserActiveTasks?[editActionsForRowAt.row]
+                
+        cell.task = allTasks
+
         /* Nudge Button */
         let nudge = UITableViewRowAction(style: .normal, title: "Nudge") { action, index in
             let alertView = UIAlertController(
@@ -233,7 +241,7 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
             
             let action = UIAlertAction(title: "NUDGE", style: UIAlertActionStyle.default, handler: { action in
                 //Send nudge to selected member
-                self.onNudge(recepientId: self.selectedMember)
+                self.onNudge(recepientId: self.selectedMember, taskName: cell.task.title!)
             })
             
             alertView.addAction(action)
@@ -303,12 +311,16 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return self.pickerData[row]
     }
     
+    //Selected member to nudge
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         self.selectedMember = self.memberData[row]
     }
 
+    //Fetch group members to nudge
     func fetchGroupMembers(pickerView: UIPickerView)
     {
+        let currentUser = NudgeHelper.getCurrentUser()
+        
         let query = PFQuery(className: "_User")
         query.whereKey("groupId", equalTo: NudgeHelper.getCurrentUser()?["groupId"])
         
@@ -317,7 +329,7 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 
                 for user in users{
                     let name = user.object(forKey: "fullname") as! String
-                    if(!self.pickerData.contains(name))
+                    if(!self.pickerData.contains(name) && name != currentUser!["fullname"] as! String)
                     {
                         self.pickerData.append(name)
                         self.memberData.append(user.objectId!)

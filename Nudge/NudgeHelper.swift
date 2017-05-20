@@ -77,29 +77,6 @@ struct NudgeHelper {
         
         return taskGroup
     }
-    
-    /* Get group members
-    static func getPFUsersByGroupId() -> [String]
-    {
-        var groupID = [String]()
-        let query = PFQuery(className: "_User")
-        query.whereKey("groupId", equalTo: getCurrentUser()?["groupId"])
-        
-        query.findObjectsInBackground (block: { (users: [PFObject]?, error: Error?) in
-            if let users = users{
-                
-                for user in users{
-                    //let name = user.object(forKey: "fullname") as! String
-                    print(user.objectId)
-                    groupID.append(user.objectId!)
-                }
-            }
-            else{
-                print(error?.localizedDescription)
-            }
-        })
-        return groupID
-    }*/
 
     /* Check if current user has any invitations */
     static func getCurrentUserInvitation() -> Invitation?
@@ -211,10 +188,10 @@ struct NudgeHelper {
     /* Return PFUser by id */
     static func getPFObjectById(id: String) -> [PFObject]?
     {
-        //Returns an array but there should only one unique user
+        //Returns an array but there should only be one unique user
         do {
             let userQuery = PFUser.query()
-            userQuery?.whereKey("_id", equalTo: id)
+            userQuery?.whereKey("objectId", equalTo: id)
             let result = try userQuery?.findObjects()
             return result
         }
@@ -249,6 +226,22 @@ struct NudgeHelper {
         
         do {
             currentUser?["groupId"] = taskGroup.objectId
+            currentUser?["isInGroup"] = true
+            try currentUser?.save()
+        }
+        catch let error {
+            print(error.localizedDescription)
+        }
+    }
+    
+    /* Remove user from group */
+    static func removeCurrentUserGroup(taskGroup: TaskGroup)
+    {
+        let currentUser = getCurrentUser()
+        
+        do {
+            currentUser?["groupId"] = ""
+            currentUser?["isInGroup"] = false
             try currentUser?.save()
         }
         catch let error {
@@ -263,6 +256,7 @@ struct NudgeHelper {
         
         do {
             currentUser?["groupId"] = taskGroupId
+            currentUser?["isInGroup"] = true
             try currentUser?.save()
         }
         catch let error {

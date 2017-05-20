@@ -23,6 +23,8 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     var groupID = [String]()
     var groupMember = [PFObject]()
     var groupMembers = [PFUser]()
+    var hasRequestedForPFUser = false
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -165,27 +167,35 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     //TableView for group members
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("groupID:\(groupID.count)")
+        if(!hasRequestedForPFUser)
+        {
+            getPFUsersByGroupId()
+        }
         return groupID.count
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath) {
         // cell selected code here
         //TODO: Show member's profile?
+        //groupMember = NudgeHelper.getPFObjectById(id: groupID[indexPath.row])!
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         let cell = tableView.dequeueReusableCell(withIdentifier: "GroupCell", for: indexPath) as! GroupCell
-        getPFUsersByGroupId()
-        groupMember = NudgeHelper.getPFObjectById(id: groupID[0])!
-        
-        cell.memberLabel.text = NudgeHelper.getUsernameById(user: groupMember[0])
+        print("a")
+        if(!self.groupID.isEmpty)
+        {
+            groupMember = NudgeHelper.getPFObjectById(id: groupID[indexPath.row])!
+            let memberName = NudgeHelper.getUsernameById(user: groupMember[0])
+            cell.memberLabel.text = memberName
+        }
         return cell
     }
     
     /* Get group members */
-    func getPFUsersByGroupId()
+        func getPFUsersByGroupId()
     {
+        hasRequestedForPFUser = true
         let query = PFQuery(className: "_User")
         query.whereKey("groupId", equalTo: NudgeHelper.getCurrentUser()?["groupId"])
         
@@ -196,8 +206,12 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
                     let name = user.object(forKey: "fullname") as! String
                     print("Here is member: \(name)")
                     print(user.objectId)
-                    self.groupID.append(user.objectId!)
+                    if(!self.groupID.contains(name) && user.objectId != NudgeHelper.getCurrentUser()?.objectId)
+                    {
+                        self.groupID.append(user.objectId!)
+                    }
                 }
+                self.tableView.reloadData()
             }
             else{
                 print(error?.localizedDescription)

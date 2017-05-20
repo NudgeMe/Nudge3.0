@@ -30,4 +30,7 @@ class NudgeNotifcation: PFObject, PFSubclassing {
     
     //Status of the nudge - opened, unopened
     @NSManaged var status: Bool
+    
+    //Title of the task
+    @NSManaged var taskName: String!
 }

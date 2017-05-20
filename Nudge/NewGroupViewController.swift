@@ -109,6 +109,8 @@ class NewGroupViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     /* Choose member to add using pickerView */
     func fetchUserNames(){
+        let currentUser = NudgeHelper.getCurrentUser()
+        
         let query = PFQuery(className: "_User")
         
         query.findObjectsInBackground (block: { (users: [PFObject]?, error: Error?) in
@@ -117,15 +119,12 @@ class NewGroupViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
                 for user in users{
                     let name = user.object(forKey: "fullname") as! String
                     
-                    if(name != "")
+                    if(name != "" && name != currentUser!["fullname"] as! String)
                     {
                         self.memberData.append(user.objectId!)
                         self.pickerData.append(name)
                         self.pickerView.reloadAllComponents()
                     }
-                    /*else{
-                        self.pickerData.append("")
-                    }*/
                 }
             }
             else{
