@@ -7,10 +7,21 @@
 //
 
 import UIKit
+import Parse
 
 class GroupCell: UITableViewCell {
     
-    @IBOutlet weak var groupnameLabel: UILabel!
+    @IBOutlet weak var memberLabel: UILabel!
+    @IBOutlet weak var profileImageView: UIImageView!
+    
+    var member: PFUser!{
+        didSet{
+            memberLabel.text = "Hello"
+            
+            
+        }
+    }
+
 
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -27,4 +27,7 @@ class Task: PFObject, PFSubclassing {
     
     //Due date of the task
     @NSManaged var dueDate: Date
+    
+    //If task is past due date or not
+    @NSManaged var pastDueDate: Bool
 }

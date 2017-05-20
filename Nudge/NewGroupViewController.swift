@@ -123,9 +123,9 @@ class NewGroupViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
                         self.pickerData.append(name)
                         self.pickerView.reloadAllComponents()
                     }
-                    else{
+                    /*else{
                         self.pickerData.append("")
-                    }
+                    }*/
                 }
             }
             else{

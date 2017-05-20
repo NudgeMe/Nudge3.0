@@ -19,7 +19,6 @@ class TaskViewCell: UITableViewCell {
             taskdescriptionLabel.text = task.detail
             
             // show deadline
-            //print(task.dueDate)
             let taskDue = task.dueDate
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "MM/dd/yyyy"

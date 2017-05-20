@@ -9,21 +9,27 @@
 import UIKit
 import Parse
 
-class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate,UITableViewDelegate, UITableViewDataSource{
     
+    @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var pictureImageView: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
-    
     @IBOutlet weak var realName: UILabel!
-    
     @IBOutlet weak var groupLabel: UILabel!
     
     var image = UIImage()
     var users = [PFObject]()
+    var groupID = [String]()
+    var groupMember = [PFObject]()
+    var groupMembers = [PFUser]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        
         if let user = NudgeHelper.getCurrentUser() {
             usernameLabel.text = user.username
             realName.text = user["fullname"] as? String
@@ -87,7 +93,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     //Function to add a photo to profile picture
     @IBAction func onProfilePicture(_ sender: UIButton) {
-        print("Clicked button")
+        //print("Clicked button")
         let vc = UIImagePickerController()
         vc.delegate = self
         vc.allowsEditing = true
@@ -112,28 +118,20 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     func postImage(){
-        //print("posting image")
-        
         Image.postUSerImage(image: image)
-        //print("chosen image")
         self.pictureImageView.image = self.image
-        //self.fetchPic()
     }
     
     func fetchPic(){
-        //print("fetching profile picture")
         let query = PFQuery(className: "_User")
-        //pictureImageView.image = image
         query.whereKey("username", equalTo: PFUser.current()?.username!)
         
         query.findObjectsInBackground (block: { (users: [PFObject]?, error: Error?) in
             if let users = users{
-                //print("finding users")
                 self.users = users
                 
                 let user = self.users[0]
                 if let name = user["username"] as? String{
-                    //print("finding pics\(name)")
                 }
                 if let profileImage = user["image"] as? PFFile{
                     profileImage.getDataInBackground({ (imageData:Data?, error:Error?) in
@@ -149,7 +147,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         })
     }
     
-    
+    //Segue to create group view
     @IBAction func onCreateGroup(_ sender: Any) {
         let user = PFUser.current()!
         let isInGroup = user["isInGroup"] as! Bool?
@@ -163,6 +161,48 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         else {
             self.performSegue(withIdentifier: "newGroupSegue", sender: nil)
         }
+    }
+    
+    //TableView for group members
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("groupID:\(groupID.count)")
+        return groupID.count
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        // cell selected code here
+        //TODO: Show member's profile?
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
+        let cell = tableView.dequeueReusableCell(withIdentifier: "GroupCell", for: indexPath) as! GroupCell
+        getPFUsersByGroupId()
+        groupMember = NudgeHelper.getPFObjectById(id: groupID[0])!
+        
+        cell.memberLabel.text = NudgeHelper.getUsernameById(user: groupMember[0])
+        return cell
+    }
+    
+    /* Get group members */
+    func getPFUsersByGroupId()
+    {
+        let query = PFQuery(className: "_User")
+        query.whereKey("groupId", equalTo: NudgeHelper.getCurrentUser()?["groupId"])
+        
+        query.findObjectsInBackground (block: { (users: [PFObject]?, error: Error?) in
+            if let users = users{
+                
+                for user in users{
+                    let name = user.object(forKey: "fullname") as! String
+                    print("Here is member: \(name)")
+                    print(user.objectId)
+                    self.groupID.append(user.objectId!)
+                }
+            }
+            else{
+                print(error?.localizedDescription)
+            }
+        })
     }
     
     /*

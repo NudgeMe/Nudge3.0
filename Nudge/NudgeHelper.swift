@@ -28,6 +28,16 @@ struct NudgeHelper {
         return currentUsername
     }
     
+    /* Get username by id */
+    static func getUsernameById(user: PFObject) -> String
+    {
+        let currentUser = user
+        
+        let currentUsername = user["username"] as! String
+        
+        return currentUsername
+    }
+    
     /* Get PFUser fullname */
     static func getFullname() -> String
     {
@@ -67,11 +77,11 @@ struct NudgeHelper {
         
         return taskGroup
     }
-    /*
-    /* Get group members */
-    static func getPFUsersByGroupId(pickerData: [String]) -> [String]
+    
+    /* Get group members
+    static func getPFUsersByGroupId() -> [String]
     {
-        var pickerData = pickerData
+        var groupID = [String]()
         let query = PFQuery(className: "_User")
         query.whereKey("groupId", equalTo: getCurrentUser()?["groupId"])
         
@@ -79,17 +89,16 @@ struct NudgeHelper {
             if let users = users{
                 
                 for user in users{
-                    let name = user.object(forKey: "fullname") as! String
-                    self.pickerData.append(name)
-                    self.memberData.append(user.objectId!)
-                    self.pickerView.reloadAllComponents()
+                    //let name = user.object(forKey: "fullname") as! String
+                    print(user.objectId)
+                    groupID.append(user.objectId!)
                 }
             }
             else{
                 print(error?.localizedDescription)
             }
         })
-        return pickerData
+        return groupID
     }*/
 
     /* Check if current user has any invitations */
@@ -128,12 +137,14 @@ struct NudgeHelper {
         do{
             userQuery.whereKey("receipientId", equalTo: currentUser?.objectId!)
             //Filter nudges to those that have been unopened
-            //userQuery.whereKey("status", equalTo: false)
+            userQuery.whereKey("status", equalTo: false)
             //let currentUserActiveTasks = currentUserTasks?.filter {
             //status in task.isActive
             //}
 
             let results = try userQuery.findObjects()
+            print("Nudge count: \(results.count)")
+
             
             if(results.count > 0)
             {
@@ -197,21 +208,21 @@ struct NudgeHelper {
         return nil
     }
     
-    /* set a PFUser to a group */
-    static func setUserGroup(username: String, taskGroup: TaskGroup)
-    {/*
-        // TODO: do push then request approval from the other user to add group
-        
-        let pfObject = getPFObjectByUsername(username: username)
-        let pfUserObject = pfObject?[0]
-        
+    /* Return PFUser by id */
+    static func getPFObjectById(id: String) -> [PFObject]?
+    {
+        //Returns an array but there should only one unique user
         do {
-            pfUserObject?["groupId"] = taskGroup.objectId
-            try pfUserObject?.save()
+            let userQuery = PFUser.query()
+            userQuery?.whereKey("_id", equalTo: id)
+            let result = try userQuery?.findObjects()
+            return result
         }
         catch let error {
             print(error.localizedDescription)
-        }*/
+        }
+        
+        return nil
     }
     
     /* Get current user group and adds a task to the group's task array */

@@ -17,9 +17,12 @@ class CreateTaskViewController: UIViewController {
     @IBOutlet weak var descriptionTextField: UITextField!
     @IBOutlet weak var titleTextField: UITextField!
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        datePicker.datePickerMode = .date
+        
         // Do any additional setup after loading the view.
     }
 
@@ -34,22 +37,26 @@ class CreateTaskViewController: UIViewController {
         //If the taskGroup exists, then add task to taskGroup
         if(currentTaskGroup != nil)
         {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "MM dd, yyyy"
+
             //Create task
             let newTask = Task()
             
             newTask.title = titleTextField.text
             newTask.detail = descriptionTextField.text
-            
             newTask.dueDate = datePicker.date
-            if(datePicker.date < Date.init()){
+            newTask.isActive = true
+            
+            let yesterday = Calendar.current.date(byAdding: .day, value: -1, to: Date())
+
+            if(datePicker.date < yesterday!){
                 //past dueDate
-            newTask.isActive = false
+                newTask.pastDueDate = true
             }
             else{
-                newTask.isActive = true
+                newTask.pastDueDate = false
             }
-            print(datePicker.date)
-            print(newTask.dueDate)
             
             //Save task into Parse and add to taskGroup
             NudgeHelper.trySaveTask(task: newTask)

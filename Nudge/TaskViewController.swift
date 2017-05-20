@@ -33,17 +33,17 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.tableView.reloadData()
         // Do any additional setup after loading the view.
         print("View did load")
-        if(currentUserGroup == nil)
+        if(NudgeHelper.getCurrentUserGroup() == nil)
         {
             print("Why load invitiation")
             //If user does not belong in a group, check for invitation
             loadInvitation()
         }
-        //else{
+        else{
             //If user does belong in a group, check for nudges
             print("Should load nudge")
             loadNudge()
-        //}
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -55,7 +55,7 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func loadNudge() {
         let nudge = NudgeHelper.getCurrentUserNudge()
         print("IN LOAD NUDGE")
-        if(nudge != nil)
+        if(nudge?.status == false)
         {
             //print(nudge?.groupId)
             print("IN LOAD NUdGE ALERT")
@@ -138,8 +138,7 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
             {
                 //Filters through the task array on those that are active
                 let currentUserActiveTasks = currentUserTasks?.filter {
-                    ///////////TODO active only if not past due
-                    task in (task.isActive && task.dueDate < Date.init())
+                    task in (task.isActive)
                 }
                 return (currentUserActiveTasks?.count)!
             }
@@ -160,7 +159,6 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 let currentUserActiveTasks = currentUserTasks?.filter {
                     task in task.isActive
                 }
-                
                 if((currentUserActiveTasks?.count)! > 0)
                 {
                     //Active tasks exist, display them as onto the cells
@@ -168,7 +166,14 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     let allTasks = currentUserActiveTasks?[indexPath.row]
                     
                     cell.task = allTasks
-                    if indexPath.row%4 == 0 {
+                    //If cell is past dueDate
+                    if(cell.task.pastDueDate){
+                        cell.backgroundColor = UIColor.gray
+                        cell.deadlineLabel.textColor = UIColor.white
+                        cell.tasknameLabel.textColor = UIColor.white
+                        cell.taskdescriptionLabel.textColor = UIColor.white
+                    }
+                    else if indexPath.row%4 == 0 {
                         cell.backgroundColor = colors[0]
                     }
                     else if indexPath.row%4 == 1{
@@ -249,7 +254,7 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 //Filters through the task array on those that are active
                 let currentUserActiveTasks = currentUserTasks?.filter {
                     ///////////TODO active only if not past due
-                    task in (task.isActive && task.dueDate < Date.init())
+                    task in (task.isActive /*&& task.dueDate < Date.init()*/)
                 }
                 self.confirmDelete(task: (currentUserActiveTasks?[editActionsForRowAt.row])!, forRowAt: editActionsForRowAt)
             }
@@ -299,7 +304,7 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        self.selectedMember = self.pickerData[row]
+        self.selectedMember = self.memberData[row]
     }
 
     func fetchGroupMembers(pickerView: UIPickerView)
@@ -312,8 +317,11 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 
                 for user in users{
                     let name = user.object(forKey: "fullname") as! String
-                    self.pickerData.append(name)
-                    self.memberData.append(user.objectId!)
+                    if(!self.pickerData.contains(name))
+                    {
+                        self.pickerData.append(name)
+                        self.memberData.append(user.objectId!)
+                    }
                     pickerView.reloadAllComponents()
                 }
             }
@@ -322,6 +330,8 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
         })
     }
+    
+
     
 
     /*
