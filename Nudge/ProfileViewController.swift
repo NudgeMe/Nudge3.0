@@ -58,10 +58,20 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
                 groupLabel.text = NudgeHelper.getCurrentUserGroup()!.name
 
             }
+        }
+        // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if NudgeHelper.getCurrentUserGroup() == nil{
+            groupLabel.text = "No Group"
+        }
+        else{
+            //print("in a group")
+            //print("HELLO \(NudgeHelper.getCurrentUserGroup()!.name)" )
+            groupLabel.text = NudgeHelper.getCurrentUserGroup()!.name
             
         }
-        
-        // Do any additional setup after loading the view.
     }
     
     func fetchUserInfo(){
@@ -167,7 +177,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     //TableView for group members
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if(!hasRequestedForPFUser && NudgeHelper.getCurrentUser()?["groupId"] as! String != "")
+        if(!hasRequestedForPFUser && NudgeHelper.getCurrentUser()?["groupId"] as? String != "")
         {
             getPFUsersByGroupId()
         }
@@ -177,7 +187,10 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath) {
         // cell selected code here
         //TODO: Show member's profile?
-        //groupMember = NudgeHelper.getPFObjectById(id: groupID[indexPath.row])!
+        groupMember = NudgeHelper.getPFObjectById(id: groupID[indexPath.row])!
+        print("member nil? \(groupMember[0]["fullname"])")
+        performSegue(withIdentifier: "toMemberProfile", sender: self)
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
@@ -231,14 +244,20 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         self.groupID.removeAll()
         self.tableView.reloadData()
     }
-    /*
+    
+
      // MARK: - Navigation
      
      // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     func prepare(for segue: UIStoryboardSegue, sender: UITableViewCell?) {
+        if segue.identifier == "toMemberProfile"{
+            let memberProfileVC = segue.destination as! MemberProfileViewController
+            memberProfileVC.user = groupMember[0]
+            
      // Get the new view controller using segue.destinationViewController.
      // Pass the selected object to the new view controller.
      }
-     */
+    }
+    
     
 }
