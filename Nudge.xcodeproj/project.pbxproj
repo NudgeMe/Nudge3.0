@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		282477591EA58F6B00644555 /* GroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282477581EA58F6B00644555 /* GroupCell.swift */; };
 		2824775E1EA5C2AB00644555 /* CreateTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2824775D1EA5C2AB00644555 /* CreateTaskViewController.swift */; };
+		28AC5D8D1ED2199B00A34AC8 /* AddMemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28AC5D8C1ED2199B00A34AC8 /* AddMemberViewController.swift */; };
 		28CE99621EA2B25700A5DE7D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28CE99611EA2B25700A5DE7D /* ProfileViewController.swift */; };
 		28E31FCD1EB83A9B008218D5 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E31FCC1EB83A9B008218D5 /* Image.swift */; };
 		65655D731EBE438A00F9BDE4 /* Invitation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65655D721EBE438A00F9BDE4 /* Invitation.swift */; };
@@ -35,6 +36,7 @@
 /* Begin PBXFileReference section */
 		282477581EA58F6B00644555 /* GroupCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupCell.swift; sourceTree = "<group>"; };
 		2824775D1EA5C2AB00644555 /* CreateTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTaskViewController.swift; sourceTree = "<group>"; };
+		28AC5D8C1ED2199B00A34AC8 /* AddMemberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMemberViewController.swift; sourceTree = "<group>"; };
 		28CE99611EA2B25700A5DE7D /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		28E31FCC1EB83A9B008218D5 /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		3CF1CE1BF16EA784B087570C /* Pods-Nudge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nudge.release.xcconfig"; path = "Pods/Target Support Files/Pods-Nudge/Pods-Nudge.release.xcconfig"; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 				657DFE1C1E9C976500345A39 /* TaskViewController.swift */,
 				28CE99611EA2B25700A5DE7D /* ProfileViewController.swift */,
 				E4C3CE321EABC85900B99254 /* NewGroupViewController.swift */,
+				28AC5D8C1ED2199B00A34AC8 /* AddMemberViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -316,6 +319,7 @@
 				65655D7B1EC28A6100F9BDE4 /* TaskGroupUser.swift in Sources */,
 				E4C3CE331EABC85900B99254 /* NewGroupViewController.swift in Sources */,
 				2824775E1EA5C2AB00644555 /* CreateTaskViewController.swift in Sources */,
+				28AC5D8D1ED2199B00A34AC8 /* AddMemberViewController.swift in Sources */,
 				65655D7D1EC28A8000F9BDE4 /* Pair.swift in Sources */,
 				65655D731EBE438A00F9BDE4 /* Invitation.swift in Sources */,
 				E4B828BB1EA3F76600DEBF37 /* TaskViewCell.swift in Sources */,

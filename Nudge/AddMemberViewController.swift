@@ -1,55 +1,64 @@
 //
-//  NewGroupViewController.swift
+//  AddMemberViewController.swift
 //  Nudge
 //
-//  Created by Dephanie Ho on 4/22/17.
+//  Created by Lin Zhou on 5/21/17.
 //  Copyright © 2017 Dephanie Ho. All rights reserved.
 //
 
 import UIKit
 import Parse
 
-class NewGroupViewController: UIViewController {
+class AddMemberViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
-    @IBOutlet weak var groupNameTextField: UITextField!
-    @IBOutlet weak var descriptionTextField: UITextField!
+    @IBOutlet weak var pickerView: UIPickerView!
     
-
+    var pickerData = [String]()
+    var memberData = [String]()
     var selectedMember: String = ""
     var selectedMemberName: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.hideKeyboardWhenTappedAround()
+
+        //Connect data
+        self.pickerView.delegate = self
+        self.pickerView.dataSource = self
         
-            }
-    
+        //Input data into the pickerData
+        fetchUserNames()
+        
+        self.pickerView.reloadAllComponents()
+    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
+    /* PickerView */
+    //The number of columns of data
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
     
-    /* Create a taskGroup */
-    @IBAction func onCreate(_ sender: Any) {
-        let taskGroup = TaskGroup()
-        
-        if(!NudgeHelper.doesGroupNameExist(groupName: groupNameTextField.text!)){
-            //Create and assign group if name is not taken
-            taskGroup.name = groupNameTextField.text!
-            NudgeHelper.trySaveGroup(taskGroup: taskGroup)
-            NudgeHelper.setCurrentUserGroup(taskGroup: taskGroup)
-        }
-        else {
-            //TODO: Prompt to enter another name
-            print("Group name already exists")
-        }
-        self.dismiss(animated: true, completion: nil)
-        self.viewWillAppear(true)
+    //The number of rows of data
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return self.pickerData.count
+    }
+    
+    //The data to return for the row and component(column) that's being passed in
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return self.pickerData[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        self.selectedMember = self.memberData[row]
+        self.selectedMemberName = self.pickerData[row]
     }
 
-    /* Send invitation to member
-    @IBAction func onAddMembers(_ sender: Any) {
+
+    @IBAction func onAdd(_ sender: Any) {
         
         if(self.selectedMember != "")
         {
@@ -63,14 +72,14 @@ class NewGroupViewController: UIViewController {
                 alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: { action in
                 }))
                 self.present(alert, animated: true, completion: nil)
-
+                
             }
             else{
                 //Member is not in a group
                 let alert = UIAlertController(title: "Invitation", message: "Are you sure you want to send an invitation to \(self.selectedMemberName)", preferredStyle: UIAlertControllerStyle.alert)
                 
                 alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: { action in
-                    
+                    //self.declineInvitation(invitation: invitation!)
                 }))
                 alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.default, handler: { action in
                     //Create invitation
@@ -99,7 +108,7 @@ class NewGroupViewController: UIViewController {
                 
             }
         }
-    }*/
+    }
     
     /* Dismiss alert */
     func alertControllerBackgroundTapped()
@@ -107,9 +116,38 @@ class NewGroupViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
+    /* Choose member to add using pickerView */
+    func fetchUserNames(){
+        let currentUser = NudgeHelper.getCurrentUser()
+        
+        let query = PFQuery(className: "_User")
+        
+        query.findObjectsInBackground (block: { (users: [PFObject]?, error: Error?) in
+            if let users = users{
+                
+                for user in users{
+                    let name = user.object(forKey: "fullname") as! String
+                    
+                    if(name != "" && name != currentUser!["fullname"] as! String)
+                    {
+                        self.memberData.append(user.objectId!)
+                        self.pickerData.append(name)
+                        self.pickerView.reloadAllComponents()
+                    }
+                }
+            }
+            else{
+                print ("ERROR \(error?.localizedDescription)")
+            }
+        })
+    }
+
     @IBAction func onCancel(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
+
     }
+
+
     
 
     /*
