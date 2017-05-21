@@ -16,7 +16,7 @@ class GroupCell: UITableViewCell {
     
     var member: PFUser!{
         didSet{
-            memberLabel.text = "Hello"
+            memberLabel.text = ""
             
             
         }

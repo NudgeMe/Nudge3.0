@@ -38,6 +38,16 @@ struct NudgeHelper {
         return currentUsername
     }
     
+    /* Get group id by user id */
+    static func getGroupIdById(user: PFObject) -> String
+    {
+        let currentUser = user
+        
+        let currentgroupId = user["groupId"] as! String
+        
+        return currentgroupId
+    }
+    
     /* Get PFUser fullname */
     static func getFullname() -> String
     {
@@ -54,7 +64,7 @@ struct NudgeHelper {
         let currentUser = getCurrentUser()
         
         //If user is not in a group, return nothing
-        if(currentUser?["groupId"] == nil)
+        if(currentUser?["groupId"] as! String == "" || currentUser?["groupId"] == nil)
         {
             return nil
         }

@@ -438,7 +438,7 @@
                                         <rect key="frame" x="0.0" y="28" width="374" height="75"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7pR-od-dcy" id="K0L-vz-oDy">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="74"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="75"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Circled User Male" translatesAutoresizingMaskIntoConstraints="NO" id="VPL-3X-4qo">
@@ -500,6 +500,14 @@
                                 </state>
                                 <connections>
                                     <action selector="onLogout:" destination="Xa6-D5-eOM" eventType="touchUpInside" id="9kW-ac-h3g"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hSD-u8-NVa">
+                                <rect key="frame" x="48" y="620" width="71" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="quit group"/>
+                                <connections>
+                                    <action selector="onQuitGroup:" destination="Xa6-D5-eOM" eventType="touchUpInside" id="qAP-T7-LWs"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -647,6 +655,6 @@
         <image name="User Groups" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="mmV-AF-NLW"/>
+        <segue reference="Bsy-dD-a2Y"/>
     </inferredMetricsTieBreakers>
 </document>

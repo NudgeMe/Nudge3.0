@@ -2,7 +2,7 @@
 //  NewGroupViewController.swift
 //  Nudge
 //
-//  Created by Thuan Nguyen on 4/22/17.
+//  Created by Dephanie Ho on 4/22/17.
 //  Copyright © 2017 Dephanie Ho. All rights reserved.
 //
 
@@ -18,6 +18,7 @@ class NewGroupViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     var pickerData = [String]()
     var memberData = [String]()
     var selectedMember: String = ""
+    var selectedMemberName: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,6 +57,7 @@ class NewGroupViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {        
         self.selectedMember = self.memberData[row]
+        self.selectedMemberName = self.pickerData[row]
     }
     
     /* Create a taskGroup */
@@ -83,24 +85,58 @@ class NewGroupViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         
         if(self.selectedMember != "")
         {
-            //Member exists
-            // check if member is already in the group
-            // if member is not in group, check if there is already invitation created for that member
-            
-            //Create invitation
-            let invitation = Invitation()
-            
-            invitation.senderId = NudgeHelper.getCurrentUser()?.objectId
-            invitation.senderName = NudgeHelper.getUsername()
-            invitation.senderFullName = NudgeHelper.getFullname()
-            invitation.receipientId = self.selectedMember
-            invitation.status = InvitationStatus.created.rawValue
-            invitation.groupName = NudgeHelper.getGroupName()
-            invitation.message = "(\(invitation.senderFullName!)) \(invitation.senderName!) wants to invite you to \(invitation.groupName!)"
-            invitation.groupId = NudgeHelper.getCurrentUserGroup()?.objectId
-            invitation.dateCreated = DateFormatter.localizedString(from: Date(), dateStyle: .short, timeStyle: .short)
-            NudgeHelper.trySaveInvitation(invitation: invitation)
+            //Check if member is already in group
+            let member = NudgeHelper.getPFObjectById(id: self.selectedMember)
+            //Member is in a group
+            if(NudgeHelper.getGroupIdById(user: (member?[0])!) != "")
+            {
+                let alert = UIAlertController(title: "Woops!", message: "\(self.selectedMemberName) is already in a group", preferredStyle: UIAlertControllerStyle.alert)
+                
+                alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: { action in
+                }))
+                self.present(alert, animated: true, completion: nil)
+
+            }
+            else{
+                //Member is not in a group
+                let alert = UIAlertController(title: "Invitation", message: "Are you sure you want to send an invitation to \(self.selectedMemberName)", preferredStyle: UIAlertControllerStyle.alert)
+                
+                alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: { action in
+                    //self.declineInvitation(invitation: invitation!)
+                }))
+                alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.default, handler: { action in
+                    //Create invitation
+                    let invitation = Invitation()
+                    
+                    invitation.senderId = NudgeHelper.getCurrentUser()?.objectId
+                    invitation.senderName = NudgeHelper.getUsername()
+                    invitation.senderFullName = NudgeHelper.getFullname()
+                    invitation.receipientId = self.selectedMember
+                    invitation.status = InvitationStatus.created.rawValue
+                    invitation.groupName = NudgeHelper.getGroupName()
+                    invitation.message = "(\(invitation.senderFullName!)) \(invitation.senderName!) wants to invite you to \(invitation.groupName!)"
+                    invitation.groupId = NudgeHelper.getCurrentUserGroup()?.objectId
+                    invitation.dateCreated = DateFormatter.localizedString(from: Date(), dateStyle: .short, timeStyle: .short)
+                    NudgeHelper.trySaveInvitation(invitation: invitation)
+                    
+                    let sent = UIAlertController(title: "Invitation sent", message: "", preferredStyle: UIAlertControllerStyle.alert)
+                    
+                    //dismiss alert
+                    self.present(sent, animated: true, completion:{
+                        sent.view.superview?.isUserInteractionEnabled = true
+                        sent.view.superview?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.alertControllerBackgroundTapped)))
+                    })
+                }))
+                self.present(alert, animated: true, completion: nil)
+                
+            }
         }
+    }
+    
+    /* Dismiss alert */
+    func alertControllerBackgroundTapped()
+    {
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func onCancel(_ sender: Any) {

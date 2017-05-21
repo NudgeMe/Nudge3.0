@@ -8,5 +8,6 @@ target 'Nudge' do
   # Pods for Nudge
   pod 'Parse'
   pod 'AFNetworking'
+  pod 'MBProgressHUD'
 
 end

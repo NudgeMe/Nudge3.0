@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import MBProgressHUD
 
 class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
 
@@ -26,13 +27,16 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var colors : [UIColor] = [UIColor(red: 0.4882, green: 0.9704, blue: 0.5078, alpha: 0.6),UIColor(red: 0.6882, green: 0.9904, blue: 0.4078, alpha: 0.6),UIColor(red: 0.6882, green: 0.9904, blue: 0.4078, alpha: 0.4),UIColor(red: 0.6882, green: 0.9904, blue: 0.4078, alpha: 0.2)]
     
     override func viewDidLoad() {
+        
+        //Display HUD right before the request is made
+        MBProgressHUD.showAdded(to: self.view, animated: true)
         super.viewDidLoad()
+
         self.tableView.delegate = self
         self.tableView.dataSource = self
 
         self.tableView.reloadData()
         // Do any additional setup after loading the view.
-        print("View did load")
         if(NudgeHelper.getCurrentUserGroup() == nil)
         {
             //If user does not belong in a group, check for invitation
@@ -42,11 +46,23 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
             //If user does belong in a group, check for nudges
             loadNudge()
         }
+        //Hide HUD once the network request comes back
+        MBProgressHUD.hide(for: self.view, animated: true)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    /*override func viewDidAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tableView.reloadData()
+    }*/
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
     }
     
     /* Check for nudges */
@@ -90,6 +106,7 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func acceptInvitation(invitation: Invitation) {
         //Set groupId to receipient
         NudgeHelper.setCurrentUserGroupById(taskGroupId: invitation.groupId!)
+        self.tableView.reloadData()
         
         //Set invitation status to accepted
         invitation.status = InvitationStatus.accepted.rawValue
@@ -150,6 +167,8 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
             //Check if tasks exist in the taskGroup, else return an empty cell
             if(currentUserTasks != nil)
             {
+                let yesterday = Calendar.current.date(byAdding: .day, value: -1, to: Date())
+                
                 //Filters through the task array on those that are active
                 let currentUserActiveTasks = currentUserTasks?.filter {
                     task in task.isActive
@@ -162,6 +181,11 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     
                     cell.task = allTasks
                     //If cell is past dueDate
+                    if(cell.task.dueDate < yesterday!){
+                        //past dueDate
+                        cell.task.pastDueDate = true
+                    }
+                    
                     if(cell.task.pastDueDate){
                         cell.backgroundColor = UIColor.gray
                         cell.deadlineLabel.textColor = UIColor.white
@@ -261,8 +285,7 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
             {
                 //Filters through the task array on those that are active
                 let currentUserActiveTasks = currentUserTasks?.filter {
-                    ///////////TODO active only if not past due
-                    task in (task.isActive /*&& task.dueDate < Date.init()*/)
+                    task in (task.isActive)
                 }
                 self.confirmDelete(task: (currentUserActiveTasks?[editActionsForRowAt.row])!, forRowAt: editActionsForRowAt)
             }

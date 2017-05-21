@@ -167,7 +167,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     //TableView for group members
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if(!hasRequestedForPFUser)
+        if(!hasRequestedForPFUser && NudgeHelper.getCurrentUser()?["groupId"] as! String != "")
         {
             getPFUsersByGroupId()
         }
@@ -182,18 +182,25 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         let cell = tableView.dequeueReusableCell(withIdentifier: "GroupCell", for: indexPath) as! GroupCell
-        print("a")
         if(!self.groupID.isEmpty)
         {
             groupMember = NudgeHelper.getPFObjectById(id: groupID[indexPath.row])!
             let memberName = NudgeHelper.getUsernameById(user: groupMember[0])
             cell.memberLabel.text = memberName
+            
+            if let profileImage = groupMember[0]["image"] as? PFFile{
+                profileImage.getDataInBackground({ (imageData:Data?, error:Error?) in
+                    if let imageData = imageData{
+                        cell.profileImageView.image = UIImage(data: imageData)
+                    }
+                }   )
+            }
         }
         return cell
     }
     
     /* Get group members */
-        func getPFUsersByGroupId()
+    func getPFUsersByGroupId()
     {
         hasRequestedForPFUser = true
         let query = PFQuery(className: "_User")
@@ -204,8 +211,6 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
                 
                 for user in users{
                     let name = user.object(forKey: "fullname") as! String
-                    print("Here is member: \(name)")
-                    print(user.objectId)
                     if(!self.groupID.contains(name) && user.objectId != NudgeHelper.getCurrentUser()?.objectId)
                     {
                         self.groupID.append(user.objectId!)
@@ -219,6 +224,13 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         })
     }
     
+    /* Quit current group */
+    @IBAction func onQuitGroup(_ sender: Any) {
+        NudgeHelper.removeCurrentUserGroup(taskGroup: NudgeHelper.getCurrentUserGroup()!)
+        groupLabel.text = "No Group"
+        self.groupID.removeAll()
+        self.tableView.reloadData()
+    }
     /*
      // MARK: - Navigation
      
