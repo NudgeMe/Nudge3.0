@@ -230,6 +230,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         groupLabel.text = "No Group"
         self.groupID.removeAll()
         self.tableView.reloadData()
+    
     }
     /*
      // MARK: - Navigation

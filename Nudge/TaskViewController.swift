@@ -28,8 +28,6 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewDidLoad() {
         
-        //Display HUD right before the request is made
-        MBProgressHUD.showAdded(to: self.view, animated: true)
         super.viewDidLoad()
 
         self.tableView.delegate = self
@@ -44,10 +42,9 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
         else{
             //If user does belong in a group, check for nudges
+            print("Load nudge")
             loadNudge()
         }
-        //Hide HUD once the network request comes back
-        MBProgressHUD.hide(for: self.view, animated: true)
     }
 
     override func didReceiveMemoryWarning() {

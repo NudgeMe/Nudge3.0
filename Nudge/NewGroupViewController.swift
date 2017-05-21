@@ -102,7 +102,7 @@ class NewGroupViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
                 let alert = UIAlertController(title: "Invitation", message: "Are you sure you want to send an invitation to \(self.selectedMemberName)", preferredStyle: UIAlertControllerStyle.alert)
                 
                 alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: { action in
-                    //self.declineInvitation(invitation: invitation!)
+                    
                 }))
                 alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.default, handler: { action in
                     //Create invitation
