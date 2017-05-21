@@ -43,9 +43,9 @@ struct NudgeHelper {
     {
         let currentUser = user
         
-        let currentgroupId = user["groupId"] as! String
+        let currentgroupId = user["groupId"] as? String
         
-        return currentgroupId
+        return (currentgroupId ?? "")!
     }
     
     /* Get PFUser fullname */
@@ -64,7 +64,7 @@ struct NudgeHelper {
         let currentUser = getCurrentUser()
         
         //If user is not in a group, return nothing
-        if(currentUser?["groupId"] as! String == "" || currentUser?["groupId"] == nil)
+        if( currentUser?["groupId"] == nil || currentUser?["groupId"] as! String == "")
         {
             return nil
         }

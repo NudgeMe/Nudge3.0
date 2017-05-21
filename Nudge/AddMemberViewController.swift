@@ -66,7 +66,7 @@ class AddMemberViewController: UIViewController, UIPickerViewDelegate, UIPickerV
             //Check if member is already in group
             let member = NudgeHelper.getPFObjectById(id: self.selectedMember)
             //Member is in a group
-            if(NudgeHelper.getGroupIdById(user: (member?[0])!) != "")
+            if( NudgeHelper.getGroupIdById(user: (member?[0])!) != "")
             {
                 let alert = UIAlertController(title: "Woops!", message: "\(self.selectedMemberName) is already in a group", preferredStyle: UIAlertControllerStyle.alert)
                 
