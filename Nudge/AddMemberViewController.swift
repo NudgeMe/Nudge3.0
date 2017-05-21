@@ -25,6 +25,7 @@ class AddMemberViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         self.pickerView.delegate = self
         self.pickerView.dataSource = self
         
+        
         //Input data into the pickerData
         fetchUserNames()
         
