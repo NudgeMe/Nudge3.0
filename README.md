@@ -9,7 +9,7 @@ The following **required** functionality is completed:
 - [X] User sees a checklist style main view with tasks in each cell (after logging in)
 - [X] Create a group 
 - [X] Create a task and assign it to a group
-- [ ] Send notification message to people in a group
+- [x] Send notification message to people in a group
 
 The following **optional** features are implemented:
 - [X] Due date on tasks, 
@@ -27,12 +27,15 @@ User:
 - Id
 - Username
 - Password
+- GroupID
+- Image
 
 TaskGroup:
 - Title
 - Description
 - Group
 - Duedate
+- Tasks[]
 
 ## Video Walkthrough
 http://imgur.com/Yx2tBxV
