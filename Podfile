@@ -9,6 +9,6 @@ target 'Nudge' do
   pod 'Parse'
   pod 'AFNetworking'
   pod 'MBProgressHUD'
-  #pod 'CVCalendar'
+  pod 'CVCalendar'
 
 end

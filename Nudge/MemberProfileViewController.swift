@@ -21,9 +21,21 @@ class MemberProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //profilePicImageView.image = user["image"]
+        
+        
+        //profilePicImageView.image = user["image"] as? UIImage
         realnameLabel.text = user["fullname"] as? String
-
+        usernameLabel.text = user["username"] as? String
+        groupNameLabel.text = NudgeHelper.getCurrentUserGroup()!.name
+        
+        if let profileImage = user["image"] as? PFFile{
+            profileImage.getDataInBackground({ (imageData:Data?, error:Error?) in
+                if let imageData = imageData{
+                    self.profilePicImageView.image = UIImage(data: imageData)
+                }
+            })
+        }
+        
         // Do any additional setup after loading the view.
     }
 

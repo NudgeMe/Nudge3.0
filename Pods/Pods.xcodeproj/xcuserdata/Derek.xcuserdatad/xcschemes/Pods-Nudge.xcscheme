@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "10F3DAA839FB7032685AA0C841AF7B4B"
+               BlueprintIdentifier = "F81A15D21EEBE50527B7AE25F5F69354"
                BuildableName = "Pods_Nudge.framework"
                BlueprintName = "Pods-Nudge"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "10F3DAA839FB7032685AA0C841AF7B4B"
+            BlueprintIdentifier = "F81A15D21EEBE50527B7AE25F5F69354"
             BuildableName = "Pods_Nudge.framework"
             BlueprintName = "Pods-Nudge"
             ReferencedContainer = "container:Pods.xcodeproj">

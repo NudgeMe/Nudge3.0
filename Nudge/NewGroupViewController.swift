@@ -39,13 +39,16 @@ class NewGroupViewController: UIViewController {
             taskGroup.name = groupNameTextField.text!
             NudgeHelper.trySaveGroup(taskGroup: taskGroup)
             NudgeHelper.setCurrentUserGroup(taskGroup: taskGroup)
+            self.viewWillAppear(true)
         }
         else {
-            //TODO: Prompt to enter another name
-            print("Group name already exists")
+        let alert = UIAlertController(title: "Group name taken", message: "Please choose another name", preferredStyle: UIAlertControllerStyle.alert)
+        //dismiss alert
+        self.present(alert, animated: true, completion:{
+            alert.view.superview?.isUserInteractionEnabled = true
+            alert.view.superview?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.alertControllerBackgroundTapped)))
+        })
         }
-        self.dismiss(animated: true, completion: nil)
-        self.viewWillAppear(true)
     }
 
     /* Send invitation to member

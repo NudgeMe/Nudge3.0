@@ -14,8 +14,11 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     @IBOutlet weak var tableView: UITableView!
     
+    //Array that holds the users' names
     var pickerData = [String]()
+    //Array that holds the users' id
     var memberData = [String]()
+    //Selected member in the pickerView
     var selectedMember: String = ""
 
     var taskCount = 0
@@ -42,7 +45,6 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
         else{
             //If user does belong in a group, check for nudges
-            print("Load nudge")
             loadNudge()
         }
     }
@@ -51,11 +53,6 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    /*override func viewDidAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.tableView.reloadData()
-    }*/
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -83,8 +80,6 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         if(invitation != nil)
         {
-            //print(invitation?.groupId)
-            
             let alert = UIAlertController(title: "Invitation", message: invitation?.message!, preferredStyle: UIAlertControllerStyle.alert)
             
             alert.addAction(UIAlertAction(title: "Decline", style: UIAlertActionStyle.cancel, handler: { action in
@@ -228,7 +223,7 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
         NudgeHelper.trySaveNudge(nudge: nudge)
     }
     
-    /* Swipe to get Delete and Nudge button */
+    /* Swipe on tableViewCell to get Delete and Nudge button */
     func tableView(_ tableView: UITableView, editActionsForRowAt: IndexPath) -> [UITableViewRowAction]? {
         
         let currentUserTasks = currentUserGroup?.tasks
@@ -256,6 +251,7 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
             pickerView.delegate = self
             pickerView.backgroundColor = UIColor.lightGray.withAlphaComponent(0.2)
             
+            //fetch group members to display in pickerView
             self.fetchGroupMembers(pickerView: pickerView)
             
             alertView.view.addSubview(pickerView)
@@ -362,8 +358,6 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
         })
     }
-    
-
     
 
     /*

@@ -13,7 +13,9 @@ class AddMemberViewController: UIViewController, UIPickerViewDelegate, UIPickerV
 
     @IBOutlet weak var pickerView: UIPickerView!
     
+    //Array that holds the users' names
     var pickerData = [String]()
+    //Array that holds the users' id
     var memberData = [String]()
     var selectedMember: String = ""
     var selectedMemberName: String = ""

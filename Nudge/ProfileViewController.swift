@@ -12,18 +12,21 @@ import Parse
 class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate,UITableViewDelegate, UITableViewDataSource{
     
     @IBOutlet weak var tableView: UITableView!
-    
     @IBOutlet weak var pictureImageView: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var realName: UILabel!
     @IBOutlet weak var groupLabel: UILabel!
     
+    //Variables to get picture of user
     var image = UIImage()
     var users = [PFObject]()
+    //Array holding the group members' user id
     var groupID = [String]()
+    //Array that holds the groupMember's PFObject
     var groupMember = [PFObject]()
     var groupMembers = [PFUser]()
     var hasRequestedForPFUser = false
+    //var groupMemberProfile = [PFObject]()
 
     
     override func viewDidLoad() {
@@ -53,8 +56,6 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
                 groupLabel.text = "No Group"
             }
             else{
-                //print("in a group")
-                //print("HELLO \(NudgeHelper.getCurrentUserGroup()!.name)" )
                 groupLabel.text = NudgeHelper.getCurrentUserGroup()!.name
 
             }
@@ -67,8 +68,6 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             groupLabel.text = "No Group"
         }
         else{
-            //print("in a group")
-            //print("HELLO \(NudgeHelper.getCurrentUserGroup()!.name)" )
             groupLabel.text = NudgeHelper.getCurrentUserGroup()!.name
             
         }
@@ -105,7 +104,6 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     //Function to add a photo to profile picture
     @IBAction func onProfilePicture(_ sender: UIButton) {
-        //print("Clicked button")
         let vc = UIImagePickerController()
         vc.delegate = self
         vc.allowsEditing = true
@@ -164,17 +162,25 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         let user = PFUser.current()!
         let isInGroup = user["isInGroup"] as! Bool?
         if isInGroup == true {
-            let alert = UIAlertController(title: "Oops", message: "Already in a group", preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
-           
-            self.present(alert, animated: true, completion: nil)
+            let alert = UIAlertController(title: "Already in a group", message: "Please leave group first in order to create or be invited to a group", preferredStyle: UIAlertControllerStyle.alert)
+            
+            //dismiss alert
+            self.present(alert, animated: true, completion:{
+                alert.view.superview?.isUserInteractionEnabled = true
+                alert.view.superview?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.alertControllerBackgroundTapped)))
+            })
         }
         else {
             self.performSegue(withIdentifier: "newGroupSegue", sender: nil)
         }
     }
-    
+
+    /* Dismiss alert */
+    func alertControllerBackgroundTapped()
+    {
+        self.dismiss(animated: true, completion: nil)
+    }
+
     //TableView for group members
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if(!hasRequestedForPFUser && NudgeHelper.getCurrentUser()?["groupId"] as? String != "")
@@ -184,12 +190,16 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         return groupID.count
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath) {
-        // cell selected code here
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //TODO: Show member's profile?
-        groupMember = NudgeHelper.getPFObjectById(id: groupID[indexPath.row])!
-        print("member nil? \(groupMember[0]["fullname"])")
-        performSegue(withIdentifier: "toMemberProfile", sender: self)
+        //groupMemberProfile = NudgeHelper.getPFObjectById(id: groupID[indexPath.row])!
+        
+        //let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        //let destination = storyboard.instantiateViewController(withIdentifier: "MemberProfileVC") as! MemberProfileViewController
+        //navigationController?.pushViewController(destination, animated: true)
+        
+        //performSegue(withIdentifier: "toMemberProfile", sender: self)
+        //tableView.deselectRow(at: indexPath, animated: true)
         
     }
     
@@ -215,6 +225,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     /* Get group members */
     func getPFUsersByGroupId()
     {
+        //Boolean that checks if we already grabbed users data
         hasRequestedForPFUser = true
         let query = PFQuery(className: "_User")
         query.whereKey("groupId", equalTo: NudgeHelper.getCurrentUser()?["groupId"])
@@ -239,20 +250,36 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     /* Quit current group */
     @IBAction func onQuitGroup(_ sender: Any) {
-        NudgeHelper.removeCurrentUserGroup(taskGroup: NudgeHelper.getCurrentUserGroup()!)
-        groupLabel.text = "No Group"
-        self.groupID.removeAll()
-        self.tableView.reloadData()
-    
+        if(NudgeHelper.getCurrentUserGroup() == nil)
+        {
+            let alert = UIAlertController(title: "Already not in a group", message: "", preferredStyle: UIAlertControllerStyle.alert)
+            
+            //dismiss alert
+            self.present(alert, animated: true, completion:{
+                alert.view.superview?.isUserInteractionEnabled = true
+                alert.view.superview?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.alertControllerBackgroundTapped)))
+            })
+        }
+        else{
+            NudgeHelper.removeCurrentUserGroup(taskGroup: NudgeHelper.getCurrentUserGroup()!)
+            groupLabel.text = "No Group"
+            self.groupID.removeAll()
+            self.tableView.reloadData()
+        }
     }
     
 
      // MARK: - Navigation
      
      // In a storyboard-based application, you will often want to do a little preparation before navigation
-     func prepare(for segue: UIStoryboardSegue, sender: UITableViewCell?) {
-        if segue.identifier == "toMemberProfile"{
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        //Sending MemberCell information to new view controller
+        if segue.identifier == "MemberProfileSegue"{
             let memberProfileVC = segue.destination as! MemberProfileViewController
+            let cell = sender! as! UITableViewCell
+            let indexPath = tableView.indexPath(for: cell)
+            groupMember = NudgeHelper.getPFObjectById(id: groupID[(indexPath?.row)!])!
             memberProfileVC.user = groupMember[0]
             
      // Get the new view controller using segue.destinationViewController.

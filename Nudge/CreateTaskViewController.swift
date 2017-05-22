@@ -31,6 +31,12 @@ class CreateTaskViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    /* Dismiss alert */
+    func alertControllerBackgroundTapped()
+    {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     @IBAction func onCreate(_ sender: Any) {
         let currentTaskGroup = NudgeHelper.getCurrentUserGroup()
         
@@ -62,7 +68,15 @@ class CreateTaskViewController: UIViewController {
             NudgeHelper.trySaveTask(task: newTask)
             NudgeHelper.addTaskToCurrentUserGroup(task: newTask)
         }
-        
+        else{
+            let alert = UIAlertController(title: "Please be in a group to make task", message: "", preferredStyle: UIAlertControllerStyle.alert)
+            
+            //dismiss alert
+            self.present(alert, animated: true, completion:{
+                alert.view.superview?.isUserInteractionEnabled = true
+                alert.view.superview?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.alertControllerBackgroundTapped)))
+            })
+        }
         self.performSegue(withIdentifier: "toMain", sender: nil)
     }
 
