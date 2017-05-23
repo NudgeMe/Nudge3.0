@@ -354,4 +354,15 @@ struct NudgeHelper {
             print(error.localizedDescription)
         }
     }
+    
+    /* Save user bio into Parse */
+    static func trySaveUserBio(user: PFUser)
+    {
+        do{
+            try user.save()
+        }
+        catch let error {
+            print(error.localizedDescription)
+        }
+    }
 }

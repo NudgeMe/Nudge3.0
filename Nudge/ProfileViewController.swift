@@ -9,13 +9,14 @@
 import UIKit
 import Parse
 
-class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate,UITableViewDelegate, UITableViewDataSource{
+class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate,UITableViewDelegate, UITableViewDataSource, UITextViewDelegate{
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var pictureImageView: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var realName: UILabel!
     @IBOutlet weak var groupLabel: UILabel!
+    @IBOutlet weak var bioText: UITextView!
     
     //Variables to get picture of user
     var image = UIImage()
@@ -27,17 +28,18 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     var groupMembers = [PFUser]()
     var hasRequestedForPFUser = false
     //var groupMemberProfile = [PFObject]()
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.delegate = self
         tableView.dataSource = self
+        bioText.delegate = self as UITextViewDelegate
         
         if let user = NudgeHelper.getCurrentUser() {
             usernameLabel.text = user.username
             realName.text = user["fullname"] as? String
+            bioText.text = user["bio"] as? String
             fetchPic()
             
             var user2: PFUser!{
@@ -47,7 +49,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
                             if let imageData = imageData{
                                 self.pictureImageView.image = UIImage(data: imageData)
                             }
-                        }   )
+                        })
                     }
                 }
             }
@@ -57,7 +59,6 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             }
             else{
                 groupLabel.text = NudgeHelper.getCurrentUserGroup()!.name
-
             }
         }
         // Do any additional setup after loading the view.
@@ -69,8 +70,14 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         }
         else{
             groupLabel.text = NudgeHelper.getCurrentUserGroup()!.name
-            
         }
+    }
+    
+    /** save the bio */
+    func textViewDidChange(_ textView: UITextView) {
+        let user = NudgeHelper.getCurrentUser()
+        user?["bio"] = bioText.text
+        NudgeHelper.trySaveUserBio(user: user!)
     }
     
     func fetchUserInfo(){
@@ -141,7 +148,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
                 self.users = users
                 
                 let user = self.users[0]
-                if let name = user["username"] as? String{
+                if (user["username"] as? String) != nil{
                 }
                 if let profileImage = user["image"] as? PFFile{
                     profileImage.getDataInBackground({ (imageData:Data?, error:Error?) in
@@ -152,7 +159,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
                 }
             }
             else{
-                print ("ERROR \(error?.localizedDescription)")
+                print ("ERROR \(String(describing: error?.localizedDescription))")
             }
         })
     }
@@ -243,7 +250,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
                 self.tableView.reloadData()
             }
             else{
-                print(error?.localizedDescription)
+                print(error?.localizedDescription ?? "")
             }
         })
     }

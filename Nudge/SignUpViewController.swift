@@ -38,6 +38,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         newUser["fullname"] = fullNameTextField.text
         newUser["isInGroup"] = false
         newUser["group"] = ""
+        newUser["bio"] = ""
         newUser["Phone"] = phoneTextField.text
         newUser["Address"] = addressTextField.text
         newUser.signUpInBackground { (success: Bool, error: Error?) in
