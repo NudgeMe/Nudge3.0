@@ -4,7 +4,7 @@
 //
 //  Created by Lin Zhou on 5/21/17.
 //  Copyright © 2017 Dephanie Ho. All rights reserved.
-//
+/*
 
 import UIKit
 import CVCalendar
@@ -62,4 +62,4 @@ class CalendarViewController: UIViewController, CVCalendarViewDelegate, CVCalend
     }
     */
 
-}
+}*/
