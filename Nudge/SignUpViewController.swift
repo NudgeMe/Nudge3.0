@@ -36,6 +36,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         newUser.username = userNameTextField.text
         newUser.password = passwordTextField.text
         newUser["fullname"] = fullNameTextField.text
+        newUser["bio"] = ""
         newUser["isInGroup"] = false
         newUser["group"] = ""
         newUser["Phone"] = phoneTextField.text

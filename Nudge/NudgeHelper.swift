@@ -122,7 +122,7 @@ struct NudgeHelper {
         let userQuery = PFQuery(className: "NudgeNotification")
         
         do{
-            userQuery.whereKey("receipientId", equalTo: currentUser?.objectId!)
+            userQuery.whereKey("receipientId", equalTo: currentUser!.objectId!)
             //Filter nudges to those that have been unopened
             userQuery.whereKey("status", equalTo: false)
             //let currentUserActiveTasks = currentUserTasks?.filter {
@@ -130,8 +130,6 @@ struct NudgeHelper {
             //}
 
             let results = try userQuery.findObjects()
-            print("Nudge count: \(results.count)")
-
             
             if(results.count > 0)
             {
@@ -354,4 +352,5 @@ struct NudgeHelper {
             print(error.localizedDescription)
         }
     }
+    
 }
