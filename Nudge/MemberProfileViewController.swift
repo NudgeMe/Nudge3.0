@@ -27,6 +27,7 @@ class MemberProfileViewController: UIViewController {
         realnameLabel.text = user["fullname"] as? String
         usernameLabel.text = user["username"] as? String
         groupNameLabel.text = NudgeHelper.getCurrentUserGroup()!.name
+        bioLabel.text = user["bio"] as? String
         
         if let profileImage = user["image"] as? PFFile{
             profileImage.getDataInBackground({ (imageData:Data?, error:Error?) in

@@ -12,7 +12,12 @@ import MBProgressHUD
 
 class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
 
+    @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var trayView: UIView!
+    @IBOutlet weak var greetingLabel: UILabel!
+    @IBOutlet weak var trayBGimageView: UIImageView!
     
     //Array that holds the users' names
     var pickerData = [String]()
@@ -24,6 +29,11 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var taskCount = 0
     var currentUserGroup: TaskGroup? = nil
     
+    var trayOriginalCenter: CGPoint!
+    var trayDownOffset: CGFloat!
+    var trayUp: CGPoint!
+    var trayDown: CGPoint!
+    
 //    let color1 = UIColor(red: 0.4882, green: 0.9704, blue: 0.5078, alpha: 0.6)
 //    let color2 = UIColor(red: 0.4882, green: 0.9504, blue: 0.5078, alpha: 0.6)
 //    let color3 = UIColor(red: 0.4882, green: 0.9304, blue: 0.5078, alpha: 0.6)
@@ -32,12 +42,36 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        // show user name and current time
+        nameLabel.text = NudgeHelper.getFullname()
+        let date = Date()
+        let calendar = Calendar.current
+        let hour = calendar.component(.hour, from: date)
+        let minutes = calendar.component(.minute, from: date)
+        timeLabel.text = "It is \(hour):\(calendar.component(.minute, from: date))"
+        if(hour >= 6 && hour < 12){
+            greetingLabel.text = "Good Morning!"
+            trayBGimageView.image = #imageLiteral(resourceName: "sunrise")
+        }
+        else if(hour >= 12 && hour < 18){
+            greetingLabel.text = "Good Afternoon!"
+            trayBGimageView.image = #imageLiteral(resourceName: "city")
+        }
+        else if( hour >= 18 && hour < 22){
+            greetingLabel.text = "Good Evening!"
+            trayBGimageView.image = #imageLiteral(resourceName: "night sky")
+        }
+        else{
+            greetingLabel.text = "It's late now. Good Night!"
+            trayBGimageView.image = #imageLiteral(resourceName: "night sky")
+        }
 
         self.tableView.delegate = self
         self.tableView.dataSource = self
 
         self.tableView.reloadData()
-        // Do any additional setup after loading the view.
+        
         if(NudgeHelper.getCurrentUserGroup() == nil)
         {
             //If user does not belong in a group, check for invitation
@@ -47,6 +81,13 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
             //If user does belong in a group, check for nudges
             loadNudge()
         }
+        
+        //animation for tray view
+        trayDownOffset = 3
+        //trayUp = trayView.center
+        trayDown = CGPoint(x: trayView.center.x ,y: trayView.center.y + trayDownOffset)
+        trayView.center = CGPoint(x:trayView.center.x, y: 0)
+        panTray()
     }
 
     override func didReceiveMemoryWarning() {
@@ -66,7 +107,7 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
         {
             let alert = UIAlertController(title: "Nudge", message: "Please do the following task: \(nudge!.taskName!)", preferredStyle: UIAlertControllerStyle.alert)
             
-            alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: { action in
+            alert.addAction(UIAlertAction(title: "Got it!", style: UIAlertActionStyle.default, handler: { action in
                 self.openedNudge(nudge: nudge!)
             }))
             
@@ -357,6 +398,13 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 print(error?.localizedDescription)
             }
         })
+    }
+    
+    func panTray(){
+        print("panning tray")
+        UIView.animate(withDuration: 1.0) {
+            self.trayView.center = self.trayDown
+        }
     }
     
 

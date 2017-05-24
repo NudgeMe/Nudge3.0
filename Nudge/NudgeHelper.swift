@@ -282,6 +282,14 @@ struct NudgeHelper {
         return groupName as! String
     }
     
+    /* Get bio */
+    static func getUserBio(user: PFUser) -> String
+    {
+        let bio = user["bio"]
+        
+        return bio as? String ?? ""
+    }
+    
     /* Check to see that there are no duplicate group names */
     static func doesGroupNameExist(groupName: String) -> Bool
     {
