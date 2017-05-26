@@ -11,20 +11,42 @@ import EventKit
 
 /** code reference: https://www.ioscreator.com/tutorials/add-event-calendar-tutorial-ios8-swift */
 class MyCalendarViewController: UIViewController {
+    
+    //var tasks: Task[]
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let group = NudgeHelper.getCurrentUserGroup()
+        let currentUserTasks = group?.tasks
+        
+        
+        
         //An EKEventStore object is created. This represents the Calendar's database
         let eventStore = EKEventStore()
-        
         
         eventStore.requestAccess(to: EKEntityType.event) { (granted,error) in
             
             if (granted) &&  (error == nil) {
+                
                 print("permission is granted")
-                self.insertEvent(store: eventStore)
+                
+                var currentUserActiveTasks = currentUserTasks
+                //Check if tasks exist in the taskGroup, else return an empty cell
+                if(currentUserTasks != nil)
+                {
+                    //Filters through the task array on those that are active
+                    currentUserActiveTasks = currentUserTasks?.filter {
+                        task in (task.isActive)
+                    }
+                    currentUserActiveTasks?.forEach({ (task) in
+                        self.insertEvent(store: eventStore, task: task)
+                    })
+                    
+                }
+                
             }
+            //TODO delete deleted event
             
             UIApplication.shared.openURL(NSURL(string: "calshow://")! as URL)
         }
@@ -50,7 +72,7 @@ class MyCalendarViewController: UIViewController {
         }*/
     }
     
-    func insertEvent(store: EKEventStore) {
+    func insertEvent(store: EKEventStore, task: Task) {
         // The calendarsForEntityType returns all calendars that supports events
         let calendars = store.calendars(for: EKEntityType.event)
         
@@ -82,15 +104,16 @@ class MyCalendarViewController: UIViewController {
                 // The event has a start date of the current time and an end date of 2 hours from the current time. (2 hours x 60 minutes x 60 seconds)
                 let startDate = Date()
                 // 2 hours
-                let endDate = startDate.addingTimeInterval(2 * 60 * 60)
+               // let endDate = startDate.addingTimeInterval(2 * 60 * 60)
                 
                 // Create Event
                 var event = EKEvent(eventStore: store)
                 event.calendar = calendar
                 
-                event.title = "New Task"
+                event.title = task.title!
                 event.startDate = startDate as Date
-                event.endDate = endDate as Date
+                event.endDate = task.dueDate
+                   // endDate as Date
                 
                 // Save Event in Calendar
                 do {
