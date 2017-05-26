@@ -311,6 +311,8 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
             })
         }
         nudge.backgroundColor = .orange
+        //cell.backgroundColor = .purple
+        //cell.contentView.backgroundColor = .blue
         
         /* Delete Button */
         let delete = UITableViewRowAction(style: .normal, title: "Delete") { action, index in
