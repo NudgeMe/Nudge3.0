@@ -30,4 +30,7 @@ class Task: PFObject, PFSubclassing {
     
     //If task is past due date or not
     @NSManaged var pastDueDate: Bool
+    
+    //If an event is created for the task in calendar
+    @NSManaged var eventInCal: Bool
 }

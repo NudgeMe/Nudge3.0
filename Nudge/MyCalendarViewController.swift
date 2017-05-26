@@ -12,15 +12,11 @@ import EventKit
 /** code reference: https://www.ioscreator.com/tutorials/add-event-calendar-tutorial-ios8-swift */
 class MyCalendarViewController: UIViewController {
     
-    //var tasks: Task[]
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
         let group = NudgeHelper.getCurrentUserGroup()
         let currentUserTasks = group?.tasks
-        
-        
         
         //An EKEventStore object is created. This represents the Calendar's database
         let eventStore = EKEventStore()
@@ -40,11 +36,12 @@ class MyCalendarViewController: UIViewController {
                         task in (task.isActive)
                     }
                     currentUserActiveTasks?.forEach({ (task) in
+                        if(task.eventInCal == false){
                         self.insertEvent(store: eventStore, task: task)
+                        print("insert \(String(describing: task.title))")
+                        }
                     })
-                    
                 }
-                
             }
             //TODO delete deleted event
             
@@ -85,7 +82,7 @@ class MyCalendarViewController: UIViewController {
             }
         }
         //TOFIX
-        if exists==false {
+        if exists == false {
            let newCalendar = EKCalendar.init(for: EKEntityType.reminder, eventStore: store)
             //let newCalendar = EKCalendar(forEntityType: EKEntityType.reminder, eventStore: eventStore)
             newCalendar.title="Nudge Calendar"
@@ -118,6 +115,8 @@ class MyCalendarViewController: UIViewController {
                 // Save Event in Calendar
                 do {
                     try store.save(event, span: .thisEvent)
+                    task.eventInCal = true
+                    NudgeHelper.trySaveTask(task: task)
                     print("saved event to calendar")
                 } catch {
                     // Do error stuff here

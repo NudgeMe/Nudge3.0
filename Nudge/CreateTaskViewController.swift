@@ -68,6 +68,7 @@ class CreateTaskViewController: UIViewController {
             //Save task into Parse and add to taskGroup
             NudgeHelper.trySaveTask(task: newTask)
             NudgeHelper.addTaskToCurrentUserGroup(task: newTask)
+            
         }
         else{
             let alert = UIAlertController(title: "Please be in a group to make task", message: "", preferredStyle: UIAlertControllerStyle.alert)

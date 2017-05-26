@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Am3-Gx-WEI">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -10,6 +10,34 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Lauch View Controller-->
+        <scene sceneID="n5k-DX-vuh">
+            <objects>
+                <viewController storyboardIdentifier="LaunchVC" id="Am3-Gx-WEI" customClass="LauchViewController" customModule="Nudge" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zbZ-3Z-Tgj"/>
+                        <viewControllerLayoutGuide type="bottom" id="Cfv-BF-79z"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lIC-Dz-iOH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="white bg icon" translatesAutoresizingMaskIntoConstraints="NO" id="a0Y-EV-10p">
+                                <rect key="frame" x="138" y="283" width="99" height="101"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="iconImageView" destination="a0Y-EV-10p" id="vXc-L4-veh"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="toLogIn" id="yZS-Vf-dpp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ovV-75-oSU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-58.399999999999999" y="35.532233883058474"/>
+        </scene>
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -54,6 +82,10 @@
                                     <segue destination="lvu-wM-Ef6" kind="presentation" id="NjQ-Nr-h6J"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="white bg icon2" translatesAutoresizingMaskIntoConstraints="NO" id="boz-Af-epC">
+                                <rect key="frame" x="273" y="381" width="86" height="88"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <constraints>
                             <constraint firstItem="jan-ue-uB4" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="168" id="4oa-hT-ORK"/>
@@ -73,6 +105,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="p16-NE-gZZ"/>
                     <connections>
+                        <outlet property="iconImageView" destination="boz-Af-epC" id="v4t-Oq-ZJd"/>
                         <outlet property="pwTextField" destination="caX-C4-3sP" id="bHK-gH-Fk0"/>
                         <outlet property="usernameTextField" destination="q3x-eF-ouw" id="SR1-xR-xg9"/>
                         <segue destination="2K1-1u-eXR" kind="presentation" identifier="loginSegue" id="tUn-x7-6xR"/>
@@ -436,7 +469,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="f21-pF-Dy5">
-                                <rect key="frame" x="204" y="187" width="154" height="154"/>
+                                <rect key="frame" x="204" y="140" width="154" height="154"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="GroupName" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sRa-KD-fEI">
@@ -490,21 +523,14 @@
                                 </prototypes>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="username" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8xw-5c-tKt">
-                                <rect key="frame" x="16" y="172" width="157" height="21"/>
+                                <rect key="frame" x="16" y="153" width="157" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="GurmukhiMN" family="Gurmukhi MN" pointSize="17"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Thurgood Marshall" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1bc-7P-S2N">
-                                <rect key="frame" x="11" y="131" width="249" height="33"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="22"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Clean, tidy person" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="KXp-hx-Vpx">
-                                <rect key="frame" x="11" y="224" width="162" height="81"/>
+                                <rect key="frame" x="11" y="187" width="162" height="81"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="0.50848137842465757" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="italicSystem" pointSize="14"/>
@@ -542,7 +568,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jt1-hU-WHa">
-                                <rect key="frame" x="228" y="147" width="131" height="32"/>
+                                <rect key="frame" x="227" y="302" width="131" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Change Picture">
                                     <color key="titleColor" red="0.52408884751439022" green="0.77795843908629436" blue="0.11105235431870361" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -551,6 +577,13 @@
                                     <action selector="onProfilePicture:" destination="Xa6-D5-eOM" eventType="touchUpInside" id="tcM-mg-bGM"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Thurgood Marshall" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1bc-7P-S2N">
+                                <rect key="frame" x="11" y="93" width="249" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.96371934442859541" green="1" blue="0.93321881082574631" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </view>
@@ -613,11 +646,16 @@
                                     <action selector="onCancel:" destination="feA-lf-V5s" eventType="touchUpInside" id="WC2-6t-K45"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="white bg icon" translatesAutoresizingMaskIntoConstraints="NO" id="8fs-vk-ZSE">
+                                <rect key="frame" x="144" y="471" width="86" height="88"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.96463549137115479" green="0.996878981590271" blue="0.93333381414413452" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </view>
                     <navigationItem key="navigationItem" title="Add Group Member" id="FuI-bm-jCd"/>
                     <connections>
+                        <outlet property="iconImageView" destination="8fs-vk-ZSE" id="bDo-da-X7e"/>
                         <outlet property="pickerView" destination="RTM-YZ-TgK" id="ARr-IT-yFf"/>
                     </connections>
                 </viewController>
@@ -909,6 +947,8 @@
         <image name="Settings" width="25" height="25"/>
         <image name="User Groups" width="25" height="25"/>
         <image name="sunrise" width="1280" height="720"/>
+        <image name="white bg icon" width="1200" height="1200"/>
+        <image name="white bg icon2" width="1200" height="1200"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="mmV-AF-NLW"/>

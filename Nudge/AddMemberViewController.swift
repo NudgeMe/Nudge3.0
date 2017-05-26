@@ -12,6 +12,7 @@ import Parse
 class AddMemberViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
     @IBOutlet weak var pickerView: UIPickerView!
+    @IBOutlet weak var iconImageView: UIImageView!
     
     //Array that holds the users' names
     var pickerData = [String]()
@@ -27,7 +28,22 @@ class AddMemberViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         self.pickerView.delegate = self
         self.pickerView.dataSource = self
         
+        //animation with icon
+        // code from https://stackoverflow.com/questions/3703922/how-do-you-create-a-wiggle-animation-similar-to-iphone-deletion-animation
+        let originalCenter = iconImageView.center
+        UIView.animate(withDuration: 20.0) {
+            self.iconImageView.center = CGPoint(x: originalCenter.x-300, y:originalCenter.y)
+        }
         
+        //wiggle animation
+        let transformAnim  = CAKeyframeAnimation(keyPath:"transform")
+        transformAnim.values  = [NSValue(caTransform3D: CATransform3DMakeRotation(0.04, 0.0, 0.0, 1.0)),NSValue(caTransform3D: CATransform3DMakeRotation(-0.04 , 0, 0, 1))]
+        transformAnim.autoreverses = true
+        transformAnim.duration  = 0.115
+        transformAnim.repeatCount = Float.infinity
+        iconImageView.layer.add(transformAnim, forKey: "tansform")
+        
+            
         //Input data into the pickerData
         fetchUserNames()
         

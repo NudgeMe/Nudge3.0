@@ -203,7 +203,7 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
             //Check if tasks exist in the taskGroup, else return an empty cell
             if(currentUserTasks != nil)
             {
-                let yesterday = Calendar.current.date(byAdding: .day, value: -1, to: Date())
+                let yesterday = Calendar.current.date(byAdding: .day, value: 0, to: Date())
                 
                 //Filters through the task array on those that are active
                 let currentUserActiveTasks = currentUserTasks?.filter {
@@ -216,9 +216,15 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     let allTasks = currentUserActiveTasks?[indexPath.row]
                     
                     cell.task = allTasks
+                    
+                    print(cell.task.title!)
+                    print(cell.task.dueDate)
                     //If cell is past dueDate
-                    if(cell.task.dueDate < yesterday!){
+                    if(cell.task.dueDate <= yesterday!){
                         //past dueDate
+                        print(cell.task.title!)
+                        print(cell.task.dueDate)
+                        print("yseterday \(yesterday)")
                         cell.task.pastDueDate = true
                     }
                     
