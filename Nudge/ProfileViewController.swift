@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import MBProgressHUD
 
 class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate,UITableViewDelegate, UITableViewDataSource, UITextViewDelegate{
     
@@ -30,18 +31,23 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     //var groupMemberProfile = [PFObject]()
     
     override func viewDidLoad() {
+        
+        let progressHUD = MBProgressHUD.showAdded(to: self.view, animated: true)
+        progressHUD.labelText = ""
+        progressHUD.hide(animated: true, afterDelay: 1.5)
+        
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
-        
-        tableView.delegate = self
-        tableView.dataSource = self
-        bioText.delegate = self as UITextViewDelegate
-        
+            
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        self.bioText.delegate = self as UITextViewDelegate
+            
         if let user = NudgeHelper.getCurrentUser() {
-            usernameLabel.text = user.username
-            realName.text = user["fullname"] as? String
-            bioText.text = user["bio"] as? String
-            fetchPic()
+            self.usernameLabel.text = user.username
+            self.realName.text = user["fullname"] as? String
+            self.bioText.text = user["bio"] as? String
+            self.fetchPic()
             
             var user2: PFUser!{
                 didSet{
@@ -54,12 +60,12 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
                     }
                 }
             }
-
+            
             if NudgeHelper.getCurrentUserGroup() == nil{
-                groupLabel.text = "No Group"
+                self.groupLabel.text = "No Group"
             }
             else{
-                groupLabel.text = NudgeHelper.getCurrentUserGroup()!.name
+                self.groupLabel.text = NudgeHelper.getCurrentUserGroup()!.name
             }
         }
         // Do any additional setup after loading the view.

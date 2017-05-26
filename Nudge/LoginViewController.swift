@@ -8,15 +8,19 @@
 
 import UIKit
 import Parse
+import MBProgressHUD
 
 class LoginViewController: UIViewController, UITextFieldDelegate{
 
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var pwTextField: UITextField!
     let gradientLayer = CAGradientLayer()
+    var progressHUD = MBProgressHUD()
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        
         self.hideKeyboardWhenTappedAround()
 
 
@@ -93,21 +97,35 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
     @IBAction func onLogin(_ sender: Any) {
         
         PFUser.logInWithUsername(inBackground: usernameTextField.text!, password: pwTextField.text!) { (user: PFUser?, error: Error?) in
+            self.progressHUD = MBProgressHUD.showAdded(to: self.view, animated: true)
+            self.progressHUD.labelText = "Loading..."
+            
             if user != nil {
                 print("User logged in")
-
+                
                 self.performSegue(withIdentifier: "loginSegue", sender: nil)
+                
             }
         }
     }
     
-    /*
+    
+    
      // MARK: - Navigation
      
      // In a storyboard-based application, you will often want to do a little preparation before navigation
+     
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
      // Get the new view controller using segue.destinationViewController.
      // Pass the selected object to the new view controller.
+        if(segue.identifier == "loginSegue"){
+            
+            let nav = segue.destination as! UINavigationController
+            let taskViewVC = nav.topViewController as! TaskViewController
+            taskViewVC.progressHUD = self.progressHUD
+            // Get the new view controller using segue.destinationViewController.
+            // Pass the selected object to the new view controller.
+        }
      }
-     */
+     
 }
