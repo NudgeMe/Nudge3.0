@@ -11,7 +11,7 @@
 		2824775E1EA5C2AB00644555 /* CreateTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2824775D1EA5C2AB00644555 /* CreateTaskViewController.swift */; };
 		28AC5D8D1ED2199B00A34AC8 /* AddMemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28AC5D8C1ED2199B00A34AC8 /* AddMemberViewController.swift */; };
 		28AC5D8F1ED22BF500A34AC8 /* MemberProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28AC5D8E1ED22BF500A34AC8 /* MemberProfileViewController.swift */; };
-		28AC5D911ED23EE400A34AC8 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28AC5D901ED23EE400A34AC8 /* CalendarViewController.swift */; };
+		28AC5D911ED23EE400A34AC8 /* MyCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28AC5D901ED23EE400A34AC8 /* MyCalendarViewController.swift */; };
 		28AC5D931ED247B200A34AC8 /* CalendarMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28AC5D921ED247B200A34AC8 /* CalendarMenuView.swift */; };
 		28AC5D951ED247BE00A34AC8 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28AC5D941ED247BE00A34AC8 /* CalendarView.swift */; };
 		28CE99621EA2B25700A5DE7D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28CE99611EA2B25700A5DE7D /* ProfileViewController.swift */; };
@@ -42,7 +42,7 @@
 		2824775D1EA5C2AB00644555 /* CreateTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTaskViewController.swift; sourceTree = "<group>"; };
 		28AC5D8C1ED2199B00A34AC8 /* AddMemberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMemberViewController.swift; sourceTree = "<group>"; };
 		28AC5D8E1ED22BF500A34AC8 /* MemberProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberProfileViewController.swift; sourceTree = "<group>"; };
-		28AC5D901ED23EE400A34AC8 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		28AC5D901ED23EE400A34AC8 /* MyCalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCalendarViewController.swift; sourceTree = "<group>"; };
 		28AC5D921ED247B200A34AC8 /* CalendarMenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarMenuView.swift; sourceTree = "<group>"; };
 		28AC5D941ED247BE00A34AC8 /* CalendarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		28CE99611EA2B25700A5DE7D /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -165,7 +165,7 @@
 				E4C3CE321EABC85900B99254 /* NewGroupViewController.swift */,
 				28AC5D8C1ED2199B00A34AC8 /* AddMemberViewController.swift */,
 				28AC5D8E1ED22BF500A34AC8 /* MemberProfileViewController.swift */,
-				28AC5D901ED23EE400A34AC8 /* CalendarViewController.swift */,
+				28AC5D901ED23EE400A34AC8 /* MyCalendarViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -231,6 +231,7 @@
 				TargetAttributes = {
 					657DFE001E9C8D4800345A39 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = W2LV3PFLQH;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -335,7 +336,7 @@
 				28AC5D931ED247B200A34AC8 /* CalendarMenuView.swift in Sources */,
 				2824775E1EA5C2AB00644555 /* CreateTaskViewController.swift in Sources */,
 				28AC5D8D1ED2199B00A34AC8 /* AddMemberViewController.swift in Sources */,
-				28AC5D911ED23EE400A34AC8 /* CalendarViewController.swift in Sources */,
+				28AC5D911ED23EE400A34AC8 /* MyCalendarViewController.swift in Sources */,
 				65655D7D1EC28A8000F9BDE4 /* Pair.swift in Sources */,
 				65655D731EBE438A00F9BDE4 /* Invitation.swift in Sources */,
 				E4B828BB1EA3F76600DEBF37 /* TaskViewCell.swift in Sources */,
@@ -466,7 +467,9 @@
 			baseConfigurationReference = B819ABCF14D4FF79AA0B0C01 /* Pods-Nudge.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = W2LV3PFLQH;
 				INFOPLIST_FILE = Nudge/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.codepath.Nudge;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -480,7 +483,9 @@
 			baseConfigurationReference = 3CF1CE1BF16EA784B087570C /* Pods-Nudge.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = W2LV3PFLQH;
 				INFOPLIST_FILE = Nudge/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.codepath.Nudge;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -22,6 +22,7 @@ class CreateTaskViewController: UIViewController {
         super.viewDidLoad()
         
         datePicker.datePickerMode = .date
+        self.hideKeyboardWhenTappedAround()
         
         // Do any additional setup after loading the view.
     }

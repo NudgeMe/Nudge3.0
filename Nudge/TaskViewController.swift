@@ -49,7 +49,10 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let calendar = Calendar.current
         let hour = calendar.component(.hour, from: date)
         let minutes = calendar.component(.minute, from: date)
-        timeLabel.text = "It is \(hour):\(calendar.component(.minute, from: date))"
+        var minStr: String?
+        if(minutes < 10) {minStr = "0\(minutes)"}
+        else {minStr = "\(minutes)"}
+        timeLabel.text = "It is \(hour):"+minStr!
         if(hour >= 6 && hour < 12){
             greetingLabel.text = "Good Morning!"
             trayBGimageView.image = #imageLiteral(resourceName: "sunrise")
@@ -63,7 +66,7 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
             trayBGimageView.image = #imageLiteral(resourceName: "night sky")
         }
         else{
-            greetingLabel.text = "It's late now. Good Night!"
+            greetingLabel.text = "Good Night!"
             trayBGimageView.image = #imageLiteral(resourceName: "night sky")
         }
 
