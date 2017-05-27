@@ -32,7 +32,7 @@ class AddMemberViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         // code from https://stackoverflow.com/questions/3703922/how-do-you-create-a-wiggle-animation-similar-to-iphone-deletion-animation
         let originalCenter = iconImageView.center
         UIView.animate(withDuration: 20.0) {
-            self.iconImageView.center = CGPoint(x: originalCenter.x-300, y:originalCenter.y)
+            self.iconImageView.center = CGPoint(x: originalCenter.x-3, y:originalCenter.y)
         }
         
         //wiggle animation
@@ -43,7 +43,6 @@ class AddMemberViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         transformAnim.repeatCount = Float.infinity
         iconImageView.layer.add(transformAnim, forKey: "tansform")
         
-            
         //Input data into the pickerData
         fetchUserNames()
         

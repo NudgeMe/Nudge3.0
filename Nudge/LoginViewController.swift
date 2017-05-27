@@ -25,13 +25,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
             textField?.delegate = self
         }
         
-        
         //animation with icon 
         // code from https://stackoverflow.com/questions/3703922/how-do-you-create-a-wiggle-animation-similar-to-iphone-deletion-animation
-        let originalCenter = iconImageView.center
-        UIView.animate(withDuration: 20.0) {
-            self.iconImageView.center = CGPoint(x: originalCenter.x-300, y:originalCenter.y)
-        }
+//        let originalCenter = iconImageView.center
+//        UIView.animate(withDuration: 20.0) {
+//            self.iconImageView.center = CGPoint(x: originalCenter.x-3, y:originalCenter.y)
+//        }
         
         //wiggle animation
         let transformAnim  = CAKeyframeAnimation(keyPath:"transform")
@@ -39,7 +38,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
         transformAnim.autoreverses = true
         transformAnim.duration  = 0.115
         transformAnim.repeatCount = Float.infinity
-        iconImageView.layer.add(transformAnim, forKey: "tansform")
+        self.iconImageView.layer.add(transformAnim, forKey: "tansform")
+        
         
         createGradientLayer()
         /*

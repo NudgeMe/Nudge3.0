@@ -83,7 +83,7 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="white bg icon2" translatesAutoresizingMaskIntoConstraints="NO" id="boz-Af-epC">
-                                <rect key="frame" x="273" y="381" width="86" height="88"/>
+                                <rect key="frame" x="239" y="362" width="86" height="88"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
@@ -390,7 +390,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pzQ-mt-4gc">
-                                <rect key="frame" x="25" y="496" width="328" height="119"/>
+                                <rect key="frame" x="16" y="229" width="328" height="119"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <nil key="textColor"/>
@@ -406,20 +406,21 @@
                                     <action selector="onCreate:" destination="69t-XQ-Va1" eventType="touchUpInside" id="Skb-tF-AcV"/>
                                 </connections>
                             </button>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="PDM-T9-P5B">
-                                <rect key="frame" x="0.0" y="225" width="375" height="216"/>
+                            <datePicker contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="PDM-T9-P5B">
+                                <rect key="frame" x="0.0" y="398" width="375" height="216"/>
                                 <date key="date" timeIntervalSinceReferenceDate="515388263.60856199">
                                     <!--2017-05-02 03:24:23 +0000-->
                                 </date>
                             </datePicker>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Deadline" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1m5-1a-6EZ">
-                                <rect key="frame" x="22" y="196" width="67" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Description (Optional)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cVI-Ni-E60">
+                                <rect key="frame" x="22" y="187" width="168" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Description (Optional)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cVI-Ni-E60">
-                                <rect key="frame" x="25" y="461" width="168" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Deadline" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1m5-1a-6EZ">
+                                <rect key="frame" x="16" y="369" width="67" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -430,14 +431,10 @@
                         <constraints>
                             <constraint firstItem="RjX-SS-75d" firstAttribute="top" secondItem="uDJ-Sg-kUg" secondAttribute="bottom" constant="15" id="08K-Be-jyF"/>
                             <constraint firstAttribute="trailing" secondItem="RjX-SS-75d" secondAttribute="trailing" constant="29" id="KGt-6v-ff8"/>
-                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="1m5-1a-6EZ" secondAttribute="trailing" constant="286" id="LUV-2o-ltF"/>
                             <constraint firstAttribute="trailing" secondItem="Cxk-ri-9e5" secondAttribute="trailing" constant="22" id="Tf7-wG-whw"/>
-                            <constraint firstItem="PDM-T9-P5B" firstAttribute="top" secondItem="1m5-1a-6EZ" secondAttribute="bottom" constant="8" id="VlC-U7-oVf"/>
                             <constraint firstItem="uDJ-Sg-kUg" firstAttribute="top" secondItem="PEt-OX-ZRc" secondAttribute="bottom" constant="30" id="a2G-hq-qjD"/>
-                            <constraint firstItem="1m5-1a-6EZ" firstAttribute="top" secondItem="RjX-SS-75d" secondAttribute="bottom" constant="36" id="fYE-KH-SLn"/>
                             <constraint firstItem="Ny8-Mj-LUi" firstAttribute="top" secondItem="Cxk-ri-9e5" secondAttribute="bottom" constant="14" id="iei-2Q-Gu9"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="uDJ-Sg-kUg" secondAttribute="trailing" constant="263" id="jBJ-Kv-gLO"/>
-                            <constraint firstItem="1m5-1a-6EZ" firstAttribute="leading" secondItem="edx-uc-sAK" secondAttribute="leading" constant="22" id="rEZ-Og-8uO"/>
                             <constraint firstItem="RjX-SS-75d" firstAttribute="leading" secondItem="edx-uc-sAK" secondAttribute="leading" constant="22" id="wjc-oc-ogb"/>
                             <constraint firstItem="uDJ-Sg-kUg" firstAttribute="leading" secondItem="edx-uc-sAK" secondAttribute="leading" constant="22" id="y3G-yV-ckp"/>
                             <constraint firstAttribute="trailing" secondItem="PDM-T9-P5B" secondAttribute="trailing" id="yTT-aK-b3U"/>
@@ -614,19 +611,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RTM-YZ-TgK">
-                                <rect key="frame" x="0.0" y="119" width="375" height="216"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            </pickerView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Members" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qWF-P5-IhN">
-                                <rect key="frame" x="27" y="119" width="72" height="21"/>
+                                <rect key="frame" x="29" y="169" width="72" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.50196081400000003" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vjd-ld-OrN">
-                                <rect key="frame" x="71" y="383" width="50" height="50"/>
+                                <rect key="frame" x="68" y="486" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="Add">
                                     <color key="titleColor" red="0.52408884749999995" green="0.77795843909999995" blue="0.1110523543" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -637,7 +630,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vvr-a8-35o">
-                                <rect key="frame" x="260" y="393" width="37" height="30"/>
+                                <rect key="frame" x="260" y="496" width="37" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Done">
                                     <color key="titleColor" red="0.15463665439999999" green="0.37543623100000001" blue="0.20230114339999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -646,10 +639,14 @@
                                     <action selector="onCancel:" destination="feA-lf-V5s" eventType="touchUpInside" id="WC2-6t-K45"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="white bg icon" translatesAutoresizingMaskIntoConstraints="NO" id="8fs-vk-ZSE">
-                                <rect key="frame" x="144" y="471" width="86" height="88"/>
+                            <imageView userInteractionEnabled="NO" alpha="0.75" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="white bg icon" translatesAutoresizingMaskIntoConstraints="NO" id="8fs-vk-ZSE">
+                                <rect key="frame" x="260" y="119" width="86" height="88"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RTM-YZ-TgK">
+                                <rect key="frame" x="0.0" y="198" width="375" height="216"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" red="0.96463549137115479" green="0.996878981590271" blue="0.93333381414413452" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </view>
