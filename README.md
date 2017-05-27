@@ -18,8 +18,8 @@ The following **optional** features are implemented:
 - [ ] Categorization of tasks
 - [ ] Priority on tasks
 - [ ] Chat function
-- [ ] Animations
-- [ ] Calendar
+- [X] Animations
+- [X] Calendar
 
 
 ##Parse Table and Columns
