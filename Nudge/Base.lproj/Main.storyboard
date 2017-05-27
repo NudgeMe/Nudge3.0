@@ -258,7 +258,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Deadline" textAlignment="natural" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jeh-cF-gsm">
-                                                    <rect key="frame" x="255" y="10" width="112" height="18"/>
+                                                    <rect key="frame" x="280" y="10" width="87" height="18"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -347,7 +347,7 @@
                             <barButtonItem image="Calendar" id="6YM-MQ-xSe">
                                 <color key="tintColor" red="0.15463665439999999" green="0.37543623100000001" blue="0.20230114339999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <connections>
-                                    <segue destination="mCL-A0-iP6" kind="show" id="4Ir-xL-xrq"/>
+                                    <segue destination="mCL-A0-iP6" kind="show" id="Rq9-BB-794"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
@@ -611,8 +611,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RTM-YZ-TgK">
+                                <rect key="frame" x="0.0" y="225" width="375" height="216"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            </pickerView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Members" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qWF-P5-IhN">
-                                <rect key="frame" x="29" y="169" width="72" height="21"/>
+                                <rect key="frame" x="27" y="119" width="72" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.50196081400000003" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -643,10 +647,6 @@
                                 <rect key="frame" x="260" y="119" width="86" height="88"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RTM-YZ-TgK">
-                                <rect key="frame" x="0.0" y="198" width="375" height="216"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" red="0.96463549137115479" green="0.996878981590271" blue="0.93333381414413452" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </view>
@@ -948,7 +948,7 @@
         <image name="white bg icon2" width="1200" height="1200"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="mmV-AF-NLW"/>
-        <segue reference="Z6L-4j-7x2"/>
+        <segue reference="Bsy-dD-a2Y"/>
+        <segue reference="zs6-yx-fQh"/>
     </inferredMetricsTieBreakers>
 </document>
