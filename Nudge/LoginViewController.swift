@@ -111,6 +111,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
         }
     }
     
+    /* Dismiss alert */
+    func alertControllerBackgroundTapped()
+    {
+        self.dismiss(animated: true, completion: nil)
+    }
+
+    
     @IBAction func onLogin(_ sender: Any) {
         
         PFUser.logInWithUsername(inBackground: usernameTextField.text!, password: pwTextField.text!) { (user: PFUser?, error: Error?) in
@@ -123,15 +130,28 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
                 self.performSegue(withIdentifier: "loginSegue", sender: nil)
                 
             }
+            else{
+                self.progressHUD.hide(animated: true, afterDelay: 0.5)
+                
+                let alert = UIAlertController(title: "Invalid username or password", message: "", preferredStyle: UIAlertControllerStyle.alert)
+                
+                //dismiss alert
+                self.present(alert, animated: true, completion:{
+                    alert.view.superview?.isUserInteractionEnabled = true
+                    alert.view.superview?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.alertControllerBackgroundTapped)))
+                })
+            }
+
+    
         }
     }
     
-    
+
     
      // MARK: - Navigation
      
      // In a storyboard-based application, you will often want to do a little preparation before navigation
-     
+
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
      // Get the new view controller using segue.destinationViewController.
      // Pass the selected object to the new view controller.

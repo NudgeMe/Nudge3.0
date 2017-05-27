@@ -29,7 +29,6 @@ class NewGroupViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    
     /* Create a taskGroup */
     @IBAction func onCreate(_ sender: Any) {
         let taskGroup = TaskGroup()
@@ -40,6 +39,7 @@ class NewGroupViewController: UIViewController {
             NudgeHelper.trySaveGroup(taskGroup: taskGroup)
             NudgeHelper.setCurrentUserGroup(taskGroup: taskGroup)
             self.viewWillAppear(true)
+            
         }
         else {
         let alert = UIAlertController(title: "Group name taken", message: "Please choose another name", preferredStyle: UIAlertControllerStyle.alert)

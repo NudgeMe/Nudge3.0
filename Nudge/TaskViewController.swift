@@ -76,7 +76,7 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.tableView.delegate = self
         self.tableView.dataSource = self
 
-        self.tableView.reloadData()
+        //self.tableView.reloadData()
         
         if(NudgeHelper.getCurrentUserGroup() == nil)
         {
@@ -206,7 +206,7 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
             //Check if tasks exist in the taskGroup, else return an empty cell
             if(currentUserTasks != nil)
             {
-                let yesterday = Calendar.current.date(byAdding: .day, value: 0, to: Date())
+                let yesterday = Calendar.current.date(byAdding: .day, value: -1, to: Date())
                 
                 //Filters through the task array on those that are active
                 let currentUserActiveTasks = currentUserTasks?.filter {
@@ -233,9 +233,9 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     
                     if(cell.task.pastDueDate){
                         cell.backgroundColor = UIColor.gray
-                        cell.deadlineLabel.textColor = UIColor.white
-                        cell.tasknameLabel.textColor = UIColor.white
-                        cell.taskdescriptionLabel.textColor = UIColor.white
+                        //cell.deadlineLabel.textColor = UIColor.white
+                        //cell.tasknameLabel.textColor = UIColor.white
+                        //cell.taskdescriptionLabel.textColor = UIColor.white
                     }
                     else if indexPath.row%4 == 0 {
                         cell.backgroundColor = colors[0]

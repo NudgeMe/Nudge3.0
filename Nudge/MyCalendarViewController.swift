@@ -12,9 +12,24 @@ import EventKit
 /** code reference: https://www.ioscreator.com/tutorials/add-event-calendar-tutorial-ios8-swift */
 class MyCalendarViewController: UIViewController {
     
+    @IBOutlet weak var iconImageView: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let originalCenter = iconImageView.center
+        UIView.animate(withDuration: 200.0) {
+            self.iconImageView.center = CGPoint(x: originalCenter.x-3, y:originalCenter.y)
+        }
+        
+        //wiggle animation
+        let transformAnim  = CAKeyframeAnimation(keyPath:"transform")
+        transformAnim.values  = [NSValue(caTransform3D: CATransform3DMakeRotation(0.04, 0.0, 0.0, 1.0)),NSValue(caTransform3D: CATransform3DMakeRotation(-0.04 , 0, 0, 1))]
+        transformAnim.autoreverses = true
+        transformAnim.duration  = 0.115
+        transformAnim.repeatCount = Float.infinity
+        iconImageView.layer.add(transformAnim, forKey: "tansform")
+
+        
         let group = NudgeHelper.getCurrentUserGroup()
         let currentUserTasks = group?.tasks
         
@@ -46,6 +61,8 @@ class MyCalendarViewController: UIViewController {
             //TODO delete deleted event
             
             UIApplication.shared.openURL(NSURL(string: "calshow://")! as URL)
+            self.dismiss(animated: true, completion: nil)
+            self.performSegue(withIdentifier: "toTaskVC", sender: nil)
         }
         /*
         //The authorizationStatusForEntityType method returns the authorisation status
