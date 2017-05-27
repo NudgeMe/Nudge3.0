@@ -1,4 +1,4 @@
-# Nudge---iOS
+# Nudge
 Nudge is a reminder app that can make tasks and remind other people in the task by sending a "nudge" notification.
 
 ## User Stories
