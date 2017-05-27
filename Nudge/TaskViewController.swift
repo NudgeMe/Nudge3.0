@@ -26,9 +26,12 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
     //Selected member in the pickerView
     var selectedMember: String = ""
 
+    //Show buffering icon
+    var progressHUD = MBProgressHUD()
     var taskCount = 0
     var currentUserGroup: TaskGroup? = nil
-    
+
+    //Animation
     var trayOriginalCenter: CGPoint!
     var trayDownOffset: CGFloat!
     var trayUp: CGPoint!
@@ -40,7 +43,7 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var colors : [UIColor] = [UIColor(red: 0.4882, green: 0.9704, blue: 0.5078, alpha: 0.6),UIColor(red: 0.6882, green: 0.9904, blue: 0.4078, alpha: 0.6),UIColor(red: 0.6882, green: 0.9904, blue: 0.4078, alpha: 0.4),UIColor(red: 0.6882, green: 0.9904, blue: 0.4078, alpha: 0.2)]
     
     override func viewDidLoad() {
-        
+        progressHUD.hide(animated: true, afterDelay: 1.0)
         super.viewDidLoad()
         
         // show user name and current time
@@ -320,6 +323,8 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
             })
         }
         nudge.backgroundColor = .orange
+        //cell.backgroundColor = .purple
+        //cell.contentView.backgroundColor = .blue
         
         /* Delete Button */
         let delete = UITableViewRowAction(style: .normal, title: "Delete") { action, index in
@@ -411,7 +416,7 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func panTray(){
         print("panning tray")
-        UIView.animate(withDuration: 1.0) {
+        UIView.animate(withDuration: 1.5) {
             self.trayView.center = self.trayDown
         }
     }
