@@ -100,8 +100,8 @@
                                 <color key="textColor" red="0.15463665439999999" green="0.37543623100000001" blue="0.20230114339999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jan-ue-uB4">
-                                <rect key="frame" x="168" y="437" width="38" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jan-ue-uB4">
+                                <rect key="frame" x="168" y="395" width="38" height="30"/>
                                 <state key="normal" title="Login">
                                     <color key="titleColor" red="0.52408884749999995" green="0.77795843909999995" blue="0.1110523543" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <color key="titleShadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -112,7 +112,7 @@
                             </button>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="jan-ue-uB4" firstAttribute="top" relation="greaterThanOrEqual" secondItem="caX-C4-3sP" secondAttribute="bottom" constant="60" id="3K3-AG-eI6"/>
+                            <constraint firstItem="jan-ue-uB4" firstAttribute="top" secondItem="caX-C4-3sP" secondAttribute="bottom" constant="60" id="3K3-AG-eI6"/>
                             <constraint firstItem="caX-C4-3sP" firstAttribute="centerX" secondItem="q3x-eF-ouw" secondAttribute="centerX" id="4D4-lx-LkY"/>
                             <constraint firstItem="jan-ue-uB4" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="168" id="4oa-hT-ORK"/>
                             <constraint firstItem="bJZ-Aq-Zhh" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="47" id="JPc-z1-HTW"/>
@@ -124,7 +124,7 @@
                             <constraint firstItem="4qR-yP-iAZ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="50" id="aXw-bs-6f9"/>
                             <constraint firstItem="q3x-eF-ouw" firstAttribute="top" secondItem="boz-Af-epC" secondAttribute="bottom" constant="21" id="dAt-8K-nrQ"/>
                             <constraint firstAttribute="trailing" secondItem="caX-C4-3sP" secondAttribute="trailing" constant="50" id="jBw-t2-zVY"/>
-                            <constraint firstItem="4qR-yP-iAZ" firstAttribute="top" relation="greaterThanOrEqual" secondItem="jan-ue-uB4" secondAttribute="bottom" constant="20" id="mYO-ml-Vy7"/>
+                            <constraint firstItem="4qR-yP-iAZ" firstAttribute="top" relation="greaterThanOrEqual" secondItem="jan-ue-uB4" secondAttribute="bottom" constant="60" id="mYO-ml-Vy7"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="4qR-yP-iAZ" secondAttribute="bottom" constant="60" id="r2g-pm-q2L"/>
                             <constraint firstItem="q3x-eF-ouw" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="58" id="rRp-O0-M7G"/>
                             <constraint firstItem="caX-C4-3sP" firstAttribute="top" secondItem="q3x-eF-ouw" secondAttribute="bottom" constant="35" id="sif-dj-X08"/>
@@ -323,7 +323,7 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="177"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" alpha="0.75" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="sunrise" translatesAutoresizingMaskIntoConstraints="NO" id="OrE-xZ-ROp">
+                                    <imageView userInteractionEnabled="NO" alpha="0.75" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="twin peak 03" translatesAutoresizingMaskIntoConstraints="NO" id="OrE-xZ-ROp">
                                         <rect key="frame" x="0.0" y="-1" width="375" height="178"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
@@ -572,17 +572,6 @@
                                     <action selector="onLogout:" destination="Xa6-D5-eOM" eventType="touchUpInside" id="9kW-ac-h3g"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hSD-u8-NVa">
-                                <rect key="frame" x="38" y="617" width="83" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" title="quit group">
-                                    <color key="titleColor" red="0.15463665439999999" green="0.37543623100000001" blue="0.20230114339999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                </state>
-                                <connections>
-                                    <action selector="onQuitGroup:" destination="Xa6-D5-eOM" eventType="touchUpInside" id="qAP-T7-LWs"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jt1-hU-WHa">
                                 <rect key="frame" x="227" y="302" width="131" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -610,6 +599,16 @@
                                 <connections>
                                     <action selector="onAddMembers:" destination="8Tc-hX-fVl" eventType="touchUpInside" id="MFe-4r-3fc"/>
                                     <segue destination="op6-ca-inj" kind="show" identifier="toFriendVC" id="KLI-iW-otF"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hSD-u8-NVa">
+                                <rect key="frame" x="16" y="618" width="120" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title=" quit group" image="quit">
+                                    <color key="titleColor" red="0.15463665439999999" green="0.37543623100000001" blue="0.20230114339999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <connections>
+                                    <action selector="onQuitGroup:" destination="Xa6-D5-eOM" eventType="touchUpInside" id="qAP-T7-LWs"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -664,10 +663,6 @@
                                     <action selector="onCancel:" destination="feA-lf-V5s" eventType="touchUpInside" id="WC2-6t-K45"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" alpha="0.75" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="white bg icon" translatesAutoresizingMaskIntoConstraints="NO" id="8fs-vk-ZSE">
-                                <rect key="frame" x="265" y="112" width="86" height="88"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vjd-ld-OrN">
                                 <rect key="frame" x="144" y="449" width="207" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -680,6 +675,10 @@
                                     <action selector="onAddMembers:" destination="8Tc-hX-fVl" eventType="touchUpInside" id="pWE-JJ-fgO"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" alpha="0.75" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="white bg icon" translatesAutoresizingMaskIntoConstraints="NO" id="8fs-vk-ZSE">
+                                <rect key="frame" x="236" y="108" width="115" height="118"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.96463549137115479" green="0.996878981590271" blue="0.93333381414413452" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </view>
@@ -958,13 +957,14 @@
         <image name="Exit" width="25" height="25"/>
         <image name="Settings" width="25" height="25"/>
         <image name="User Groups" width="25" height="25"/>
-        <image name="sunrise" width="1280" height="720"/>
+        <image name="quit" width="24" height="24"/>
+        <image name="twin peak 03" width="3264" height="2448"/>
         <image name="white bg icon" width="1200" height="1200"/>
         <image name="white bg icon2" width="1200" height="1200"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="3wc-Mn-FtF"/>
+        <segue reference="Bsy-dD-a2Y"/>
+        <segue reference="yrO-Pg-qub"/>
         <segue reference="zs6-yx-fQh"/>
-        <segue reference="yOO-uZ-zt0"/>
     </inferredMetricsTieBreakers>
 </document>

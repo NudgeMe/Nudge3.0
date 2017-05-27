@@ -66,7 +66,7 @@ class TaskViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
         else if( hour >= 18 && hour < 22){
             greetingLabel.text = "Good Evening!"
-            trayBGimageView.image = #imageLiteral(resourceName: "night sky")
+            trayBGimageView.image = #imageLiteral(resourceName: "twin peak 03")
         }
         else{
             greetingLabel.text = "Good Night!"

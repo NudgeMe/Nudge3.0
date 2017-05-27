@@ -37,7 +37,7 @@ class AddMemberViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         
         //wiggle animation
         let transformAnim  = CAKeyframeAnimation(keyPath:"transform")
-        transformAnim.values  = [NSValue(caTransform3D: CATransform3DMakeRotation(0.04, 0.0, 0.0, 1.0)),NSValue(caTransform3D: CATransform3DMakeRotation(-0.04 , 0, 0, 1))]
+        transformAnim.values  = [NSValue(caTransform3D: CATransform3DMakeRotation(0.04, 0.0, 0.0, 1.0)),NSValue(caTransform3D: CATransform3DMakeRotation(-0.19 , 0, 0, 1))]
         transformAnim.autoreverses = true
         transformAnim.duration  = 0.115
         transformAnim.repeatCount = Float.infinity
