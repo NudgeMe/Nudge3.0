@@ -21,8 +21,7 @@ class NewGroupViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
-        
-            }
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -39,8 +38,9 @@ class NewGroupViewController: UIViewController {
             NudgeHelper.trySaveGroup(taskGroup: taskGroup)
             NudgeHelper.setCurrentUserGroup(taskGroup: taskGroup)
             self.viewWillAppear(true)
-            
+            self.dismiss(animated: true, completion: nil)
         }
+            
         else {
         let alert = UIAlertController(title: "Group name taken", message: "Please choose another name", preferredStyle: UIAlertControllerStyle.alert)
         //dismiss alert

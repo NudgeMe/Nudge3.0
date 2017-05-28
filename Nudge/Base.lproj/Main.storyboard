@@ -725,7 +725,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fvO-lj-bck" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7873" y="-718"/>
+            <point key="canvasLocation" x="6220" y="36"/>
         </scene>
         <!--New Group-->
         <scene sceneID="J2X-xb-WAO">
@@ -775,7 +775,6 @@
                                 </state>
                                 <connections>
                                     <action selector="onCreate:" destination="8Tc-hX-fVl" eventType="touchUpInside" id="vIM-fX-XrH"/>
-                                    <segue destination="Xa6-D5-eOM" kind="show" id="3wc-Mn-FtF"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9qh-he-HP1">
@@ -963,8 +962,7 @@
         <image name="white bg icon2" width="1200" height="1200"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Bsy-dD-a2Y"/>
-        <segue reference="yrO-Pg-qub"/>
+        <segue reference="yOO-uZ-zt0"/>
         <segue reference="zs6-yx-fQh"/>
     </inferredMetricsTieBreakers>
 </document>

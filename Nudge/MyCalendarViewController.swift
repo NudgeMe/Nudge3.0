@@ -61,7 +61,7 @@ class MyCalendarViewController: UIViewController {
             //TODO delete deleted event
             
             UIApplication.shared.openURL(NSURL(string: "calshow://")! as URL)
-            self.dismiss(animated: true, completion: nil)
+            //self.dismiss(animated: true, completion: nil)
             self.performSegue(withIdentifier: "toTaskVC", sender: nil)
         }
         /*
