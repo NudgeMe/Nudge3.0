@@ -1,5 +1,5 @@
-#Project 
-** Nudge ** is a reminder app that can make tasks and remind other people in the task by sending a "nudge" notification.
+# Nudge
+Nudge is an iOS reminder app that can make tasks and remind other people in the task by sending a "nudge" notification.
 
 ## User Stories
 The following **required** functionality is completed:
@@ -18,8 +18,8 @@ The following **optional** features are implemented:
 - [ ] Categorization of tasks
 - [ ] Priority on tasks
 - [ ] Chat function
-- [ ] Animations
-- [ ] Calendar
+- [X] Animations
+- [X] Calendar
 
 
 ##Parse Table and Columns
@@ -46,7 +46,7 @@ http://i.imgur.com/dKbytrm.gif
 <img src='http://i.imgur.com/dKbytrm.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 
-<img src='http://i.imgur.com/Yx2tBxV.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='http://i.imgur.com/OMXO6GM.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 GIF created with [LiceCap] (https://www.cockos.com/licecap/).
 
 ## Demo
