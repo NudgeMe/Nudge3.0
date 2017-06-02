@@ -38,10 +38,7 @@ TaskGroup:
 - Tasks[]
 
 ## Video Walkthrough
-http://imgur.com/Yx2tBxV
-
-http://i.imgur.com/dKbytrm.gif
-
+https://www.youtube.com/watch?v=gGd28bofXXA&t=3s
 
 <img src='http://i.imgur.com/dKbytrm.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
