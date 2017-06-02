@@ -40,9 +40,10 @@ TaskGroup:
 ## Video Walkthrough
 https://www.youtube.com/watch?v=gGd28bofXXA&t=3s
 
+Milestone 1
 <img src='http://i.imgur.com/dKbytrm.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
-
+Demo Version
 <img src='http://i.imgur.com/OMXO6GM.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 GIF created with [LiceCap] (https://www.cockos.com/licecap/).
 
